@@ -1,91 +1,32 @@
 {
   "meta": {
-    "company": {
-      "name": "RELIVE COMMUNICATION S.R.L.",
-      "piva": "03470680921",
-      "ateco": "73.11 - Attività di agenzie pubblicitarie",
-      "location": "Italia",
-      "employees": "6"
-    },
-    "report": {
-      "date": "23 Apr 2025",
-      "year": "2024",
-      "currentYear": 2025
-    },
-    "user": {
-      "name": "AdminUser"
-    },
-    "irp": {
-      "score": "78,50",
-      "category_letter": "B",
-      "category_text": "Moderato-Basso",
-      "style_class": "bg-success"
-    },
+    "company": { "name": "RELIVE COMMUNICATION S.R.L." },
+    "report": { "date": "23 Apr 2025" },
+    "user": { "name": "AdminUser" },
+    "irp": { "score": "78,50", "category_letter": "B", "style_class": "bg-success" },
     "sidebar_links": [
       { "group_title": "Menu Principale" },
-      { "title": "Dashboard", "href": "dashboard.html", "icon": "fas fa-tachometer-alt fa-fw", "page_id": "dashboard" },
-      { "title": "Sintesi e Profilo", "href": "parte1_sintesi.html", "icon": "fas fa-file-alt fa-fw", "page_id": "parte1_sintesi" }
+      { "title": "Dashboard", "href": "dashboard.html", "icon": "fas fa-tachometer-alt fa-fw", "page_id": "dashboard" }
     ]
   },
   "dashboard": {
     "page_title": "Dashboard Esecutiva",
     "kpi_cards": [
-      { "id": "irp", "title": "Indice Rischio (IRP)", "value": "78,50", "trend_class": "", "trend_icon": "", "trend_value": "<span class='status-badge bg-success'>Moderato-Basso</span>", "trend_period": "(Scala 0-100)", "description": "Solidità adeguata con alcuni punti di forza.", "icon_class": "fas fa-shield-alt", "border_class": "border-left-success", "link_href": "parte1_sintesi.html#summary-section-container", "link_text": "Vedi Dettaglio", "link_class": "" },
-      { "id": "ricavi", "title": "Ricavi", "value": "€ 1,03 M", "trend_class": "trend-up", "trend_icon": "fas fa-arrow-up", "trend_value": "+1,64%", "trend_period": "vs 2023", "description": "Crescita limitata ma stabile.", "icon_class": "fas fa-chart-bar", "border_class": "border-left-info", "link_href": "#", "link_text": "", "link_class": "d-none" },
-      { "id": "ebitda_margin", "title": "EBITDA Margin", "value": "9,91%", "trend_class": "trend-down", "trend_icon": "fas fa-arrow-down", "trend_value": "-0,39 p.p.", "trend_period": "vs 2023", "description": "Marginalità ancora buona (benchmark 8-12%).", "icon_class": "fas fa-percent", "border_class": "border-left-success", "link_href": "#", "link_text": "", "link_class": "d-none" },
-      { "id": "pfn_ebitda", "title": "PFN / EBITDA", "value": "-0,56", "trend_class": "trend-up", "trend_icon": "fas fa-arrow-up", "trend_value": "Eccellente", "trend_period": "PFN Negativa", "description": "Surplus di cassa (benchmark < 3x).", "icon_class": "fas fa-balance-scale", "border_class": "border-left-success", "link_href": "#", "link_text": "", "link_class": "d-none" },
-      { "id": "dso", "title": "Giorni Incasso Clienti", "value": "262 gg", "trend_class": "trend-down", "trend_icon": "fas fa-arrow-down", "trend_value": "+43 gg", "trend_period": "vs 2023", "description": "Criticità significativa (benchmark 90-120gg).", "icon_class": "fas fa-file-invoice-dollar", "border_class": "border-left-danger", "link_href": "#", "link_text": "", "link_class": "d-none" },
-      { "id": "cash_flow", "title": "Cash Flow Operativo", "value": "€ 63,85 K", "trend_class": "trend-up", "trend_icon": "fas fa-arrow-up", "trend_value": "6,19%", "trend_period": "dei Ricavi", "description": "Buona generazione di cassa (benchmark >5%).", "icon_class": "fas fa-coins", "border_class": "border-left-success", "link_href": "#", "link_text": "", "link_class": "d-none" },
-      { "id": "leanus_score", "title": "Leanus Score / Categoria", "value": "10,03", "trend_class": "", "trend_icon": "", "trend_value": "<span class='status-badge bg-success me-2'>Buono (2)</span><span class='status-badge bg-info'>Miglioramento</span>", "trend_period": "", "description": "Profilo creditizio solido e affidabile.", "icon_class": "fas fa-user-shield", "border_class": "border-left-success", "link_href": "#", "link_text": "", "link_class": "d-none" },
-      { "id": "azione_prioritaria", "title": "Azione Prioritaria", "value": "Gestione Crediti", "trend_class": "", "trend_icon": "", "trend_value": "<span class='status-badge bg-warning'>Alta Priorità</span>", "trend_period": "", "description": "Riduzione DSO da 262 a 180 giorni.", "icon_class": "fas fa-tasks", "border_class": "border-left-warning", "link_href": "parte1_sintesi.html#ccii-section-container", "link_text": "Vedi Piano d'Azione", "link_class": "" }
+      { "id": "irp", "title": "Indice Rischio (IRP)", "value": "78,50", "trend_value": "<span class='status-badge bg-success'>Moderato-Basso</span>", "trend_period": "(Scala 0-100)", "description": "Solidità adeguata.", "icon_class": "fas fa-shield-alt", "border_class": "border-left-success", "link_href": "#", "link_text": "Dettaglio", "link_class": "" },
+      { "id": "ricavi", "title": "Ricavi", "value": "€ 1,03 M", "trend_class": "trend-up", "trend_icon": "fas fa-arrow-up", "trend_value": "+1,64%", "trend_period": "vs 2023", "description": "Crescita stabile.", "icon_class": "fas fa-chart-bar", "border_class": "border-left-info", "link_class": "d-none" }
     ],
     "charts": {
-      "trendRicaviEbitda": { "title": "Trend Economico e Margine", "data": { "labels": ["2022", "2023", "2024"], "datasets": [ { "label": "Ricavi (€)", "data": [837763, 1014130, 1030748], "borderColor": "rgb(25, 25, 112)", "backgroundColor": "rgba(25, 25, 112, 0.1)", "type": "line", "yAxisID": "y" }, { "label": "EBITDA (€)", "data": [59227, 104917, 102108], "borderColor": "rgb(77, 140, 87)", "backgroundColor": "rgba(77, 140, 87, 0.7)", "type": "bar", "yAxisID": "y" }, { "label": "EBITDA Margin (%)", "data": [7.1, 10.3, 9.9], "borderColor": "rgb(217, 140, 0)", "type": "line", "yAxisID": "y1", "fill": false } ] }, "options": { "scales": { "y": { "beginAtZero": true, "title": { "display": true, "text": "Valore (€)" } }, "y1": { "position": "right", "grid": { "drawOnChartArea": false }, "title": { "display": true, "text": "EBITDA Margin (%)" } } } } },
-      "trendPfnEbitda": { "title": "Sostenibilità Debito (PFN/EBITDA)", "type": "line", "data": { "labels": ["2022", "2023", "2024"], "datasets": [ { "label": "PFN/EBITDA", "data": [-0.86, 0.03, -0.56], "borderColor": "rgb(214, 34, 70)", "backgroundColor": "rgba(214, 34, 70, 0.2)", "fill": true }, { "label": "Soglia Attenzione (<3x)", "data": [3, 3, 3], "borderColor": "rgb(255, 193, 7)", "borderDash": [5, 5], "fill": false, "pointRadius": 0 } ] }, "options": { "scales": { "y": { "title": { "display": true, "text": "Rapporto (x)" } } } } }
-    }
-  },
-  "parte1_sintesi": {
-    "page_title": "Sintesi e Profilo",
-    "summary_section": {
-      "title": "1.1 SINTESI DELL'ANALISI FINANZIARIA", "icon": "fas fa-file-invoice",
-      "irp_card": {
-        "score": "78,50", "category_text": "Moderato-Basso", "category_letter": "B",
-        "style_class_circle": "risk-low", "style_class_text": "text-success", "style_class_badge": "bg-success"
-      },
-      "summary_text": "Profilo di rischio <strong>Moderato-Basso</strong>. L'azienda dimostra un'eccellente solidità patrimoniale, buona marginalità operativa e basso indebitamento finanziario, sebbene la gestione del capitale circolante rappresenti un'area di miglioramento.",
-      "other_ratings": [
-        {"icon": "fas fa-chart-bar", "label": "Leanus Score:", "value": "10,03", "badge_text": "Buono", "badge_class": "bg-success"},
-        {"icon": "fas fa-university", "label": "Rating MCC:", "value": "Fascia 2", "badge_text": "Buono", "badge_class": "bg-success"},
-        {"icon": "fas fa-calculator", "label": "Z-Score:", "value": "9,48", "badge_text": "Sicurezza", "badge_class": "bg-success"}
-      ]
-    },
-    "profile_section": {
-      "title": "1.2 PROFILO AZIENDALE", "icon": "fas fa-building",
-      "anagrafica": [
-        {"icon": "fas fa-id-card", "label": "Rag. Sociale:", "value": "RELIVE COMMUNICATION S.R.L."},
-        {"icon": "fas fa-barcode", "label": "ATECO:", "value": "73.11 - Attività di agenzie pubblicitarie"},
-        {"icon": "fas fa-expand-arrows-alt", "label": "Dimensione:", "value": "Micro Impresa"}
-      ],
-      "struttura": [
-        {"icon": "fas fa-users", "label": "Dipendenti:", "value": "6"},
-        {"icon": "fas fa-money-bill-wave", "label": "Costo Personale:", "value": "€242.750 (23,6% Ricavi)"}
-      ],
-      "business_model_html": "<p class='small'>RELIVE COMMUNICATION opera nel settore delle agenzie pubblicitarie. Il business è caratterizzato da elevati margini di contribuzione (38,5%) ma anche da un ciclo del circolante particolarmente esteso (119 giorni) a causa di tempi di incasso molto dilatati. La struttura finanziaria è molto solida, con assenza di debiti finanziari.</p>"
-    },
-    "swot_section": {
-      "title": "1.3 ANALISI SWOT", "icon": "fas fa-sitemap",
-      "items": {
-        "strength": { "title": "Forza", "icon": "fas fa-thumbs-up", "points": ["Eccellente redditività (ROE 40,91%)", "Buona marginalità operativa", "Azzeramento debiti finanziari"] },
-        "weakness": { "title": "Debolezza", "icon": "fas fa-thumbs-down", "points": ["DSO molto elevato (262 giorni)", "Ciclo circolante inefficiente", "Crescita costi fissi superiore a ricavi"] },
-        "opportunity": { "title": "Opportunità", "icon": "fas fa-lightbulb", "points": ["Espansione base clienti", "Sviluppo servizi digitali innovativi", "Ottimizzazione gestione crediti"] },
-        "threat": { "title": "Minacce", "icon": "fas fa-exclamation-triangle", "points": ["Tensioni finanziarie da DSO elevato", "Concorrenza internazionale", "Rallentamento economia settoriale"] }
+      "trendRicaviEbitda": {
+        "title": "Trend Economico",
+        "type": "bar",
+        "data": {
+            "labels": ["2022", "2023", "2024"],
+            "datasets": [
+                { "label": "Ricavi (€)", "data": [837763, 1014130, 1030748], "backgroundColor": "rgba(25, 25, 112, 0.7)" },
+                { "label": "EBITDA (€)", "data": [59227, 104917, 102108], "backgroundColor": "rgba(77, 140, 87, 0.7)" }
+            ]
+        }
       }
-    },
-    "ccii_section": {
-        "title": "1.4 CONFORMITÀ CRISI D'IMPRESA (CCII)", "icon": "fas fa-gavel",
-        "status_text": "Indicatori CCII: <strong>Tutti Rispettati</strong>",
-        "status_class": "alert-success", "status_icon": "fas fa-check-circle",
-        "description_html": "<p class='small mb-0'>L'analisi degli indicatori della crisi secondo il CCII evidenzia un profilo complessivamente positivo, confermando l'assenza di 'fondati indizi' dello stato di crisi.</p>"
     }
   }
 }
