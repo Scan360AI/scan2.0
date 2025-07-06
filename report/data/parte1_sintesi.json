@@ -1,63 +1,66 @@
 {
-  "page_title": "Sintesi e Profilo",
-  "summary_section": {
-    "title": "1.1 SINTESI DELL'ANALISI FINANZIARIA",
-    "icon": "fas fa-file-invoice",
+  "page_title": "Sintesi e Profilo Aziendale",
+  "irp_summary_section": {
+    "title": "1.1 SINTESI DELL'ANALISI FINANZIARIA", "icon": "fas fa-file-invoice",
     "irp_card": {
-      "score": "78,50",
-      "category_text": "Moderato-Basso",
-      "category_letter": "B",
-      "style_class_circle": "risk-low",
-      "style_class_text": "text-success",
-      "style_class_badge": "bg-success",
+      "score": "78,50", "category_text": "Moderato-Basso", "category_letter": "B",
+      "style_class_circle": "risk-low", "style_class_text": "text-success", "style_class_badge": "bg-success",
       "detail_link": "irp_dettaglio.html"
     },
     "summary_text_html": "Profilo di rischio <strong>Moderato-Basso</strong>. L'azienda dimostra un'eccellente solidità patrimoniale, buona marginalità operativa e basso indebitamento finanziario, sebbene la gestione del capitale circolante rappresenti un'area di miglioramento con tempi di incasso dei crediti commerciali significativamente superiori alla media settoriale.",
-    "status_button": {
-      "text": "Verifica Crisi d'Impresa (OK)",
-      "class": "btn-success",
-      "icon": "fas fa-check-circle",
-      "href": "#ccii-section-container"
-    },
+    "status_button": { "text": "Verifica Crisi d'Impresa (OK)", "class": "btn-success", "icon": "fas fa-check-circle", "href": "#crisis-framework" },
     "other_ratings": [
-      { "icon": "fas fa-chart-bar", "label": "Leanus Score:", "value": "10,03", "badge_text": "Buono", "badge_class": "bg-success" },
-      { "icon": "fas fa-building", "label": "Business Cat.:", "value": "STABILE", "badge_text": "STABILE", "badge_class": "bg-warning text-dark" },
-      { "icon": "fas fa-university", "label": "Rating MCC:", "value": "Fascia 2", "badge_text": "Buono", "badge_class": "bg-success" },
-      { "icon": "fas fa-calculator", "label": "Z-Score:", "value": "9,48", "badge_text": "Sicurezza", "badge_class": "bg-success" }
+      { "icon": "fas fa-chart-bar", "bg_class": "bg-icon-success", "label": "Leanus Score:", "value": "10,03", "badge_text": "Buono", "badge_class": "bg-success" },
+      { "icon": "fas fa-building", "bg_class": "bg-icon-success", "label": "Business Cat.:", "value": "", "badge_text": "STABILE", "badge_class": "stable-badge" },
+      { "icon": "fas fa-university", "bg_class": "bg-icon-success", "label": "Rating MCC:", "value": "Fascia 2", "badge_text": "Buono", "badge_class": "bg-success" },
+      { "icon": "fas fa-calculator", "bg_class": "bg-icon-success", "label": "Z-Score:", "value": "9,48", "badge_text": "Sicurezza", "badge_class": "bg-success" }
     ]
   },
+  "kpi_section": {
+    "title_html": "<i class=\"fas fa-key me-2\"></i>Indicatori Chiave di Performance (KPI) - 31/12/2024",
+    "kpi_cards": [
+      { "icon": "fas fa-euro-sign", "bg_class": "bg-icon-success", "title": "Ricavi", "value": "€ 1,03 M", "trend_html": "<i class='fas fa-arrow-up'></i> +1,64% YoY", "trend_class": "trend-up" },
+      { "icon": "fas fa-chart-line", "bg_class": "bg-icon-warning", "title": "EBITDA", "value": "€ 102.108", "trend_html": "<i class='fas fa-arrow-down'></i> -2,68% YoY", "trend_class": "trend-down" },
+      { "icon": "fas fa-percentage", "bg_class": "bg-icon-success", "title": "EBITDA Margin", "value": "9,91%", "trend_html": "<i class='fas fa-arrow-down'></i> -0,39 p.p. YoY", "trend_class": "trend-down" },
+      { "icon": "fas fa-coins", "bg_class": "bg-icon-success", "title": "Utile Netto", "value": "€ 95.783", "trend_html": "<i class='fas fa-arrow-up'></i> +131,0% YoY", "trend_class": "trend-up" },
+      { "icon": "fas fa-landmark", "bg_class": "bg-icon-success", "title": "Patrimonio Netto", "value": "€ 234.134", "trend_html": "<i class='fas fa-arrow-up'></i> +69,23% YoY", "trend_class": "trend-up" },
+      { "icon": "fas fa-tint", "bg_class": "bg-icon-success", "title": "Liquidità", "value": "€ 56.948", "trend_html": "<i class='fas fa-arrow-up'></i> +40,71% YoY", "trend_class": "trend-up" },
+      { "icon": "fas fa-balance-scale-right", "bg_class": "bg-icon-success", "title": "PFN / EBITDA", "value": "N/A", "trend_html": "<i class='fas fa-arrow-up'></i> PFN Negativa", "trend_class": "trend-up" },
+      { "icon": "fas fa-money-bill-wave", "bg_class": "bg-icon-success", "title": "Leva Finanziaria (D/E)", "value": "0,00x", "trend_html": "<i class='fas fa-arrow-up'></i> da 0,31x", "trend_class": "trend-up" }
+    ]
+  },
+  "charts_section": {
+    "title_html": "<i class=\"fas fa-chart-bar me-2\"></i>Grafici di Sintesi",
+    "charts": {
+      "mainMetricsChart": { "title": "Grafico 1.1: Trend Indicatori Principali (€000)", "type": "bar", "data": { "labels": ["2022", "2023", "2024"], "datasets": [ { "label": "Ricavi (€000)", "data": [838, 1014, 1031], "backgroundColor": "rgba(25, 25, 112, 0.7)" }, { "label": "EBITDA (€000)", "data": [59, 105, 102], "backgroundColor": "rgba(77, 140, 87, 0.7)" }, { "label": "Patrimonio Netto (€000)", "data": [97, 138, 234], "backgroundColor": "rgba(217, 140, 0, 0.7)" } ] }, "options": { "scales": { "y": { "title": { "display": true, "text": "Valori in €000" } } } } },
+      "currentAssetsLiabilitiesChart": { "title": "Grafico 1.2: Trend Attivo/Passivo Corrente (€)", "type": "bar", "data": { "labels": ["2023", "2024"], "datasets": [ { "label": "Attivo Corrente", "data": [661240, 835318], "backgroundColor": "rgba(25, 25, 112, 0.7)" }, { "label": "Passivo Corrente", "data": [459165, 564443], "backgroundColor": "rgba(214, 34, 70, 0.7)" }, { "label": "Capitale Circolante Netto", "data": [161675, 213927], "backgroundColor": "rgba(77, 140, 87, 0.7)" } ] }, "options": { "scales": { "y": { "title": { "display": true, "text": "Valore (€)" } } } } }
+    }
+  },
   "profile_section": {
-    "title": "1.2 PROFILO AZIENDALE",
-    "icon": "fas fa-building",
-    "anagrafica": [
-      { "icon": "fas fa-id-card", "label": "Rag. Sociale:", "value": "RELIVE COMMUNICATION S.R.L." },
-      { "icon": "fas fa-barcode", "label": "ATECO:", "value": "73.11 - Attività di agenzie pubblicitarie" },
-      { "icon": "fas fa-map-marker-alt", "label": "Sede:", "value": "Milano (MI), Lombardia" },
-      { "icon": "fas fa-expand-arrows-alt", "label": "Dimensione:", "value": "Micro Impresa" }
-    ],
-    "struttura": [
-      { "icon": "fas fa-users", "label": "Dipendenti:", "value": "6" },
-      { "icon": "fas fa-money-bill-wave", "label": "Costo Personale:", "value": "€242.750 (23,6% Ricavi)" },
-      { "icon": "fas fa-sitemap", "label": "Modello di business:", "value": "Service (orientato ai servizi)" }
-    ],
-    "business_model_html": "<p class='small'>RELIVE COMMUNICATION opera nel settore delle agenzie pubblicitarie, offrendo servizi di comunicazione, marketing e pubblicità a clienti business. L'azienda si caratterizza per un modello di business orientato ai servizi con alta intensità di capitale umano, con una struttura snella e flessibile tipica delle micro-imprese del settore. L'azienda mostra un'eccellente redditività (ROI 53,26%, ROE 40,91%) e una struttura patrimoniale-finanziaria molto solida, con completa assenza di debiti finanziari.</p>"
+    "title": "1.2 PROFILO AZIENDALE", "icon": "fas fa-building",
+    "content_html": "<div class='row'><div class='col-lg-6'><h6><i class='fas fa-info-circle fa-fw me-2 text-primary'></i> Anagrafica e Settore</h6><ul> <li><i class='fas fa-id-card fa-fw'></i><strong>Rag. Sociale:</strong> RELIVE COMMUNICATION S.R.L.</li> <li><i class='fas fa-barcode fa-fw'></i><strong>ATECO:</strong> 73.11 - Attività di agenzie pubblicitarie</li> <li><i class='fas fa-calendar-alt fa-fw'></i><strong>Fondazione:</strong> 2018</li> <li><i class='fas fa-map-marker-alt fa-fw'></i><strong>Sede:</strong> Milano (MI), Lombardia</li> <li><i class='fas fa-industry fa-fw'></i><strong>Settore:</strong> Servizi pubblicitari e marketing</li> <li><i class='fas fa-expand-arrows-alt fa-fw'></i><strong>Dimensione:</strong> Micro Impresa</li> </ul></div><div class='col-lg-6'><h6><i class='fas fa-users-cog fa-fw me-2 text-primary'></i> Struttura e Personale</h6><ul> <li><i class='fas fa-users fa-fw'></i><strong>Dipendenti:</strong> 6</li> <li><i class='fas fa-money-bill-wave fa-fw'></i><strong>Costo Personale:</strong> €242.750 (23,6% Ricavi)</li> <li><i class='fas fa-sitemap fa-fw'></i><strong>Modello di business:</strong> Service (orientato ai servizi)</li> <li><i class='fas fa-chart-pie fa-fw'></i><strong>Capitale sociale:</strong> €20.000 (8,54% del Patrimonio Netto)</li> <li><i class='fas fa-link fa-fw'></i><strong>Composizione patrimoniale:</strong> Capitale Sociale 8,54%, Riserve 50,55%, Utile 40,91%</li> </ul></div><div class='col-lg-12 mt-3'><h6><i class='fas fa-briefcase fa-fw me-2 text-primary'></i> Modello di Business e Posizionamento</h6><p class='small'>RELIVE COMMUNICATION opera nel settore delle agenzie pubblicitarie, offrendo servizi di comunicazione, marketing e pubblicità a clienti business. L'azienda si caratterizza per un modello di business orientato ai servizi con alta intensità di capitale umano, con una struttura snella e flessibile tipica delle micro-imprese del settore. Il business è caratterizzato da elevati margini di contribuzione (38,5%) ma anche da un ciclo del circolante particolarmente esteso (119 giorni) con tempi di incasso dai clienti significativamente superiori agli standard di settore. L'azienda mostra un'eccellente redditività (ROI 53,26%, ROE 40,91%) e una struttura patrimoniale-finanziaria molto solida, con completa assenza di debiti finanziari.</p></div></div>"
   },
   "swot_section": {
-    "title": "1.3 ANALISI SWOT",
-    "icon": "fas fa-sitemap",
+    "title": "Analisi SWOT", "icon": "fas fa-sitemap",
     "items": {
-      "strength": { "title": "Forza", "icon": "fas fa-thumbs-up", "style_class": "strength", "points": ["Eccellente redditività (ROE 40,91%)", "Buona marginalità operativa", "Azzeramento debiti finanziari", "Forte rafforzamento patrimoniale (+69,23%)"] },
-      "weakness": { "title": "Debolezza", "icon": "fas fa-thumbs-down", "style_class": "weakness", "points": ["Tempi di incasso clienti molto elevati (DSO 262 giorni)", "Ciclo circolante inefficiente (119 giorni)", "Incremento costi fissi superiore alla crescita ricavi"] },
-      "opportunity": { "title": "Opportunità", "icon": "fas fa-lightbulb", "style_class": "opportunity", "points": ["Espansione base clienti", "Sviluppo servizi digitali innovativi", "Ottimizzazione gestione crediti commerciali", "Sfruttamento leva finanziaria per accelerare crescita"] },
-      "threat": { "title": "Minacce", "icon": "fas fa-exclamation-triangle", "style_class": "threat", "points": ["Possibili tensioni finanziarie (DSO elevato)", "Concorrenza da agenzie digitali internazionali", "Potenziale deterioramento rapporti con fornitori (DPO elevato)"] }
+      "strength": { "title": "Forza", "icon": "fas fa-thumbs-up", "style_class": "strength", "points": ["Eccellente redditività (ROE 40,91%, ROI 53,26%)", "Buona marginalità operativa (EBITDA margin 9,91%)", "Azzeramento completo dei debiti finanziari", "Forte rafforzamento patrimoniale (+69,23%)", "Eccellente produttività per dipendente (€171.791/dip)"] },
+      "weakness": { "title": "Debolezza", "icon": "fas fa-thumbs-down", "style_class": "weakness", "points": ["Tempi di incasso clienti molto elevati (DSO 262 giorni)", "Ciclo circolante inefficiente (119 giorni)", "Incremento costi fissi superiore alla crescita ricavi (+22,4% vs +1,64%)", "Limitata crescita dimensionale (+1,64% ricavi)", "Forte dipendenza da pochi clienti strategici"] },
+      "opportunity": { "title": "Opportunità", "icon": "fas fa-lightbulb", "style_class": "opportunity", "points": ["Potenziale espansione della base clienti", "Sviluppo di servizi innovativi digitali", "Ottimizzazione gestione crediti commerciali", "Crescita dimensionale tramite acquisizioni", "Sfruttamento contenuto leva finanziaria per accelerare crescita"] },
+      "threat": { "title": "Minacce", "icon": "fas fa-exclamation-triangle", "style_class": "threat", "points": ["Possibili tensioni finanziarie (DSO elevato)", "Concorrenza da agenzie digitali internazionali", "Potenziale deterioramento dei rapporti con fornitori (DPO elevato)", "Rischio di instabilità economica settoriale", "Contrazione della domanda in caso di rallentamento economia"] }
     }
   },
   "ccii_section": {
-    "title": "1.4 CONFORMITÀ CRISI D'IMPRESA (CCII)",
-    "icon": "fas fa-gavel",
-    "status_text_html": "Indicatori CCII: <strong>Tutti Rispettati</strong>",
-    "status_class": "alert-success",
-    "status_icon": "fas fa-check-circle",
-    "description_html": "<p class='small mb-0'>L'analisi degli indicatori della crisi secondo il CCII evidenzia un profilo complessivamente positivo, con tutti gli indicatori in linea con le soglie di sicurezza, confermando l'assenza di 'fondati indizi' dello stato di crisi ai sensi del CCII.</p>"
+    "title": "1.3 CONFORMITÀ ALLA NORMATIVA SULLA CRISI D'IMPRESA (CCII)", "icon": "fas fa-gavel",
+    "content_html": "<div class='alert-box alert-success d-flex align-items-center'><span class='icon-circle bg-icon-success me-3'><i class='fas fa-check-circle'></i></span><div><h6 class='mb-1'>Indicatori CCII: <strong>Tutti Rispettati</strong></h6><p class='small mb-0'>L'analisi degli indicatori della crisi secondo il CCII evidenzia un profilo complessivamente positivo, con tutti gli indicatori in linea con le soglie di sicurezza, confermando l'assenza di 'fondati indizi' dello stato di crisi ai sensi del CCII.</p></div></div><h6 class='mt-4'>Contesto Normativo Rilevante:</h6><ul class='small'><li><strong>Obbligo di Controllo o Revisione</strong> (Art. 2477 Comma 3)</li><li><strong>Adeguati assetti aziendali</strong> secondo il D.Lgs. 14/2019 (Codice della Crisi d'Impresa e dell'Insolvenza - CCII)</li></ul><p class='small text-muted mt-3'>La Probabilità di Default secondo il rating del Fondo di Garanzia MCC è pari a 1,02%, collocando l'azienda in FASCIA '2', una valutazione che conferma la solidità finanziaria.</p>"
+  },
+  "actions_section": {
+    "title": "Azioni Raccomandate Prioritarie (Sintesi)", "icon": "fas fa-tasks",
+    "headers": ["Area", "Azione Prioritaria", "Impatto Atteso", "Priorità"],
+    "rows": [
+      { "icon": "fas fa-calendar-alt", "icon_bg": "bg-icon-danger", "area": "Gestione crediti clienti", "action": "Implementazione politiche di credit management strutturate", "impact": "Riduzione DSO a 180 giorni (-€177.500)", "priority_class": "bg-danger", "priority_text": "Alta" },
+      { "icon": "fas fa-dolly", "icon_bg": "bg-icon-warning", "area": "Gestione debiti fornitori", "action": "Normalizzazione rapporti con fornitori strategici", "impact": "Miglioramento relazioni e DPO < 180 giorni", "priority_class": "bg-warning text-dark", "priority_text": "Media" },
+      { "icon": "fas fa-chart-line", "icon_bg": "bg-icon-danger", "area": "Crescita dimensionale", "action": "Sviluppo piano commerciale strutturato", "impact": "Crescita ricavi +10% (+€103.000)", "priority_class": "bg-danger", "priority_text": "Alta" }
+    ],
+    "link_to_full_plan": { "href": "parte6_rischi-raccomandazioni.html#table_7_1_1", "text": "Vedi Piano d'Azione Dettagliato" }
   }
 }
