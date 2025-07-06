@@ -11,20 +11,23 @@
     <link href="assets/css/styles.css" rel="stylesheet">
     <link href="assets/css/print.css" rel="stylesheet" media="print">
     <style>
-        /* Aggiungo qui stili specifici per la card SWOT che erano nel file originale */
+        /* Aggiungo qui stili specifici che erano nel file originale per essere fedele al 100% */
+        .kpi-card-v4 { display: flex; align-items: center; padding: 1rem; background-color: var(--white); border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 1.5rem; border: 1px solid var(--card-border); height: 100%;}
+        .kpi-card-v4 .kpi-content { margin-left: 0; flex-grow: 1;}
+        .kpi-card-v4 .kpi-title { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.2;}
+        .kpi-card-v4 .kpi-value { font-size: 1.7rem; font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 3px;}
+        .kpi-card-v4 .kpi-trend { font-size: 0.8rem; font-weight: 600; margin-top: 0px;}
+        .kpi-card-v4 .trend-up { color: var(--success); } .kpi-card-v4 .trend-down { color: var(--danger); }
         .swot-card-restored { background-color: var(--white); border-radius: 8px; border: 1px solid var(--card-border); box-shadow: var(--shadow); height: 100%;}
         .swot-card-restored .card-header { display: flex; align-items: center; font-weight: 600; border-bottom: 1px solid var(--card-border); padding: 0.75rem 1rem;}
         .swot-card-restored .card-header i { margin-right: 8px; font-size: 1.1rem; }
         .swot-card-restored .card-body ul { font-size: 0.85rem; padding-left: 1.5rem; list-style: disc; margin-bottom: 0;}
-        .swot-card-restored .card-body li { margin-bottom: 0.5rem;}
-        .swot-card-restored.strength .card-header { background-color: #d1e7dd; color: #0a3622;} .swot-card-restored.strength .card-header i { color: #0a3622; }
-        .swot-card-restored.weakness .card-header { background-color: #f8d7da; color: #58151c;} .swot-card-restored.weakness .card-header i { color: #58151c; }
-        .swot-card-restored.opportunity .card-header { background-color: #cff4fc; color: #055160;} .swot-card-restored.opportunity .card-header i { color: #055160; }
-        .swot-card-restored.threat .card-header { background-color: #fff3cd; color: #664d03;} .swot-card-restored.threat .card-header i { color: #664d03; }
+        .swot-card-restored.strength .card-header { background-color: #d1e7dd; color: #0a3622;}
+        .swot-card-restored.weakness .card-header { background-color: #f8d7da; color: #58151c;}
+        .swot-card-restored.opportunity .card-header { background-color: #cff4fc; color: #055160;}
+        .swot-card-restored.threat .card-header { background-color: #fff3cd; color: #664d03;}
         .alert-box { padding: 15px; border-radius: 8px; margin-bottom: 20px; border-width: 1px; border-style: solid; }
         .alert-box.alert-success { background-color: #d1e7dd; border-color: #a3cfbb; color: #0a3622; }
-        .icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; color: white; margin-right: 12px; font-size: 0.9rem; flex-shrink: 0; }
-        .icon-circle.bg-success { background-color: var(--success); }
     </style>
 </head>
 <body data-page-id="parte1_sintesi"> <!-- ID UNIVOCO PER QUESTA PAGINA -->
@@ -36,11 +39,31 @@
             <div id="loading-indicator" class="text-center p-5">
                 <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
             </div>
+            
+            <!-- Wrapper principale per il contenuto, inizialmente nascosto -->
             <div id="sintesi-content-wrapper" style="display: none;">
-                <section id="summary-section-container" class="report-section"></section>
-                <section id="profile-section-container" class="report-section"></section>
-                <section id="swot-section-container" class="report-section"></section>
-                <section id="ccii-section-container" class="report-section"></section>
+
+                <!-- Contenitore per Sezione 1.1: SINTESI E IRP -->
+                <div id="irp-summary-section-container" class="report-section"></div>
+                
+                <!-- Contenitore per Sezione KPI -->
+                <div id="kpi-section-container" class="report-section"></div>
+
+                <!-- Contenitore per Sezione GRAFICI DI SINTESI -->
+                <div id="charts-section-container" class="report-section"></div>
+
+                <!-- Contenitore per Sezione 1.2: PROFILO AZIENDALE -->
+                <div id="profile-section-container" class="report-section"></div>
+
+                <!-- Contenitore per Sezione ANALISI SWOT -->
+                <div id="swot-section-container" class="report-section"></div>
+                
+                <!-- Contenitore per Sezione CONFORMITÀ CRISI D'IMPRESA -->
+                <div id="ccii-section-container" class="report-section"></div>
+
+                <!-- Contenitore per Sezione AZIONI RACCOMANDATE -->
+                <div id="actions-section-container" class="report-section"></div>
+
             </div>
         </div>
         <footer class="footer no-print" id="footer-container"></footer>
@@ -57,86 +80,94 @@
 
         const getValue = (obj, path, d = '') => path.split('.').reduce((a, p) => a && typeof a === 'object' ? a[p] : undefined, obj) || d;
         const createElement = (tag, { k = [], a = {}, t = '', h = '' } = {}) => { const e = document.createElement(tag); if (k.length) e.classList.add(...k.filter(c => c)); Object.entries(a).forEach(([key, val]) => e.setAttribute(key, val)); if (t) e.textContent = t; if (h) e.innerHTML = h; return e; };
+        
+        const initChart = (canvasId, chartConfig) => {
+            if (typeof Chart === 'undefined') return;
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) { console.warn(`Canvas with ID "${canvasId}" non trovato.`); return; }
+            const ctx = canvas.getContext('2d');
+            const formatCurrency = (v, d = 0) => !isNaN(parseFloat(v)) ? new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', minimumFractionDigits: d }).format(v) : v;
+            const defaultOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: function(context) { let label = context.dataset.label || ''; if (label) label += ': '; let value = context.raw; if (typeof value === 'number') { const dsLabel = context.dataset.label || ''; if (dsLabel.includes('%')) { label += `${value.toFixed(1)}%`; } else if (dsLabel.includes('EBITDA')) { label += `${value.toFixed(2)}x`; } else { label += formatCurrency(value, 0); } } else { label += value; } return label; } } } } };
+            const finalOptions = { ...defaultOptions, ...chartConfig.options };
+            new Chart(ctx, { type: chartConfig.type || 'bar', data: chartConfig.data, options: finalOptions });
+        };
 
         const renderCommonComponents = (metaData) => {
             const sidebarContainer = document.getElementById('sidebar-container');
-            if (sidebarContainer) {
-                sidebarContainer.innerHTML = '';
-                const header = createElement('div', { k: ['sidebar-header'] });
-                header.append(createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] }));
-                const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] });
-                getValue(metaData, 'sidebar_links', []).forEach(link => {
-                    if (link.group_title) {
-                        nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title }));
-                    } else {
-                        const navLink = createElement('a', { k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], a: { href: link.href }, h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` });
-                        nav.appendChild(createElement('li', { k: ['nav-item'] })).appendChild(navLink);
-                    }
-                });
-                const footer = createElement('div', { k: ['sidebar-footer'] });
-                footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` }));
-                sidebarContainer.append(header, nav, footer);
-            }
+            if (sidebarContainer) { sidebarContainer.innerHTML = ''; const header = createElement('div', { k: ['sidebar-header'] }); header.append(createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] })); const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] }); getValue(metaData, 'sidebar_links', []).forEach(link => { if (link.group_title) { nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title })); } else { const navLink = createElement('a', { k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], a: { href: link.href }, h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` }); nav.appendChild(createElement('li', { k: ['nav-item'] })).appendChild(navLink); } }); const footer = createElement('div', { k: ['sidebar-footer'] }); footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` })); sidebarContainer.append(header, nav, footer); }
             const headerContainer = document.getElementById('header-container');
-            if (headerContainer) {
-                headerContainer.innerHTML = `<div class="header-title"><h4 class="mb-0">${getValue(metaData, 'company.name')}</h4></div><div class="header-controls d-flex align-items-center"><span class="badge ${getValue(metaData, 'irp.style_class')} me-3">IRP: ${getValue(metaData, 'irp.score')} (${getValue(metaData, 'irp.category_letter')})</span><span class="me-3 small text-muted">Aggiornamento: ${getValue(metaData, 'report.date')}</span><button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()"><i class="fas fa-print"></i> Stampa</button></div>`;
-            }
+            if (headerContainer) { headerContainer.innerHTML = `<div class="header-title"><h4 class="mb-0">${getValue(metaData, 'company.name')}</h4><p class="mb-0 small text-muted">Report Dettagliato: Sintesi e Profilo</p></div><div class="header-controls d-flex align-items-center"><span class="badge ${getValue(metaData, 'irp.style_class')} me-3">IRP: ${getValue(metaData, 'irp.score')} (${getValue(metaData, 'irp.category_letter')})</span><span class="me-3 small text-muted">Aggiornamento: ${getValue(metaData, 'report.date')}</span><button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()"><i class="fas fa-print"></i> Stampa</button></div>`; }
             const footerContainer = document.getElementById('footer-container');
-            if (footerContainer) {
-                footerContainer.innerHTML = `<div class="container-fluid px-4"><div class="row"><div class="col-md-6 text-center text-md-start mb-2 mb-md-0">SCAN360 © ${new Date().getFullYear()}</div><div class="col-md-6 text-center text-md-end">Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a><img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"></div></div></div>`;
-            }
+            if (footerContainer) { footerContainer.innerHTML = `<div class="container-fluid px-4"><div class="row"><div class="col-md-6 text-center text-md-start mb-2 mb-md-0">SCAN360 © ${new Date().getFullYear()}</div><div class="col-md-6 text-center text-md-end">Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a><img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"></div></div></div>`; }
         };
 
         const renderSintesiPage = (pageData) => {
-            const wrapper = document.getElementById('sintesi-content-wrapper');
-            if (!wrapper) return;
-            
-            // Sezione 1.1: Summary IRP
-            const summaryContainer = document.getElementById('summary-section-container');
-            if (summaryContainer) {
-                const summaryData = getValue(pageData, 'summary_section', {});
+            const irpSummaryContainer = document.getElementById('irp-summary-section-container');
+            if (irpSummaryContainer) {
+                const summaryData = getValue(pageData, 'irp_summary_section', {});
                 const irp = getValue(summaryData, 'irp_card', {});
                 let ratingsHtml = '';
-                getValue(summaryData, 'other_ratings', []).forEach(r => {
-                    ratingsHtml += `<li class="col-sm-6 d-flex align-items-center mb-2"><span class="icon-circle ${r.badge_class} me-2"><i class="${r.icon}"></i></span><strong>${r.label}</strong> ${r.value} <span class="status-badge ${r.badge_class}">${r.badge_text}</span></li>`;
-                });
-                summaryContainer.innerHTML = `<h2 class="section-title"><i class="${summaryData.icon} me-2"></i>${summaryData.title}</h2><div class="irp-visual-section"><div class="row align-items-center"><div class="col-md-4 text-center mb-4 mb-md-0"><div class="irp-score-circle ${irp.style_class_circle}"><span class="irp-score-value">${irp.score}</span><span class="irp-score-max">/ 100</span></div><div class="irp-category-text ${irp.style_class_text} mt-2">Rischio ${irp.category_text} <span class="status-badge ${irp.style_class_badge}">${irp.category_letter}</span></div><a href="${irp.detail_link}" class="btn btn-sm btn-outline-primary mt-3 btn-pill">Vedi Dettaglio IRP</a></div><div class="col-md-8"><h4 class="mb-3 fw-bold" style="color: var(--primary);">Valutazione Generale</h4><p class="mb-3">${summaryData.summary_text_html}</p><a href="${summaryData.status_button.href}" class="btn ${summaryData.status_button.class} btn-sm mb-3 btn-pill"><i class="${summaryData.status_button.icon} me-1"></i> ${summaryData.status_button.text}</a><div class="other-ratings border-top pt-3 mt-3"><h6 class="card-title-small mb-2">Altri Indicatori di Supporto:</h6><ul class="list-unstyled mb-0 row gx-3 gy-2">${ratingsHtml}</ul></div></div></div></div>`;
-            }
-
-            // Sezione 1.2: Profilo
-            const profileContainer = document.getElementById('profile-section-container');
-            if(profileContainer) {
-                const profileData = getValue(pageData, 'profile_section', {});
-                let anagraficaHtml = '';
-                getValue(profileData, 'anagrafica', []).forEach(p => anagraficaHtml += `<li><i class='${p.icon} fa-fw'></i><strong>${p.label}</strong> ${p.value}</li>`);
-                let strutturaHtml = '';
-                getValue(profileData, 'struttura', []).forEach(p => strutturaHtml += `<li><i class='${p.icon} fa-fw'></i><strong>${p.label}</strong> ${p.value}</li>`);
-                profileContainer.innerHTML = `<h2 class="section-title"><i class="${profileData.icon} me-2"></i>${profileData.title}</h2><div class="card"><div class="card-body"><div class="row"><div class="col-lg-6"><h6><i class="fas fa-info-circle fa-fw me-2 text-primary"></i> Anagrafica e Settore</h6><ul class="list-unstyled">${anagraficaHtml}</ul></div><div class="col-lg-6"><h6><i class="fas fa-users-cog fa-fw me-2 text-primary"></i> Struttura e Personale</h6><ul class="list-unstyled">${strutturaHtml}</ul></div><div class="col-12 mt-3"><h6><i class="fas fa-briefcase fa-fw me-2 text-primary"></i> Modello di Business</h6>${profileData.business_model_html}</div></div></div></div>`;
+                getValue(summaryData, 'other_ratings', []).forEach(r => { ratingsHtml += `<li class="col-sm-6 d-flex align-items-center mb-2"><span class="icon-circle ${r.bg_class} me-2"><i class="${r.icon}"></i></span><strong>${r.label}</strong> ${r.value} <span class="status-badge ${r.badge_class}">${r.badge_text}</span></li>`; });
+                const btn = summaryData.status_button;
+                irpSummaryContainer.innerHTML = `<h2 class="section-title"><i class="${summaryData.icon} me-2"></i>${summaryData.title}</h2><div class="irp-visual-section"><div class="row align-items-center"><div class="col-md-4 text-center mb-4 mb-md-0"><div class="irp-score-circle ${irp.style_class_circle}"><span class="irp-score-value">${irp.score}</span><span class="irp-score-max">/ 100</span></div><div class="irp-category-text ${irp.style_class_text} mt-2">Rischio ${irp.category_text} <span class="status-badge ${irp.style_class_badge}">${irp.category_letter}</span></div><a href="${irp.detail_link}" class="btn btn-sm btn-outline-primary mt-3 btn-pill">Vedi Dettaglio IRP</a></div><div class="col-md-8"><h4 class="mb-3 fw-bold" style="color: var(--primary);">Valutazione Generale</h4><p class="mb-3">${summaryData.summary_text_html}</p><a href="${btn.href}" class="btn btn-sm ${btn.class} mb-3 btn-pill"><i class="${btn.icon} me-1"></i> ${btn.text}</a><div class="other-ratings border-top pt-3 mt-3"><h6 class="card-title-small mb-2">Altri Indicatori di Supporto:</h6><ul class="list-unstyled mb-0 row gx-3 gy-2">${ratingsHtml}</ul></div></div></div></div>`;
             }
             
-            // Sezione 1.3: SWOT
+            const kpiContainer = document.getElementById('kpi-section-container');
+            if (kpiContainer) {
+                const kpiData = getValue(pageData, 'kpi_section', {});
+                const kpiRow = createElement('div', { k: ['row', 'gy-4'] });
+                getValue(kpiData, 'kpi_cards', []).forEach(kpi => {
+                    const kpiCardHtml = `<div class="kpi-card-v4"><span class="icon-circle ${kpi.icon_bg}"><i class="${kpi.icon}"></i></span><div class="kpi-content"><div class="kpi-title">${kpi.title}</div><div class="kpi-value">${kpi.value}</div><div class="kpi-trend ${kpi.trend_class}">${kpi.trend_html}</div></div></div>`;
+                    kpiRow.appendChild(createElement('div', { k: ['col-lg-3', 'col-md-6'], h: kpiCardHtml }));
+                });
+                kpiContainer.innerHTML = `<div class="card mb-4 report-section"><div class="card-header"><h5 class="mb-0">${kpiData.title_html}</h5></div><div class="card-body">${kpiRow.outerHTML}</div></div>`;
+            }
+            
+            const chartsContainer = document.getElementById('charts-section-container');
+            if (chartsContainer) {
+                const chartData = getValue(pageData, 'charts_section', {});
+                const chartsRow = createElement('div', {k: ['row']});
+                for (const key in chartData.charts) {
+                    const chartInfo = chartData.charts[key];
+                    const chartCardHtml = `<h6 class="text-center small mb-3">${chartInfo.title}</h6><div class="chart-container"><canvas id="${key}"></canvas></div>`;
+                    chartsRow.appendChild(createElement('div', {k:['col-lg-6', 'mb-4'], h: chartCardHtml}));
+                }
+                chartsContainer.innerHTML = `<div class="card mb-4 report-section"><div class="card-header"><h5 class="mb-0">${chartData.title_html}</h5></div><div class="card-body">${chartsRow.outerHTML}</div></div>`;
+            }
+
+            const profileContainer = document.getElementById('profile-section-container');
+            if(profileContainer) {
+                const data = getValue(pageData, 'profile_section', {});
+                profileContainer.innerHTML = `<h2 class="section-title"><i class="${data.icon} me-2"></i>${data.title}</h2><div class="card mb-4 report-section profile-section-restored"><div class="card-body">${data.content_html}</div></div>`;
+            }
+
             const swotContainer = document.getElementById('swot-section-container');
             if (swotContainer) {
-                const swotData = getValue(pageData, 'swot_section', {});
-                const swot = getValue(swotData, 'items', {});
+                const data = getValue(pageData, 'swot_section', {});
+                const swotItems = getValue(data, 'items', {});
                 let swotHtml = '<div class="row">';
-                Object.values(swot).forEach(val => {
+                Object.values(swotItems).forEach(val => {
                     let pointsHtml = '';
                     val.points.forEach(p => pointsHtml += `<li>${p}</li>`);
                     swotHtml += `<div class="col-md-6 col-lg-3 mb-4"><div class="swot-card-restored ${val.style_class}"><div class="card-header"><i class="${val.icon}"></i> ${val.title}</div><div class="card-body"><ul>${pointsHtml}</ul></div></div></div>`;
                 });
                 swotHtml += '</div>';
-                swotContainer.innerHTML = `<h2 class="section-title"><i class="${swotData.icon} me-2"></i>${swotData.title}</h2>${swotHtml}`;
+                swotContainer.innerHTML = `<h2 class="section-title"><i class="${data.icon} me-2"></i>${data.title}</h2>${swotHtml}`;
             }
 
-            // Sezione 1.4: CCII
             const cciiContainer = document.getElementById('ccii-section-container');
             if(cciiContainer) {
-                 const ccii = getValue(pageData, 'ccii_section', {});
-                 cciiContainer.innerHTML = `<h2 class="section-title"><i class="${ccii.icon} me-2"></i>${ccii.title}</h2><div class="alert-box ${ccii.status_class} d-flex align-items-center"><span class="icon-circle me-3"><i class="${ccii.status_icon}"></i></span><div><h6 class="mb-1">${ccii.status_text_html}</h6>${ccii.description_html}</div></div>`;
+                 const data = getValue(pageData, 'ccii_section', {});
+                 cciiContainer.innerHTML = `<h2 class="section-title" id="crisis-framework"><i class="${data.icon} me-2"></i>${data.title}</h2><div class="card mb-4 report-section"><div class="card-header"><h5 class="mb-0">Verifica Indicatori e Framework Normativo</h5></div><div class="card-body">${data.content_html}</div></div>`;
             }
-            
-            wrapper.style.display = 'block';
+
+            const actionsContainer = document.getElementById('actions-section-container');
+            if (actionsContainer) {
+                const data = getValue(pageData, 'actions_section', {});
+                let tableRows = '';
+                getValue(data, 'rows', []).forEach(row => { tableRows += `<tr><td><span class="icon-circle icon-circle-sm ${row.icon_bg}"><i class="${row.icon}"></i></span> ${row.area}</td><td>${row.action}</td><td>${row.impact}</td><td><span class="status-badge ${row.priority_class}">${row.priority_text}</span></td></tr>`; });
+                actionsContainer.innerHTML = `<div class="card mb-4 report-section"><div class="card-header"><h5 class="mb-0"><i class="${data.icon} me-1"></i>${data.title}</h5></div><div class="card-body"><div class="table-responsive"><table class="table table-sm table-hover action-table"><thead><tr><th>${data.headers.join('</th><th>')}</th></tr></thead><tbody>${tableRows}</tbody></table></div><a href="${data.link_to_full_plan.href}" class="btn btn-sm btn-primary mt-2 btn-pill"><i class="fas fa-list-alt me-1"></i> ${data.link_to_full_plan.text}</a></div></div>`;
+            }
         };
         
         const main = async () => {
@@ -154,15 +185,20 @@
 
                 if (PAGE_ID === 'parte1_sintesi') {
                     renderSintesiPage(pageData);
+                    const chartsData = getValue(pageData, 'charts_section.charts', {});
+                    for (const key in chartsData) {
+                        initChart(key, chartsData[key]);
+                    }
                 }
+                
+                document.getElementById('sintesi-content-wrapper').style.display = 'block';
 
             } catch (error) {
                 console.error("ERRORE CRITICO:", error);
                 const container = document.querySelector('.dashboard-container');
-                if (container) container.innerHTML = `<div class="alert alert-danger p-4"><h4><i class="fas fa-exclamation-triangle me-2"></i>Errore nel Caricamento</h4><p>Non è stato possibile caricare o processare i file di dati.</p><pre class="small bg-light p-2 rounded">${error.message}</pre></div>`;
+                if (container) container.innerHTML = `<div class="alert alert-danger p-4"><h4><i class="fas fa-exclamation-triangle me-2"></i>Errore</h4><p>Impossibile caricare o processare i dati.</p><pre class="small bg-light p-2 rounded">${error.message}</pre></div>`;
             }
         };
-        
         main();
     });
     </script>
