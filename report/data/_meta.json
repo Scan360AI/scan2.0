@@ -1,0 +1,22 @@
+{
+  "company": {
+    "name": "RELIVE COMMUNICATION S.R.L."
+  },
+  "report": {
+    "date": "23 Apr 2025"
+  },
+  "user": {
+    "name": "AdminUser"
+  },
+  "irp": {
+    "score": "78,50",
+    "category_letter": "B",
+    "style_class": "bg-success"
+  },
+  "sidebar_links": [
+    { "group_title": "Menu Principale" },
+    { "title": "Dashboard", "href": "dashboard.html", "icon": "fas fa-tachometer-alt fa-fw", "page_id": "dashboard" },
+    { "group_title": "Sezioni Report" },
+    { "title": "Sintesi e Profilo", "href": "parte1_sintesi.html", "icon": "fas fa-file-alt fa-fw", "page_id": "parte1_sintesi" }
+  ]
+}
