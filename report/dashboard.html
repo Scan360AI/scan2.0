@@ -67,177 +67,181 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     
-   <script>
-document.addEventListener('DOMContentLoaded', () => {
+    <!-- SCRIPT APPLICATIVO AUTO-CONTENUTO (VERSIONE COMPLETA E CORRETTA) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-    const PAGE_ID = document.body.dataset.pageId;
-    const META_DATA_PATH = 'data/_meta.json';
-    const PAGE_DATA_PATH = `data/${PAGE_ID}.json`;
+            // --- CONFIGURAZIONE ---
+            const PAGE_ID = document.body.dataset.pageId;
+            const META_DATA_PATH = 'data/_meta.json';
+            const PAGE_DATA_PATH = `data/${PAGE_ID}.json`;
 
-    const getValue = (obj, path, d = '') => path.split('.').reduce((a, p) => a && typeof a === 'object' ? a[p] : undefined, obj) || d;
-    const formatCurrency = (v, d = 0) => !isNaN(parseFloat(v)) ? new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', minimumFractionDigits: d }).format(v) : v;
-    const createElement = (tag, { k = [], a = {}, t = '', h = '' } = {}) => {
-        const e = document.createElement(tag);
-        if (k.length) e.classList.add(...k.filter(c => c));
-        Object.entries(a).forEach(([key, val]) => e.setAttribute(key, val));
-        if (t) e.textContent = t;
-        if (h) e.innerHTML = h;
-        return e;
-    };
-    
-    const initChart = (canvasId, chartConfig) => {
-        if (typeof Chart === 'undefined') return;
-        const canvas = document.getElementById(canvasId);
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        const defaultOptions = {
-            responsive: true, maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom' },
-                tooltip: { callbacks: {
-                    label: function(context) {
-                        let label = context.dataset.label || '';
-                        if (label) label += ': ';
-                        let value = context.raw;
-                        if (typeof value === 'number') {
-                            const dsLabel = context.dataset.label || '';
-                            if (dsLabel.includes('%')) { label += `${value.toFixed(1)}%`; }
-                            else if (dsLabel.includes('EBITDA')) { label += `${value.toFixed(2)}x`; }
-                            else { label += formatCurrency(value, 0); }
-                        } else { label += value; }
-                        return label;
+            // --- FUNZIONI DI UTILITY ---
+            const getValue = (obj, path, d = '') => path.split('.').reduce((a, p) => a && typeof a === 'object' ? a[p] : undefined, obj) || d;
+            const formatCurrency = (v, d = 0) => !isNaN(parseFloat(v)) ? new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', minimumFractionDigits: d }).format(v) : v;
+            const createElement = (tag, { k = [], a = {}, t = '', h = '' } = {}) => {
+                const e = document.createElement(tag);
+                if (k.length) e.classList.add(...k.filter(c => c));
+                Object.entries(a).forEach(([key, val]) => e.setAttribute(key, val));
+                if (t) e.textContent = t;
+                if (h) e.innerHTML = h;
+                return e;
+            };
+            
+            // --- FUNZIONE PER INIZIALIZZARE I GRAFICI ---
+            const initChart = (canvasId, chartConfig) => {
+                if (typeof Chart === 'undefined') { console.error("Chart.js non è caricato."); return; }
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) { console.warn(`Canvas con ID "${canvasId}" non trovato.`); return; }
+                const ctx = canvas.getContext('2d');
+                const defaultOptions = {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: { callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) label += ': ';
+                                let value = context.raw;
+                                if (typeof value === 'number') {
+                                    const dsLabel = context.dataset.label || '';
+                                    if (dsLabel.includes('%')) { label += `${value.toFixed(1)}%`; }
+                                    else if (dsLabel.includes('/EBITDA') || dsLabel.includes('(x)')) { label += `${value.toFixed(2)}x`; }
+                                    else { label += formatCurrency(value, 0); }
+                                } else { label += value; }
+                                return label;
+                            }
+                        }}
                     }
-                }}
-            }
-        };
-        const finalOptions = { ...defaultOptions, ...chartConfig.options };
-        new Chart(ctx, { type: chartConfig.type || 'bar', data: chartConfig.data, options: finalOptions });
-    };
+                };
+                const finalOptions = { ...defaultOptions, ...chartConfig.options };
+                new Chart(ctx, { type: chartConfig.type || 'bar', data: chartConfig.data, options: finalOptions });
+            };
 
-    const renderCommonComponents = (metaData) => {
-        const sidebarContainer = document.getElementById('sidebar-container');
-        if (sidebarContainer) {
-            sidebarContainer.innerHTML = '';
-            const header = createElement('div', { k: ['sidebar-header'] });
-            header.append(createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] }));
-            const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] });
-            getValue(metaData, 'sidebar_links', []).forEach(link => {
-                if (link.group_title) {
-                    nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title }));
-                } else {
-                    const navLink = createElement('a', { k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], a: { href: link.href }, h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` });
-                    nav.appendChild(createElement('li', { k: ['nav-item'] })).appendChild(navLink);
+            // --- FUNZIONI DI RENDERING (VISTE) ---
+            const renderCommonComponents = (metaData) => {
+                const sidebarContainer = document.getElementById('sidebar-container');
+                if (sidebarContainer) {
+                    sidebarContainer.innerHTML = '';
+                    const header = createElement('div', { k: ['sidebar-header'] });
+                    header.append(createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] }));
+                    const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] });
+                    getValue(metaData, 'sidebar_links', []).forEach(link => {
+                        if (link.group_title) {
+                            nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title }));
+                        } else {
+                            const navItem = createElement('li', { k: ['nav-item'] });
+                            const navLink = createElement('a', { k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], a: { href: link.href }, h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` });
+                            navItem.appendChild(navLink);
+                            nav.appendChild(navItem);
+                        }
+                    });
+                    const footer = createElement('div', { k: ['sidebar-footer'] });
+                    footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` }));
+                    sidebarContainer.append(header, nav, footer);
                 }
-            });
-            const footer = createElement('div', { k: ['sidebar-footer'] });
-            footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` }));
-            sidebarContainer.append(header, nav, footer);
-        }
-        const headerContainer = document.getElementById('header-container');
-        if(headerContainer){
-            headerContainer.innerHTML = `<div class="header-title"><h4 class="mb-0">${getValue(metaData, 'company.name')}</h4></div><div class="header-controls d-flex align-items-center"><span class="badge ${getValue(metaData, 'irp.style_class')} me-3">IRP: ${getValue(metaData, 'irp.score')} (${getValue(metaData, 'irp.category_letter')})</span><span class="me-3 small text-muted">Aggiornamento: ${getValue(metaData, 'report.date')}</span><button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()"><i class="fas fa-print"></i> Stampa</button></div>`;
-        }
-        const footerContainer = document.getElementById('footer-container');
-        if(footerContainer){
-            footerContainer.innerHTML = `<div class="container-fluid px-4"><div class="row"><div class="col-md-6 text-center text-md-start mb-2 mb-md-0">SCAN360 © ${new Date().getFullYear()}</div><div class="col-md-6 text-center text-md-end">Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a><img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"></div></div></div>`;
-        }
-    };
-    
-// Cerca questa funzione nel tuo script e sostituiscila
-const renderDashboardPage = (pageData) => {
-    const pageTitle = document.getElementById('page-main-title');
-    if(pageTitle) pageTitle.textContent = getValue(pageData, 'page_title');
-
-    const kpiContainer = document.getElementById('kpi-cards-container');
-    const chartsContainer = document.getElementById('charts-container');
-    if (!kpiContainer || !chartsContainer) return;
-
-    getValue(pageData, 'kpi_cards', []).forEach(kpi => {
-        const kpiCard = createElement('div', { k: ['kpi-card-v2', kpi.border_class]});
-        kpiCard.append(
-            createElement('i', { k: kpi.icon_class.split(' ').concat(['kpi-icon-modern-bg']) }),
-            createElement('h4', { k: ['card-title-modern'], t: kpi.title }),
-            createElement('div', { k: ['kpi-value-modern', kpi.value_class], t: kpi.value }),
-            createElement('div', { k: ['kpi-trend-modern'], h: kpi.trend_html }),
-            createElement('p', { k: ['kpi-description-modern'], t: kpi.description })
-        );
-
-        // --- LOGICA CORRETTA PER IL BOTTONE ---
-        // Aggiunge il bottone SOLO se esistono sia un link che un testo validi.
-        if (kpi.link_href && kpi.link_text) {
-            kpiCard.appendChild(
-                createElement('a', { 
-                    k: ['btn', 'btn-outline-primary', 'btn-sm', 'btn-pill', 'mt-2'], 
-                    a: { href: kpi.link_href }, 
-                    t: kpi.link_text 
-                })
-            );
-        }
-        // --- FINE LOGICA CORRETTA ---
-
-        const col = createElement('div', { k: ['col-xl-3', 'col-md-6', 'mb-4'] });
-        col.appendChild(kpiCard);
-        kpiContainer.appendChild(col);
-    });
-
-    for (const chartKey in pageData.charts) {
-        const chartInfo = pageData.charts[chartKey];
-        const chartCard = createElement('div', { k: ['dashboard-card'] });
-        chartCard.append(
-            createElement('h6', { k: ['card-title-modern', 'text-center'], t: chartInfo.title }),
-            createElement('div', { k: ['chart-container'], h: `<canvas id="${chartKey}Chart"></canvas>` })
-        );
-        const col = createElement('div', { k: ['col-lg-6', 'mb-4'] });
-        col.appendChild(chartCard);
-        chartsContainer.appendChild(col);
-    }
-};
-
-        for (const chartKey in pageData.charts) {
-            const chartInfo = pageData.charts[chartKey];
-            const chartCard = createElement('div', { k: ['dashboard-card'] });
-            chartCard.append(
-                createElement('h6', { k: ['card-title-modern', 'text-center'], t: chartInfo.title }),
-                createElement('div', { k: ['chart-container'], h: `<canvas id="${chartKey}Chart"></canvas>` })
-            );
-            const col = createElement('div', { k: ['col-lg-6', 'mb-4'] });
-            col.appendChild(chartCard);
-            chartsContainer.appendChild(col);
-        }
-    };
-    
-    const main = async () => {
-        if (!PAGE_ID) return;
-        try {
-            const [metaResponse, pageResponse] = await Promise.all([ fetch(META_DATA_PATH), fetch(PAGE_DATA_PATH) ]);
-            if (!metaResponse.ok || !pageResponse.ok) throw new Error(`Errore caricamento file JSON`);
-            const metaData = await metaResponse.json();
-            const pageData = await pageResponse.json();
+                const headerContainer = document.getElementById('header-container');
+                if(headerContainer){
+                    headerContainer.innerHTML = `<div class="header-title"><h4 class="mb-0">${getValue(metaData, 'company.name')}</h4></div><div class="header-controls d-flex align-items-center"><span class="badge ${getValue(metaData, 'irp.style_class')} me-3">IRP: ${getValue(metaData, 'irp.score')} (${getValue(metaData, 'irp.category_letter')})</span><span class="me-3 small text-muted">Aggiornamento: ${getValue(metaData, 'report.date')}</span><button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()"><i class="fas fa-print"></i> Stampa</button></div>`;
+                }
+                const footerContainer = document.getElementById('footer-container');
+                if(footerContainer){
+                    footerContainer.innerHTML = `<div class="container-fluid px-4"><div class="row"><div class="col-md-6 text-center text-md-start mb-2 mb-md-0">SCAN360 © ${new Date().getFullYear()}</div><div class="col-md-6 text-center text-md-end">Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a><img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"></div></div></div>`;
+                }
+            };
             
-            document.title = `${pageData.page_title} - ${getValue(metaData, 'company.name')}`;
-            document.getElementById('loading-indicator')?.remove();
-            
-            renderCommonComponents(metaData);
-            
-            const wrapper = document.getElementById(`${PAGE_ID}-content-wrapper`);
-            if(wrapper) wrapper.style.display = 'block';
+            const renderDashboardPage = (pageData, metaData) => {
+                const pageTitle = document.getElementById('page-main-title');
+                if(pageTitle) pageTitle.textContent = `${getValue(pageData, 'page_title')} - ${getValue(metaData, 'company.name')}`;
 
-            if (PAGE_ID === 'dashboard') {
-                renderDashboardPage(pageData);
-                Object.keys(pageData.charts).forEach(key => {
-                    initChart(`${key}Chart`, pageData.charts[key]);
+                const kpiContainer = document.getElementById('kpi-cards-container');
+                const chartsContainer = document.getElementById('charts-container');
+                if (!kpiContainer || !chartsContainer) return;
+
+                getValue(pageData, 'kpi_cards', []).forEach(kpi => {
+                    const kpiCard = createElement('div', { k: ['kpi-card-v2', kpi.border_class]});
+                    kpiCard.append(
+                        createElement('i', { k: (kpi.icon_class || '').split(' ').concat(['kpi-icon-modern-bg']) }),
+                        createElement('h4', { k: ['card-title-modern'], t: kpi.title }),
+                        createElement('div', { k: ['kpi-value-modern', kpi.value_class], t: kpi.value }),
+                        createElement('div', { k: ['kpi-trend-modern'], h: kpi.trend_html }),
+                        createElement('p', { k: ['kpi-description-modern'], t: kpi.description })
+                    );
+                    
+                    if (kpi.link_href && kpi.link_text) {
+                        kpiCard.appendChild(
+                            createElement('a', { 
+                                k: ['btn', 'btn-outline-primary', 'btn-sm', 'btn-pill', 'mt-2'], 
+                                a: { href: kpi.link_href }, 
+                                t: kpi.link_text 
+                            })
+                        );
+                    }
+                    
+                    const col = createElement('div', { k: ['col-xl-3', 'col-md-6', 'mb-4'] });
+                    col.appendChild(kpiCard);
+                    kpiContainer.appendChild(col);
                 });
-            }
-        } catch (error) {
-            console.error("ERRORE CRITICO:", error);
-            const container = document.querySelector('.dashboard-container');
-            if (container) container.innerHTML = `<div class="alert alert-danger p-4"><h4><i class="fas fa-exclamation-triangle me-2"></i>Errore Caricamento</h4><p>Impossibile caricare i dati del report. Controlla la console per dettagli.</p><pre class="small bg-light p-2 rounded">${error.message}</pre></div>`;
-        }
-    };
-    
-    main();
-});
-</script>
+
+                for (const chartKey in pageData.charts) {
+                    const chartInfo = pageData.charts[chartKey];
+                    const chartCard = createElement('div', { k: ['dashboard-card'] });
+                    chartCard.append(
+                        createElement('h6', { k: ['card-title-modern', 'text-center'], t: chartInfo.title }),
+                        createElement('div', { k: ['chart-container'], h: `<canvas id="${chartKey}Chart"></canvas>` })
+                    );
+                    const col = createElement('div', { k: ['col-lg-6', 'mb-4'] });
+                    col.appendChild(chartCard);
+                    chartsContainer.appendChild(col);
+                }
+            };
+            
+            // --- FUNZIONE PRINCIPALE DI AVVIO ---
+            const main = async () => {
+                if (!PAGE_ID) {
+                    document.body.innerHTML = '<h1>Errore: ID pagina non definito nel tag <body> (data-page-id).</h1>';
+                    return;
+                }
+
+                try {
+                    const [metaResponse, pageResponse] = await Promise.all([
+                        fetch(META_DATA_PATH),
+                        fetch(PAGE_DATA_PATH)
+                    ]);
+                    if (!metaResponse.ok) throw new Error(`File meta non trovato: ${META_DATA_PATH}`);
+                    if (!pageResponse.ok) throw new Error(`File di pagina non trovato: ${PAGE_DATA_PATH}`);
+                    const metaData = await metaResponse.json();
+                    const pageData = await pageResponse.json();
+                    
+                    document.title = `${pageData.page_title} - ${getValue(metaData, 'company.name')}`;
+                    document.getElementById('loading-indicator')?.remove();
+                    
+                    renderCommonComponents(metaData);
+                    
+                    const wrapper = document.getElementById(`${PAGE_ID}-content-wrapper`);
+                    if(wrapper) wrapper.style.display = 'block';
+
+                    // Esegue il rendering specifico della pagina
+                    if (PAGE_ID === 'dashboard') {
+                        renderDashboardPage(pageData, metaData);
+                        // Inizializza i grafici DOPO che i canvas sono stati creati
+                        Object.keys(pageData.charts).forEach(key => {
+                            initChart(`${key}Chart`, pageData.charts[key]);
+                        });
+                    }
+                    // Aggiungeremo qui i 'case' per le altre pagine
+                    
+                } catch (error) {
+                    console.error("ERRORE CRITICO:", error);
+                    const container = document.querySelector('.dashboard-container') || document.body;
+                    container.innerHTML = `<div class="alert alert-danger p-4"><h4><i class="fas fa-exclamation-triangle me-2"></i>Errore nel Caricamento</h4><p>Non è stato possibile caricare i file di dati. Controlla la console per dettagli.</p><pre class="small bg-light p-2 rounded">${error.message}</pre></div>`;
+                    document.getElementById('loading-indicator')?.remove();
+                }
+            };
+            
+            main();
+        });
+    </script>
 
 </body>
 </html>
