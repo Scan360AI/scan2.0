@@ -1,94 +1,43 @@
-/* ======================================
- * SCAN360 - FOGLIO DI STILE COMPLETO v7.0
- * File: /report/assets/css/styles.css
- * ======================================
- */
-
-:root {
-    --primary: #191970; --secondary: #4a69bd; --success: #4CAF50;
-    --warning: #FFC107; --danger: #F44336; --info: #0dcaf0;
-    --light: #f8f9fa; --dark: #343a40; --white: #ffffff;
-    --text-primary: #212529; --text-secondary: #6c757d;
-    --card-bg: var(--white); --card-border: #dee2e6;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-html, body { height: 100%; overflow-x: hidden; scroll-behavior: smooth; }
-body { font-family: 'Titillium Web', sans-serif; background-color: #f4f8fb; color: var(--text-primary); line-height: 1.6; display: flex; min-height: 100vh; }
-
-/* --- LAYOUT PRINCIPALE --- */
-.sidebar { width: 250px; background-color: var(--primary); color: #e0e0e0; position: fixed; top: 0; left: 0; bottom: 0; z-index: 1031; display: flex; flex-direction: column; box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1); }
-.main-content { margin-left: 250px; width: calc(100% - 250px); display: flex; flex-direction: column; min-height: 100vh; }
-.dashboard-header { background-color: var(--white); padding: 10px 30px; border-bottom: 1px solid var(--card-border); box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 70px; display: flex; align-items: center; justify-content: space-between; }
-.header-title h5 { font-weight: 600; color: var(--primary); margin-bottom: 0; }
-.header-title p.small { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0; }
-.dashboard-container { padding: 30px; flex-grow: 1; }
-.footer { background-color: var(--primary); color: rgba(255, 255, 255, 0.7); padding: 15px 30px; font-size: 0.85rem; margin-top: auto; flex-shrink: 0; }
-.footer img { max-height: 20px; width: auto; filter: brightness(0) invert(1); opacity: 0.8; vertical-align: middle; }
-
-/* --- SIDEBAR --- */
-.sidebar-header { padding: 10px 20px; margin-bottom: 20px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.sidebar-header img { max-height: 40px; }
-.sidebar-header h5 { color: var(--white); margin-top: 10px; font-size: 1.1rem; font-weight: 600; }
-.sidebar-nav { list-style: none; padding: 0; flex-grow: 1; }
-.sidebar-nav .nav-link { color: #e0e0e0; padding: 12px 20px; display: flex; align-items: center; font-size: 0.95rem; font-weight: 500; border-left: 4px solid transparent; transition: all 0.2s ease; text-decoration: none; }
-.sidebar-nav .nav-link:hover { background-color: rgba(255, 255, 255, 0.05); color: var(--white); border-left-color: var(--warning); }
-.sidebar-nav .nav-link.active { background-color: rgba(255, 255, 255, 0.1); color: var(--white); font-weight: 600; border-left-color: var(--white); }
-.sidebar-nav .nav-link i.fa-fw { margin-right: 15px; width: 20px; text-align: center; font-size: 1rem; }
-.sidebar-nav .nav-title { padding: 10px 20px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 15px; }
-.sidebar-footer { margin-top: auto; padding: 15px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; text-align: left; }
-
-/* --- ELEMENTI UI --- */
-.report-section { margin-bottom: 2rem; }
-.section-title { color: var(--primary); font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--secondary); font-size: 1.75rem; display: flex; align-items: center; }
-.section-title i { margin-right: 10px; }
-.card { border: 1px solid var(--card-border); border-radius: .5rem; box-shadow: var(--shadow); }
-.card-header { background-color: var(--light); font-weight: 600; border-bottom: 1px solid var(--card-border); }
-.card-title-small { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-/* Card IRP Prominente (da immagine) */
-.irp-visual-section .card-body { background-color: #f8f9fa; border-radius: .5rem; }
-.irp-score-circle { width: 160px; height: 160px; border-radius: 50%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; box-shadow: 0 8px 20px rgba(0,0,0,0.25); border: 6px solid rgba(255, 255, 255, 0.5); }
-.irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); }
-.irp-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); }
-.irp-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); }
-.irp-score-value { font-size: 3.8rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
-.irp-score-max { font-size: 1rem; opacity: 0.8; display: block; line-height: 1;}
-.irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
-
-/* Icone a cerchio (da immagine) */
-.icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; color: white; margin-right: 12px; font-size: 0.9rem; flex-shrink: 0; }
-.icon-circle.bg-success { background-color: var(--success); }
-.icon-circle.bg-warning { background-color: var(--warning); }
-.icon-circle.bg-danger { background-color: var(--danger); }
-.stable-badge { background-color: var(--warning); color: var(--dark) !important; }
-
-/* KPI Card v4 (da immagine) */
-.kpi-card-v4 { display: flex; align-items: center; padding: 1rem; background-color: var(--white); border-radius: 8px; box-shadow: var(--shadow); border: 1px solid var(--card-border); height: 100%; }
-.kpi-card-v4 .kpi-content { margin-left: 1rem; flex-grow: 1; }
-.kpi-card-v4 .kpi-title { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.2;}
-.kpi-card-v4 .kpi-value { font-size: 1.7rem; font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 3px;}
-.kpi-card-v4 .kpi-trend { font-size: 0.8rem; font-weight: 600; }
-.kpi-card-v4 .trend-up { color: var(--success); }
-.kpi-card-v4 .trend-down { color: var(--danger); }
-
-/* Tabella Azioni Raccomandate (da immagine) */
-.action-table { border: 1px solid #dee2e6; border-radius: .5rem; overflow: hidden; }
-.action-table thead th { background-color: #e9ecef; color: var(--primary); font-weight: 600; }
-.action-table td { vertical-align: middle; }
-.action-table .icon-circle { width: 38px; height: 38px; }
-
-/* Badge di stato */
-.status-badge { font-size: .75em; font-weight: 700; line-height: 1; padding: .35em .65em; border-radius: .375rem; color: white; display: inline-block; vertical-align: middle; }
-.status-badge.bg-success { background-color: var(--success) !important; }
-.status-badge.bg-warning { background-color: var(--warning) !important; color: var(--dark) !important;}
-.status-badge.bg-danger { background-color: var(--danger) !important; }
-
-/* Pulsanti */
-.btn-pill { border-radius: 50rem !important; }
-
-/* Responsive */
-@media (max-width: 991.98px) {
-    .sidebar { width: 0; padding: 0; overflow: hidden; }
-    .main-content { margin-left: 0; }
+{
+  "page_title": "Sintesi e Profilo Aziendale",
+  "irp_summary_section": {
+    "title": "1.1 SINTESI DELL'ANALISI FINANZIARIA", "icon": "fas fa-file-invoice",
+    "irp_card": { "score": "78,50", "category_text": "Moderato-Basso", "category_letter": "B", "style_class_circle": "risk-low", "style_class_text": "text-success", "style_class_badge": "bg-success", "detail_link_text": "Vedi Dettaglio IRP", "detail_link_href": "irp_dettaglio.html" },
+    "general_evaluation": { "title": "Valutazione Generale", "text_html": "Profilo di rischio <strong>Moderato-Basso</strong>. L'azienda dimostra un'eccellente solidità patrimoniale, buona marginalità operativa e basso indebitamento finanziario, sebbene la gestione del capitale circolante rappresenti un'area di miglioramento con tempi di incasso dei crediti commerciali significativamente superiori alla media settoriale." },
+    "status_button": { "text": "Verifica Crisi d'Impresa (OK)", "class": "btn-success", "icon": "fas fa-check-circle", "href": "#ccii-section-container" },
+    "other_ratings": {
+        "title": "ALTRI INDICATORI DI SUPPORTO:",
+        "items": [
+            { "icon": "fas fa-chart-line", "bg_class": "bg-success", "label": "Leanus Score:", "value": "10,03", "badge_text": "Buono", "badge_class": "bg-success" },
+            { "icon": "fas fa-building", "bg_class": "bg-success", "label": "Business Cat.:", "value": "", "badge_text": "STABILE", "badge_class": "stable-badge" },
+            { "icon": "fas fa-university", "bg_class": "bg-success", "label": "Rating MCC:", "value": "Fascia 2", "badge_text": "Buono", "badge_class": "bg-success" },
+            { "icon": "fas fa-calculator", "bg_class": "bg-success", "label": "Z-Score:", "value": "9,48", "badge_text": "Sicurezza", "badge_class": "bg-success" }
+        ]
+    }
+  },
+  "kpi_section": {
+    "title_html": "<i class=\"fas fa-key me-2\"></i>Indicatori Chiave di Performance (KPI) - 31/12/2024",
+    "kpi_cards": [
+        { "icon": "fas fa-euro-sign", "icon_bg": "bg-icon-success", "title": "Ricavi", "value": "€ 1,03 M", "trend_html": "<i class='fas fa-arrow-up'></i> +1,64% YoY", "trend_class": "trend-up" },
+        { "icon": "fas fa-chart-line", "icon_bg": "bg-icon-warning", "title": "EBITDA", "value": "€ 102.108", "trend_html": "<i class='fas fa-arrow-down'></i> -2,68% YoY", "trend_class": "trend-down" },
+        { "icon": "fas fa-percentage", "icon_bg": "bg-icon-success", "title": "EBITDA Margin", "value": "9,91%", "trend_html": "<i class='fas fa-arrow-down'></i> -0,39 p.p. YoY", "trend_class": "trend-down" },
+        { "icon": "fas fa-coins", "icon_bg": "bg-icon-success", "title": "Utile Netto", "value": "€ 95.783", "trend_html": "<i class='fas fa-arrow-up'></i> +131,0% YoY", "trend_class": "trend-up" },
+        { "icon": "fas fa-landmark", "icon_bg": "bg-icon-success", "title": "Patrimonio Netto", "value": "€ 234.134", "trend_html": "<i class='fas fa-arrow-up'></i> +69,23% YoY", "trend_class": "trend-up" },
+        { "icon": "fas fa-tint", "icon_bg": "bg-icon-success", "title": "Liquidità", "value": "€ 56.948", "trend_html": "<i class='fas fa-arrow-up'></i> +40,71% YoY", "trend_class": "trend-up" },
+        { "icon": "fas fa-balance-scale-right", "icon_bg": "bg-icon-success", "title": "PFN / EBITDA", "value": "N/A", "trend_html": "<i class='fas fa-arrow-up'></i> PFN Negativa", "trend_class": "trend-up" },
+        { "icon": "fas fa-money-bill-wave", "icon_bg": "bg-icon-success", "title": "Leva Finanziaria (D/E)", "value": "0,00x", "trend_html": "<i class='fas fa-arrow-up'></i> da 0,31x", "trend_class": "trend-up" }
+    ]
+  },
+  "actions_section": {
+    "title": "Azioni Raccomandate Prioritarie (Sintesi)", "icon": "fas fa-tasks",
+    "headers": ["Area", "Azione Prioritaria", "Impatto Atteso", "Priorità"],
+    "rows": [
+      { "icon": "fas fa-calendar-alt", "icon_bg": "bg-icon-danger", "area": "Gestione crediti clienti", "action": "Implementazione politiche di credit management strutturate", "impact": "Riduzione DSO a 180 giorni (-€177.500)", "priority_class": "bg-danger", "priority_text": "Alta" },
+      { "icon": "fas fa-dolly", "icon_bg": "bg-icon-warning", "area": "Gestione debiti fornitori", "action": "Normalizzazione rapporti con fornitori strategici", "impact": "Miglioramento relazioni commerciali e DPO < 180 giorni", "priority_class": "bg-warning text-dark", "priority_text": "Media" },
+      { "icon": "fas fa-chart-line", "icon_bg": "bg-icon-danger", "area": "Crescita dimensionale", "action": "Sviluppo piano commerciale strutturato", "impact": "Crescita ricavi +10% (+€103.000)", "priority_class": "bg-danger", "priority_text": "Alta" },
+      { "icon": "fas fa-search-dollar", "icon_bg": "bg-icon-warning", "area": "Costi fissi", "action": "Implementazione sistema di budgeting e controllo", "impact": "Ottimizzazione struttura costi (-€30.000)", "priority_class": "bg-warning text-dark", "priority_text": "Media" },
+      { "icon": "fas fa-money-bill-wave", "icon_bg": "bg-icon-warning", "area": "Struttura finanziaria", "action": "Valutazione moderata leva finanziaria per investimenti", "impact": "Incremento ROE di ulteriori 5 p.p.", "priority_class": "bg-warning text-dark", "priority_text": "Media" }
+    ],
+    "link_to_full_plan": { "href": "parte6_rischi-raccomandazioni.html#table_7_1_1", "text": "Vedi Piano d'Azione Dettagliato" }
+  }
 }
