@@ -1,0 +1,40 @@
+{
+  "page_title": "Sintesi e Profilo",
+  "summary_section": {
+    "title": "1.1 SINTESI DELL'ANALISI FINANZIARIA", "icon": "fas fa-file-invoice",
+    "irp_card": { "score": "78,50", "category_text": "Moderato-Basso", "category_letter": "B", "style_class_circle": "risk-low", "style_class_text": "text-success", "style_class_badge": "bg-success" },
+    "summary_text": "Profilo di rischio <strong>Moderato-Basso</strong>. L'azienda dimostra un'eccellente solidità patrimoniale, buona marginalità operativa e basso indebitamento finanziario, sebbene la gestione del capitale circolante rappresenti un'area di miglioramento.",
+    "other_ratings": [
+      {"icon": "fas fa-chart-bar", "label": "Leanus Score:", "value": "10,03", "badge_text": "Buono", "badge_class": "bg-success"},
+      {"icon": "fas fa-university", "label": "Rating MCC:", "value": "Fascia 2", "badge_text": "Buono", "badge_class": "bg-success"},
+      {"icon": "fas fa-calculator", "label": "Z-Score:", "value": "9,48", "badge_text": "Sicurezza", "badge_class": "bg-success"}
+    ]
+  },
+  "profile_section": {
+    "title": "1.2 PROFILO AZIENDALE", "icon": "fas fa-building",
+    "anagrafica": [
+      {"icon": "fas fa-id-card", "label": "Rag. Sociale:", "value": "RELIVE COMMUNICATION S.R.L."},
+      {"icon": "fas fa-barcode", "label": "ATECO:", "value": "73.11 - Attività di agenzie pubblicitarie"}
+    ],
+    "struttura": [
+      {"icon": "fas fa-users", "label": "Dipendenti:", "value": "6"},
+      {"icon": "fas fa-money-bill-wave", "label": "Costo Personale:", "value": "€242.750"}
+    ],
+    "business_model_html": "<p class='small'>RELIVE COMMUNICATION opera nel settore delle agenzie pubblicitarie. Il business è caratterizzato da elevati margini e solida struttura finanziaria, ma con tempi di incasso molto dilatati.</p>"
+  },
+  "swot_section": {
+    "title": "1.3 ANALISI SWOT", "icon": "fas fa-sitemap",
+    "items": {
+      "strength": { "title": "Forza", "icon": "fas fa-thumbs-up", "points": ["Eccellente redditività", "Assenza di debiti finanziari"] },
+      "weakness": { "title": "Debolezza", "icon": "fas fa-thumbs-down", "points": ["DSO molto elevato (262 giorni)", "Crescita costi fissi > ricavi"] },
+      "opportunity": { "title": "Opportunità", "icon": "fas fa-lightbulb", "points": ["Espansione base clienti", "Ottimizzazione gestione crediti"] },
+      "threat": { "title": "Minacce", "icon": "fas fa-exclamation-triangle", "points": ["Tensioni finanziarie da DSO", "Concorrenza internazionale"] }
+    }
+  },
+  "ccii_section": {
+      "title": "1.4 CONFORMITÀ CRISI D'IMPRESA (CCII)", "icon": "fas fa-gavel",
+      "status_text": "Indicatori CCII: <strong>Tutti Rispettati</strong>",
+      "status_class": "alert-success", "status_icon": "fas fa-check-circle",
+      "description_html": "<p class='small mb-0'>Nessun 'fondato indizio' dello stato di crisi ai sensi del CCII.</p>"
+  }
+}
