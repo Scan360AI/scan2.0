@@ -143,30 +143,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    const renderDashboardPage = (pageData) => {
-        const pageTitle = document.getElementById('page-main-title');
-        if(pageTitle) pageTitle.textContent = getValue(pageData, 'page_title');
+// Cerca questa funzione nel tuo script e sostituiscila
+const renderDashboardPage = (pageData) => {
+    const pageTitle = document.getElementById('page-main-title');
+    if(pageTitle) pageTitle.textContent = getValue(pageData, 'page_title');
 
-        const kpiContainer = document.getElementById('kpi-cards-container');
-        const chartsContainer = document.getElementById('charts-container');
-        if (!kpiContainer || !chartsContainer) return;
+    const kpiContainer = document.getElementById('kpi-cards-container');
+    const chartsContainer = document.getElementById('charts-container');
+    if (!kpiContainer || !chartsContainer) return;
 
-        getValue(pageData, 'kpi_cards', []).forEach(kpi => {
-            const kpiCard = createElement('div', { k: ['kpi-card-v2', kpi.border_class]});
-            kpiCard.append(
-                createElement('i', { k: kpi.icon_class.split(' ').concat(['kpi-icon-modern-bg']) }),
-                createElement('h4', { k: ['card-title-modern'], t: kpi.title }),
-                createElement('div', { k: ['kpi-value-modern', kpi.value_class], t: kpi.value }),
-                createElement('div', { k: ['kpi-trend-modern'], h: kpi.trend_html }),
-                createElement('p', { k: ['kpi-description-modern'], t: kpi.description })
+    getValue(pageData, 'kpi_cards', []).forEach(kpi => {
+        const kpiCard = createElement('div', { k: ['kpi-card-v2', kpi.border_class]});
+        kpiCard.append(
+            createElement('i', { k: kpi.icon_class.split(' ').concat(['kpi-icon-modern-bg']) }),
+            createElement('h4', { k: ['card-title-modern'], t: kpi.title }),
+            createElement('div', { k: ['kpi-value-modern', kpi.value_class], t: kpi.value }),
+            createElement('div', { k: ['kpi-trend-modern'], h: kpi.trend_html }),
+            createElement('p', { k: ['kpi-description-modern'], t: kpi.description })
+        );
+
+        // --- LOGICA CORRETTA PER IL BOTTONE ---
+        // Aggiunge il bottone SOLO se esistono sia un link che un testo validi.
+        if (kpi.link_href && kpi.link_text) {
+            kpiCard.appendChild(
+                createElement('a', { 
+                    k: ['btn', 'btn-outline-primary', 'btn-sm', 'btn-pill', 'mt-2'], 
+                    a: { href: kpi.link_href }, 
+                    t: kpi.link_text 
+                })
             );
-            if(kpi.link_text){
-                kpiCard.appendChild(createElement('a', { k:['btn', 'btn-outline-primary', 'btn-sm', 'btn-pill', 'mt-2'], a:{href: kpi.link_href}, t: kpi.link_text }));
-            }
-            const col = createElement('div', { k: ['col-xl-3', 'col-md-6', 'mb-4'] });
-            col.appendChild(kpiCard);
-            kpiContainer.appendChild(col);
-        });
+        }
+        // --- FINE LOGICA CORRETTA ---
+
+        const col = createElement('div', { k: ['col-xl-3', 'col-md-6', 'mb-4'] });
+        col.appendChild(kpiCard);
+        kpiContainer.appendChild(col);
+    });
+
+    for (const chartKey in pageData.charts) {
+        const chartInfo = pageData.charts[chartKey];
+        const chartCard = createElement('div', { k: ['dashboard-card'] });
+        chartCard.append(
+            createElement('h6', { k: ['card-title-modern', 'text-center'], t: chartInfo.title }),
+            createElement('div', { k: ['chart-container'], h: `<canvas id="${chartKey}Chart"></canvas>` })
+        );
+        const col = createElement('div', { k: ['col-lg-6', 'mb-4'] });
+        col.appendChild(chartCard);
+        chartsContainer.appendChild(col);
+    }
+};
 
         for (const chartKey in pageData.charts) {
             const chartInfo = pageData.charts[chartKey];
