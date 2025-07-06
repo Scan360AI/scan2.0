@@ -1,7 +1,10 @@
 /* ===================================================================
- * SCAN360 - FOGLIO DI STILE MASTER v8.0 (Completo e Definitivo)
- * File: /report/assets/css/styles.css
- * Questo file contiene tutti gli stili necessari per l'intero report.
+ * SCAN360 - FOGLIO DI STILE MASTER v10.0 (BASATO SU ANALISI SCIENTIFICA DEGLI ORIGINALI)
+ * Questo file unisce tutti gli stili da:
+ * - styles.css
+ * - styles2.css (trovato nei file originali)
+ * - Stili inline da dashboard.html, index.html, bilancio_plus.html, etc.
+ * L'obiettivo è una replica 1:1 del design originale.
  * ===================================================================
  */
 
@@ -33,7 +36,7 @@ html, body {
 
 body {
     font-family: 'Titillium Web', sans-serif;
-    background-color: #f4f8fb;
+    background-color: #eef2f7;
     color: var(--text-primary);
     line-height: 1.6;
     display: flex;
@@ -57,7 +60,7 @@ body {
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.main-content {
+.main-content, .main-wrapper { /* Unifico le due classi per coerenza */
     margin-left: 250px;
     width: calc(100% - 250px);
     display: flex;
@@ -76,21 +79,18 @@ body {
     justify-content: space-between;
 }
 
-.header-title h5 {
+.header-title h4, .header-title h5 {
     font-weight: 600;
     color: var(--primary);
     margin-bottom: 0.25rem;
 }
-.header-title p.small {
+.header-title p {
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 0;
 }
 
-.dashboard-container {
-    padding: 30px;
-    flex-grow: 1;
-}
+.dashboard-container { padding: 30px; flex-grow: 1; }
 
 .footer {
     background-color: var(--primary);
@@ -100,12 +100,7 @@ body {
     margin-top: auto;
     flex-shrink: 0;
 }
-.footer img {
-    max-height: 20px;
-    filter: brightness(0) invert(1);
-    opacity: 0.8;
-    vertical-align: middle;
-}
+.footer img { max-height: 20px; filter: brightness(0) invert(1); opacity: 0.8; vertical-align: middle; }
 
 /* -----------------
  * 3. STILI SIDEBAR
@@ -126,62 +121,108 @@ body {
  * ----------------- */
 .report-section { margin-bottom: 2.5rem; }
 .section-title { color: var(--primary); font-weight: 700; margin-top: 2.5rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--secondary); font-size: 1.5rem; display: flex; align-items: center; }
+.section-title.small { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #ccc; color: var(--text-secondary); }
 .section-title i { margin-right: 12px; }
-.card { border: 1px solid #e0e6ed; border-radius: .75rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.card, .dashboard-card { border: 1px solid var(--card-border); border-radius: .75rem; box-shadow: var(--shadow); }
 .card-header { background-color: var(--light); font-weight: 600; border-bottom: 1px solid var(--card-border); padding: 0.75rem 1.25rem; }
 .card-title-small { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* -----------------
- * 5. COMPONENTI SPECIFICI (DA IMMAGINI)
- * ----------------- */
-
-/* Card IRP Prominente */
-.irp-visual-section .card { background-color: #f8f9fa; }
-.irp-score-circle { width: 160px; height: 160px; border-radius: 50%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; box-shadow: 0 8px 20px rgba(0,0,0,0.25); border: 6px solid rgba(255, 255, 255, 0.5); }
-.irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); }
-.irp-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); }
-.irp-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); }
-.irp-score-value { font-size: 3.8rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
-.irp-score-max { font-size: 1rem; opacity: 0.8; display: block; line-height: 1;}
-.irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
-
-/* Icone a cerchio per indicatori */
-.icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; color: white; margin-right: 12px; font-size: 1rem; flex-shrink: 0; }
-.icon-circle.bg-success { background-color: var(--success); }
-.icon-circle.bg-warning { background-color: var(--warning); }
-.icon-circle.bg-danger { background-color: var(--danger); }
-.icon-circle.bg-info { background-color: #4f6d7a; } /* Colore personalizzato per coerenza */
-
-/* Stile badge specifico */
-.stable-badge { background-color: var(--warning) !important; color: var(--dark) !important; }
-
-/* KPI Card v4 (da immagine) */
-.kpi-card-v4 { display: flex; align-items: center; padding: 1rem; background-color: var(--white); border-radius: .75rem; box-shadow: 0 2px 4px rgba(0,0,0,0.04); border: 1px solid var(--card-border); height: 100%; transition: all 0.2s ease-in-out; }
-.kpi-card-v4:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
-.kpi-card-v4 .kpi-content { margin-left: 1rem; flex-grow: 1; }
-.kpi-card-v4 .kpi-title { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.2;}
-.kpi-card-v4 .kpi-value { font-size: 1.7rem; font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 3px;}
-.kpi-card-v4 .kpi-trend { font-size: 0.8rem; font-weight: 600; }
-.kpi-card-v4 .trend-up { color: var(--success); }
-.kpi-card-v4 .trend-down { color: var(--danger); }
-
-/* Tabella Azioni Raccomandate */
-.action-table { border: 1px solid #dee2e6; border-radius: .5rem; overflow: hidden; }
-.action-table thead th { background-color: var(--primary); color: white; font-weight: 600; }
-.action-table td { vertical-align: middle; }
-.action-table .icon-circle { width: 42px; height: 42px; font-size: 1.1rem; }
-
-/* Badge di stato generico */
+/* --- Badge di stato --- */
 .status-badge { font-size: .70rem; font-weight: 700; padding: .4em .7em; border-radius: .375rem; color: white; display: inline-block; vertical-align: middle; text-transform: uppercase; }
 .status-badge.bg-success { background-color: var(--success) !important; }
 .status-badge.bg-warning { background-color: var(--warning) !important; color: var(--dark) !important;}
 .status-badge.bg-danger { background-color: var(--danger) !important; }
+.status-badge.bg-info { background-color: var(--info) !important; color: var(--dark) !important;}
+.stable-badge { background-color: var(--warning) !important; color: var(--dark) !important; }
 
-/* Pulsanti */
+/* --- Tabelle --- */
+.table { border: 1px solid var(--card-border); }
+.table thead th { background-color: var(--light); color: var(--primary); font-weight: 600; border-bottom: 2px solid var(--primary); font-size: 0.9rem; }
+.action-table thead th { background-color: var(--primary); color: white; }
+.action-table .icon-circle { width: 42px; height: 42px; font-size: 1.1rem; }
+
+/* --- Grafici --- */
+.chart-container { height: 300px; position: relative; }
+.dashboard-card .card-title-modern { font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; }
+
+
+/* -----------------
+ * 5. COMPONENTI SPECIFICI (DA TUTTI I FILE ORIGINALI)
+ * ----------------- */
+
+/* --- Componenti da dashboard.html --- */
+.kpi-card-v2 { background-color: var(--white); border-radius: 10px; padding: 1.5rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); border: 1px solid var(--card-border); transition: all 0.3s ease; height: 100%; position: relative; overflow: hidden; border-left-width: 5px; display: flex; flex-direction: column; }
+.kpi-card-v2:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); }
+.kpi-card-v2.border-left-danger { border-left-color: var(--danger); }
+.kpi-card-v2.border-left-warning { border-left-color: var(--warning); }
+.kpi-card-v2.border-left-success { border-left-color: var(--success); }
+.kpi-card-v2.border-left-info { border-left-color: var(--info); }
+.kpi-card-v2 .card-title-modern { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px; }
+.kpi-card-v2 .kpi-value-modern { font-size: 2.2rem; font-weight: 700; color: var(--dark); margin-bottom: 5px; line-height: 1.1; }
+.kpi-card-v2 .kpi-value-modern.small-text { font-size: 1.5rem; }
+.kpi-card-v2 .kpi-trend-modern { display: flex; align-items: center; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; min-height: 22px; }
+.kpi-card-v2 .kpi-trend-modern .trend-icon { margin-right: 5px; font-size: 0.8rem;}
+.kpi-card-v2 .kpi-trend-modern.trend-up { color: var(--success); }
+.kpi-card-v2 .kpi-trend-modern.trend-down { color: var(--danger); }
+.kpi-card-v2 .kpi-description-modern { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0; flex-grow: 1; }
+.kpi-card-v2 .kpi-icon-modern-bg { position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-size: 4.5rem; opacity: 0.07; color: var(--dark); }
 .btn-pill { border-radius: 50rem !important; }
 
-/* Responsive */
+/* --- Componenti da index.html --- */
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+.logo-container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.hero-section { height: 400px; position: relative; margin-top: 30px; margin-bottom: 40px; border-radius: 10px; overflow: hidden; color: white; display: flex; align-items: center; padding: 0 40px; background-size: cover; background-position: center; }
+.hero-content { max-width: 60%; position: relative; z-index: 2; }
+.hero-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.company-info-line { display: flex; justify-content: flex-start; gap: 30px; margin-bottom: 15px; align-items: center; }
+.company-info-line span { display: inline-flex; align-items: center; background-color: rgba(255, 255, 255, 0.15); padding: 6px 12px; border-radius: 6px; font-size: 0.95rem; }
+.cards-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+.movie-card { width: 100%; height: 400px; position: relative; border-radius: 10px; transition: all 0.3s ease; cursor: pointer; box-shadow: var(--shadow); overflow: hidden; background-size: cover; background-position: center; }
+.movie-card:hover { transform: scale(1.03); z-index: 5; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+.card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 30%, rgba(25, 25, 112, 0.7) 90%); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; }
+.card-content { color: white; z-index: 2; }
+.card-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+.card-description { font-size: 0.9rem; opacity: 0.9; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.detail-link { display: inline-block; padding: 8px 15px; background-color: rgba(255, 255, 255, 0.15); border-radius: 5px; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.3); }
+
+/* --- Componenti da irp_dettaglio.html --- */
+.irp-visual-section { background: linear-gradient(135deg, var(--white) 0%, #f0f4f8 100%); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow); margin-bottom: 2.5rem; border: 1px solid var(--card-border); }
+.irp-score-circle { width: 160px; height: 160px; border-radius: 50%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; box-shadow: 0 8px 20px rgba(0,0,0,0.25); border: 6px solid rgba(255, 255, 255, 0.5); }
+.irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); }
+.irp-score-value { font-size: 3.8rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
+.irp-score-max { font-size: 1rem; opacity: 0.8; display: block; line-height: 1;}
+.irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
+
+/* --- Componenti da monitor-cda_final.html --- */
+.kpi-card-v4 { display: flex; align-items: center; padding: 1rem; background-color: var(--white); border-radius: 8px; box-shadow: var(--shadow); border: 1px solid var(--card-border); height: 100%; transition: all 0.2s ease-in-out; }
+.kpi-card-v4:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+.kpi-card-v4 .kpi-content { margin-left: 1rem; flex-grow: 1; }
+.kpi-card-v4 .kpi-title { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-card-v4 .kpi-value { font-size: 1.7rem; font-weight: 700; color: var(--dark); line-height: 1.2; }
+.kpi-card-v4 .kpi-trend { font-size: 0.8rem; font-weight: 600; }
+.kpi-card-v4 .trend-up { color: var(--success); }
+.kpi-card-v4 .trend-down { color: var(--danger); }
+.alert-card { display: flex; align-items: flex-start; padding: 1rem; border-radius: 8px; border-left-width: 4px; background-color: #f8f9fa; margin-bottom: 1rem; box-shadow: var(--shadow); }
+.alert-card .alert-icon { font-size: 1.8rem; margin-right: 1rem; flex-shrink: 0; width: 40px; text-align: center; }
+.alert-card.alert-danger { border-left-color: var(--danger) !important; }
+.alert-card.alert-warning { border-left-color: var(--warning) !important; }
+.executive-summary-card { background-color: #f0f4f8; border-left: 5px solid var(--primary); }
+
+/* --- Stili per Login Page --- */
+.login-container { max-width: 450px; margin: auto; }
+.login-card-header { background-color: var(--primary); color: white; border-radius: 8px 8px 0 0 !important; }
+.login-btn { background-color: var(--primary); border-color: var(--primary); }
+
+/* -----------------
+ * 6. RESPONSIVE
+ * ----------------- */
 @media (max-width: 991.98px) {
     .sidebar { width: 0; padding: 0; overflow: hidden; }
-    .main-content { margin-left: 0; }
+    .main-content, .main-wrapper { margin-left: 0; width: 100%; }
+    .dashboard-header { left: 0; }
+}
+
+@media (max-width: 768px) {
+    .hero-content { max-width: 100%; }
+    .company-info-line { flex-direction: column; gap: 10px; align-items: flex-start; }
 }
