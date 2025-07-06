@@ -1,0 +1,168 @@
+/* ======================================
+ * SCAN360 - FOGLIO DI STILE PER LA STAMPA v5.0
+ * File: /report/assets/css/print.css
+ * ======================================
+ */
+
+@media print {
+
+    /* --- 1. IMPOSTAZIONI GENERALI DELLA PAGINA --- */
+    @page {
+        size: A4 portrait; /* Formato standard A4 verticale */
+        margin: 1.5cm;     /* Margini ragionevoli per la stampa */
+    }
+
+    body {
+        font-family: 'Titillium Web', sans-serif !important; /* Forza il font corretto */
+        font-size: 9pt !important;           /* Dimensione del testo ottimale per la stampa */
+        line-height: 1.3 !important;
+        color: #000 !important;              /* Tutto il testo nero per massima leggibilità */
+        background: #fff !important;         /* Sfondo sempre bianco */
+        -webkit-print-color-adjust: exact !important; /* Forza la stampa dei colori per i browser WebKit */
+        print-color-adjust: exact !important;
+    }
+
+    /* --- 2. ELEMENTI DA NASCONDERE COMPLETAMENTE --- */
+    .no-print,
+    .sidebar,
+    .dashboard-header, /* Nasconde l'header web */
+    .footer,           /* Nasconde il footer web */
+    .print-button,
+    .dropdown,
+    script,
+    button,            /* Nasconde TUTTI i bottoni, inclusi quelli non marcati come no-print */
+    .kpi-card-v2 a.btn /* Nasconde i link "Vedi Piano" nelle card */
+    {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    /* --- 3. ELEMENTI DA MOSTRARE SOLO IN STAMPA --- */
+    .d-print-block { 
+        display: block !important; 
+    }
+
+    /* --- 4. RESET DEL LAYOUT PER LA STAMPA --- */
+    .main-content {
+        margin-left: 0 !important; /* Rimuove lo spazio della sidebar */
+        width: 100% !important;
+    }
+
+    .dashboard-container {
+        padding: 0 !important; /* Rimuove il padding interno */
+    }
+
+    .container, .container-fluid {
+         width: 100% !important;
+         max-width: none !important;
+         padding: 0 !important;
+         margin: 0 !important;
+    }
+
+    .row {
+         display: block !important; /* Semplifica il layout a griglia di Bootstrap */
+    }
+    
+    /* Forza tutti gli elementi della griglia ad occupare il 100% della larghezza */
+    .col, [class*="col-"] {
+         display: block !important;
+         width: 100% !important;
+         max-width: 100% !important;
+         flex: none !important;
+         padding: 0 !important;
+         margin-bottom: 0.5rem !important; /* Aggiunge un po' di spazio tra gli elementi impilati */
+    }
+
+    /* --- 5. STILI SPECIFICI PER GLI ELEMENTI IN STAMPA --- */
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: #000 !important;
+        font-weight: bold !important;
+        page-break-after: avoid !important; /* Evita che un titolo finisca da solo a fondo pagina */
+    }
+
+    .section-title {
+        page-break-before: auto; /* Permette, ma non forza, un'interruzione di pagina prima di una nuova sezione */
+        page-break-after: avoid;
+        margin-top: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        border-bottom: 2px solid #000 !important; /* Bordo nero, più visibile in stampa */
+        font-size: 14pt !important;
+    }
+
+    p {
+        orphans: 3; /* Minimo 3 righe di un paragrafo all'inizio di una nuova pagina */
+        widows: 3;  /* Minimo 3 righe di un paragrafo alla fine di una pagina */
+    }
+
+    a { 
+        color: #000 !important; 
+        text-decoration: none !important; /* Rimuove le sottolineature */
+    }
+
+    /* Card */
+    .card, .dashboard-card, .kpi-card-v2, .irp-visual-section {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        margin-bottom: 1rem !important;
+        padding: 0.75rem !important;
+        background: #fff !important;
+        page-break-inside: avoid !important; /* Tenta di tenere la card intera sulla stessa pagina */
+    }
+    
+    .card-header {
+        background: #eee !important; /* Leggero sfondo per i titoli delle card */
+        border-bottom: 1px solid #ccc !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+
+    /* Tabelle */
+    .table { 
+        border-collapse: collapse !important; 
+        width: 100% !important; 
+        margin-top: 0.5rem; 
+        border: 1px solid #aaa !important; 
+    }
+    .table th, .table td { 
+        border: 1px solid #bbb !important; 
+        padding: 0.3rem 0.4rem !important; 
+        font-size: 8pt !important; 
+        text-align: left !important; 
+        vertical-align: top;
+        word-wrap: break-word; /* Va a capo se il testo è lungo */
+    }
+    .table thead th { 
+        background-color: #eee !important; 
+        color: #000 !important; 
+        font-weight: bold !important; 
+        border-bottom-width: 2px !important;
+    }
+
+    /* Badge e Indicatori di Colore */
+    .status-badge {
+        border: 1px solid #000 !important;
+        color: #000 !important;
+        background-color: #fff !important; /* Sfondo bianco per massima leggibilità */
+        -webkit-print-color-adjust: exact !important;
+    }
+    /* Aggiunge del testo per rendere esplicito il significato del colore */
+    .status-badge.bg-success::after { content: " (Positivo)"; }
+    .status-badge.bg-warning::after { content: " (Attenzione)"; }
+    .status-badge.bg-danger::after { content: " (Critico)"; }
+    .status-badge.bg-info::after { content: " (Info)"; }
+
+    /* Grafici */
+    .chart-container {
+        border: 1px solid #ccc !important;
+        padding: 5px !important;
+        height: auto !important; /* L'altezza si adatta al contenuto */
+        width: 95% !important;  /* Un po' meno del 100% per evitare tagli laterali */
+        margin: 0.5rem auto !important;
+        page-break-inside: avoid !important;
+    }
+     canvas {
+         max-width: 100%;
+         max-height: 250px; /* Limita l'altezza per non occupare troppo spazio verticale */
+         height: auto !important;
+     }
+}

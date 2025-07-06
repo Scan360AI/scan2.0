@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Finanziario - Agricola Campidanese</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0e1e25;
+            min-height: 100vh;
+            color: #c1c9d2;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: #16242a;
+            border-bottom: 1px solid #1e3a47;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00d9ff, #5a67d8);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0e1e25;
+            font-size: 18px;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 14px;
+            color: #8b95a2;
+        }
+        
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 65px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: #16242a;
+            border-right: 1px solid #1e3a47;
+            padding: 24px 0;
+            overflow-y: auto;
+        }
+        
+        .nav-section {
+            margin-bottom: 32px;
+            padding: 0 16px;
+        }
+        
+        .nav-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7785;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            padding: 0 8px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            color: #c1c9d2;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+        
+        .nav-item:hover {
+            background: #1e3a47;
+            color: #fff;
+        }
+        
+        .nav-item.active {
+            background: #1e3a47;
+            color: #00d9ff;
+        }
+        
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+            background: #0e1e25;
+        }
+        
+        .page-header {
+            margin-bottom: 32px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .page-subtitle {
+            font-size: 16px;
+            color: #8b95a2;
+        }
+        
+        /* Cards and Components */
+        .grid {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        @media (max-width: 1400px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 968px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: #16242a;
+            border: 1px solid #1e3a47;
+            border-radius: 8px;
+            padding: 24px;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        
+        .badge-success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        
+        /* KPI Cards */
+        .kpi-card {
+            background: #16242a;
+            border: 1px solid #1e3a47;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kpi-card.danger {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        
+        .kpi-card.warning {
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+        
+        .kpi-card.success {
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+        
+        .kpi-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .kpi-label {
+            font-size: 13px;
+            color: #8b95a2;
+            font-weight: 500;
+        }
+        
+        .kpi-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .kpi-icon.danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+        
+        .kpi-icon.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+        
+        .kpi-icon.success {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+        
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        
+        .kpi-trend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+        
+        .trend-up {
+            color: #22c55e;
+        }
+        
+        .trend-down {
+            color: #ef4444;
+        }
+        
+        /* Data Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            background: #1e3a47;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: #c1c9d2;
+            border-bottom: 1px solid #2d4a56;
+        }
+        
+        .data-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #1e3a47;
+            font-size: 14px;
+        }
+        
+        .data-table tr:hover {
+            background: rgba(30, 58, 71, 0.3);
+        }
+        
+        .table-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Traffic Light Indicators */
+        .traffic-light {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .light {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        .light.active {
+            opacity: 1;
+        }
+        
+        .light.red {
+            background: #ef4444;
+        }
+        
+        .light.yellow {
+            background: #f59e0b;
+        }
+        
+        .light.green {
+            background: #22c55e;
+        }
+        
+        /* Alert Boxes */
+        .alert {
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+        
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+        
+        .alert-icon {
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+        
+        .alert-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .alert-content p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Progress Bars */
+        .progress-bar {
+            background: #1e3a47;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill.danger {
+            background: #ef4444;
+        }
+        
+        .progress-fill.warning {
+            background: #f59e0b;
+        }
+        
+        .progress-fill.success {
+            background: #22c55e;
+        }
+        
+        /* Charts */
+        .chart-container {
+            height: 300px;
+            position: relative;
+            padding: 10px;
+        }
+        
+        .chart-wrapper {
+            position: relative;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-placeholder">AC</div>
+                <div class="logo-text">Report Finanziario</div>
+            </div>
+            <div class="header-info">
+                <span>AGRICOLA CAMPIDANESE - SOCIETÀ COOPERATIVA</span>
+                <span>•</span>
+                <span>Data: 04/07/2025</span>
+                <span>•</span>
+                <span>Periodo: 12/2024</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <nav class="sidebar">
+            <div class="nav-section">
+                <div class="nav-title">Analisi Principale</div>
+                <a class="nav-item active">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </span>
+                    <span>Sintesi e Profilo</span>
+                </a>
+                <a class="nav-item">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </span>
+                    <span>Analisi Economica</span>
+                </a>
+                <a class="nav-item">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="9" x2="15" y2="9"></line>
+                            <line x1="9" y1="15" x2="15" y2="15"></line>
+                        </svg>
+                    </span>
+                    <span>Analisi Patrimoniale</span>
+                </a>
+                <a class="nav-item">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                            <line x1="2" y1="10" x2="22" y2="10"></line>
+                        </svg>
+                    </span>
+                    <span>Bancabilità</span>
+                </a>
+                <a class="nav-item">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18"></path>
+                            <path d="m19 9-5 5-4-4-3 3"></path>
+                        </svg>
+                    </span>
+                    <span>Flussi Finanziari</span>
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-title">Analisi Avanzate</div>
+                <a class="nav-item">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </span>
+                    <span>Analisi Rischi</span>
+                </a>
+                <a class="nav-item">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="16" y1="12" x2="8" y2="12"></line>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                        </svg>
+                    </span>
+                    <span>Raccomandazioni</span>
+                </a>
+                <a class="nav-item">
+                    <span class="nav-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </span>
+                    <span>IRP Analysis</span>
+                </a>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <div class="page-header">
+                <h1 class="page-title">Sintesi e Profilo Aziendale</h1>
+                <p class="page-subtitle">Analisi completa del profilo di rischio e degli indicatori principali</p>
+            </div>
+            
+            <!-- Alert Box -->
+            <div class="alert alert-danger">
+                <div class="alert-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="alert-content">
+                    <h4>Categoria STUCK - Intervento Urgente Richiesto</h4>
+                    <p>L'azienda presenta un disequilibrio economico e patrimoniale che richiede interventi correttivi immediati per ripristinare la sostenibilità operativa.</p>
+                </div>
+            </div>
+            
+            <!-- KPI Overview -->
+            <div class="grid grid-4" style="margin-bottom: 32px;">
+                <div class="kpi-card danger">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Leanus Score</span>
+                        <div class="kpi-icon danger">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                <path d="M2 17l10 5 10-5"></path>
+                                <path d="M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">0,95</div>
+                    <div class="kpi-trend">
+                        <span>5 - Negativo</span>
+                        <span class="badge badge-danger">STUCK</span>
+                    </div>
+                </div>
+                
+                <div class="kpi-card warning">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Z-Score Altman</span>
+                        <div class="kpi-icon warning">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">2,93</div>
+                    <div class="kpi-trend">
+                        <span>Zona Grigia</span>
+                        <div class="traffic-light">
+                            <span class="light red"></span>
+                            <span class="light yellow active"></span>
+                            <span class="light green"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="kpi-card danger">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Probabilità Default</span>
+                        <div class="kpi-icon danger">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">3,62%</div>
+                    <div class="kpi-trend">
+                        <span>FASCIA 3 - MCC</span>
+                        <span class="badge badge-danger">Media</span>
+                    </div>
+                </div>
+                
+                <div class="kpi-card danger">
+                    <div class="kpi-header">
+                        <span class="kpi-label">Resilienza</span>
+                        <div class="kpi-icon danger">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 12h-6l-12 8l-2-2l7-18l2 2l-3 8h8l6-3z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="kpi-value">Bassa</div>
+                    <div class="kpi-trend">
+                        <span>Indicatore di Resilienza</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Principali Indicatori -->
+            <div class="card" style="margin-bottom: 32px;">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                        Principali Indicatori Finanziari
+                    </h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Indicatore</th>
+                            <th>2022</th>
+                            <th>2023</th>
+                            <th>2024</th>
+                            <th>Var. 2023-2024</th>
+                            <th>Valutazione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ricavi (€)</strong></td>
+                            <td>20.452.364</td>
+                            <td>20.620.546</td>
+                            <td>21.213.405</td>
+                            <td><span class="trend-up">+2,88%</span></td>
+                            <td><span class="table-badge badge-warning">Modesta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>EBITDA (€)</strong></td>
+                            <td>-459.194</td>
+                            <td>623.613</td>
+                            <td>841.748</td>
+                            <td><span class="trend-up">+34,98%</span></td>
+                            <td><span class="table-badge badge-success">Migliorativa</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>EBITDA Margin (%)</strong></td>
+                            <td>-2,2%</td>
+                            <td>3,0%</td>
+                            <td>3,97%</td>
+                            <td><span class="trend-up">+0,97 p.p.</span></td>
+                            <td><span class="table-badge badge-danger">Insufficiente</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Utile netto (€)</strong></td>
+                            <td>37.771</td>
+                            <td>19.670</td>
+                            <td>59.803</td>
+                            <td><span class="trend-up">+204,02%</span></td>
+                            <td><span class="table-badge badge-success">Positiva</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Patrimonio Netto (€)</strong></td>
+                            <td>679.674</td>
+                            <td>697.712</td>
+                            <td>755.925</td>
+                            <td><span class="trend-up">+8,35%</span></td>
+                            <td><span class="table-badge badge-danger">Debole</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>PFN (€)</strong></td>
+                            <td>6.113.861</td>
+                            <td>5.563.155</td>
+                            <td>5.221.254</td>
+                            <td><span class="trend-up">-6,15%</span></td>
+                            <td><span class="table-badge badge-danger">Critica</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Liquidità (€)</strong></td>
+                            <td>568.187</td>
+                            <td>282.044</td>
+                            <td>24.900</td>
+                            <td><span class="trend-down">-91,17%</span></td>
+                            <td><span class="table-badge badge-danger">Critica</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Grid Indicatori Critici -->
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Indicatori di Liquidità
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">Cash Flow/Ricavi</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #ef4444;">2,00%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill danger" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">Liquidità/Ricavi</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #ef4444;">0,12%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill danger" style="width: 4%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">DSCR</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #ef4444;">0,548</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill danger" style="width: 54.8%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="9" x2="15" y2="9"></line>
+                            <line x1="9" y1="15" x2="15" y2="15"></line>
+                        </svg>
+                        Indicatori di Struttura
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">ROI</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #f59e0b;">7,89%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill warning" style="width: 79%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">ROE</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #f59e0b;">7,91%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill warning" style="width: 66%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">Leva Finanziaria (D/E)</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #ef4444;">6,94</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill danger" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        Ciclo del Circolante
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">Giorni Crediti</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #22c55e;">47 gg</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill success" style="width: 52%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">Giorni Debiti</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #f59e0b;">75 gg</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill warning" style="width: 62%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 14px; color: #8b95a2;">Giorni Rimanenze</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #22c55e;">20 gg</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill success" style="width: 44%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Grafici di Sintesi -->
+            <div class="grid grid-3" style="margin-top: 32px;">
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                        Trend Triennale Ricavi vs EBITDA
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="revenueEbitdaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                        Evoluzione Posizione Finanziaria
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="financialPositionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                        Composizione Indicatori di Rischio
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="riskIndicatorsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Seconda riga di grafici -->
+            <div class="grid grid-3" style="margin-top: 24px;">
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Analisi Giorni Ciclo Circolante
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="workingCapitalChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                        Struttura Patrimoniale
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="balanceStructureChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                        Cash Flow Analysis
+                    </h3>
+                    <div class="chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="cashFlowChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Profilo Aziendale -->
+            <div class="card" style="margin-top: 32px;">
+                <h2 class="card-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Profilo Aziendale
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 20px;">
+                    <div>
+                        <h4 style="font-size: 14px; color: #8b95a2; margin-bottom: 8px;">Informazioni Generali</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid #1e3a47;">
+                                <span style="color: #8b95a2;">Ragione Sociale:</span>
+                                <span style="color: #fff; margin-left: 8px;">AGRICOLA CAMPIDANESE - SOC. COOPERATIVA</span>
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #1e3a47;">
+                                <span style="color: #8b95a2;">Settore:</span>
+                                <span style="color: #fff; margin-left: 8px;">10.3 - Lavorazione e conservazione frutta e ortaggi</span>
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #1e3a47;">
+                                <span style="color: #8b95a2;">Classificazione:</span>
+                                <span style="color: #fff; margin-left: 8px;">Media Impresa (PMI)</span>
+                            </li>
+                            <li style="padding: 8px 0;">
+                                <span style="color: #8b95a2;">Dipendenti:</span>
+                                <span style="color: #fff; margin-left: 8px;">89</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 14px; color: #8b95a2; margin-bottom: 8px;">Dati Operativi</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid #1e3a47;">
+                                <span style="color: #8b95a2;">Modello Business:</span>
+                                <span style="color: #fff; margin-left: 8px;">Produzione su commessa</span>
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #1e3a47;">
+                                <span style="color: #8b95a2;">Mercato:</span>
+                                <span style="color: #fff; margin-left: 8px;">B2B - Trasformazione ortofrutticola</span>
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid #1e3a47;">
+                                <span style="color: #8b95a2;">Sede:</span>
+                                <span style="color: #fff; margin-left: 8px;">Terralba (OR), Sardegna</span>
+                            </li>
+                            <li style="padding: 8px 0;">
+                                <span style="color: #8b95a2;">Anno Fondazione:</span>
+                                <span style="color: #fff; margin-left: 8px;">2008</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Configurazione colori globali
+        const chartColors = {
+            primary: '#00d9ff',
+            secondary: '#5a67d8',
+            success: '#22c55e',
+            warning: '#f59e0b',
+            danger: '#ef4444',
+            light: '#c1c9d2',
+            dark: '#1e3a47'
+        };
+        
+        const gridColor = 'rgba(193, 201, 210, 0.1)';
+        const fontColor = '#c1c9d2';
+        
+        // Chart defaults
+        Chart.defaults.color = fontColor;
+        Chart.defaults.borderColor = gridColor;
+        
+        // 1. Trend Triennale Ricavi vs EBITDA
+        const revenueEbitdaCtx = document.getElementById('revenueEbitdaChart').getContext('2d');
+        new Chart(revenueEbitdaCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Ricavi (€M)',
+                    data: [20.45, 20.62, 21.21],
+                    backgroundColor: chartColors.primary,
+                    borderColor: chartColors.primary,
+                    borderWidth: 2,
+                    yAxisID: 'y',
+                    order: 2
+                }, {
+                    label: 'EBITDA (€K)',
+                    data: [-459, 624, 842],
+                    backgroundColor: chartColors.secondary,
+                    borderColor: chartColors.secondary,
+                    borderWidth: 2,
+                    yAxisID: 'y1',
+                    order: 1
+                }, {
+                    label: 'EBITDA %',
+                    data: [-2.2, 3.0, 3.97],
+                    type: 'line',
+                    borderColor: chartColors.warning,
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,
+                    yAxisID: 'y2',
+                    order: 0,
+                    tension: 0.4,
+                    pointBackgroundColor: chartColors.warning,
+                    pointBorderColor: '#0e1e25',
+                    pointBorderWidth: 2,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Ricavi (€M)',
+                            font: {
+                                size: 11
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'EBITDA (€K)',
+                            font: {
+                                size: 11
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    },
+                    y2: {
+                        type: 'linear',
+                        display: false,
+                        position: 'right',
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    },
+                }
+            }
+        });
+        
+        // 2. Evoluzione Posizione Finanziaria
+        const financialPositionCtx = document.getElementById('financialPositionChart').getContext('2d');
+        new Chart(financialPositionCtx, {
+            type: 'line',
+            data: {
+                labels: ['2022', '2023', '2024'],
+                datasets: [{
+                    label: 'PFN (€M)',
+                    data: [6.11, 5.56, 5.22],
+                    borderColor: chartColors.danger,
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Patrimonio Netto (€K)',
+                    data: [680, 698, 756],
+                    borderColor: chartColors.success,
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Liquidità (€K)',
+                    data: [568, 282, 25],
+                    borderColor: chartColors.warning,
+                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '€' + value.toFixed(0);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 3. Composizione Indicatori di Rischio (Radar)
+        const riskIndicatorsCtx = document.getElementById('riskIndicatorsChart').getContext('2d');
+        new Chart(riskIndicatorsCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Liquidità', 'Solvibilità', 'Redditività', 'Efficienza', 'Struttura'],
+                datasets: [{
+                    label: 'Agricola Campidanese',
+                    data: [10, 25, 35, 60, 20],
+                    borderColor: chartColors.danger,
+                    backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                    borderWidth: 2,
+                    pointBackgroundColor: chartColors.danger,
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }, {
+                    label: 'Benchmark Settore',
+                    data: [70, 75, 65, 70, 80],
+                    borderColor: chartColors.success,
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    pointBackgroundColor: chartColors.success,
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            stepSize: 20,
+                            font: {
+                                size: 10
+                            }
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 4. Analisi Giorni Ciclo Circolante
+        const workingCapitalCtx = document.getElementById('workingCapitalChart').getContext('2d');
+        new Chart(workingCapitalCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Giorni Crediti',
+                    data: [69, 82, 47],
+                    backgroundColor: chartColors.primary
+                }, {
+                    label: 'Giorni Rimanenze',
+                    data: [19, 16, 20],
+                    backgroundColor: chartColors.secondary
+                }, {
+                    label: 'Giorni Debiti',
+                    data: [-94, -112, -75],
+                    backgroundColor: chartColors.warning
+                }, {
+                    label: 'Ciclo Netto',
+                    data: [-6, -14, -8],
+                    type: 'line',
+                    borderColor: chartColors.danger,
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Giorni',
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 5. Struttura Patrimoniale (Doughnut)
+        const balanceStructureCtx = document.getElementById('balanceStructureChart').getContext('2d');
+        new Chart(balanceStructureCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Immobilizzazioni', 'Attivo Circolante', 'Patrimonio Netto', 'Debiti ML/T', 'Debiti Breve'],
+                datasets: [{
+                    data: [48.2, 51.8, 6.5, 21.6, 71.9],
+                    backgroundColor: [
+                        chartColors.primary,
+                        chartColors.secondary,
+                        chartColors.success,
+                        chartColors.warning,
+                        chartColors.danger
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#0e1e25'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true,
+                            font: {
+                                size: 11
+                            },
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map((label, i) => {
+                                        const value = data.datasets[0].data[i];
+                                        return {
+                                            text: `${label}: ${value}%`,
+                                            fillStyle: data.datasets[0].backgroundColor[i],
+                                            hidden: false,
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 6. Cash Flow Analysis
+        const cashFlowCtx = document.getElementById('cashFlowChart').getContext('2d');
+        new Chart(cashFlowCtx, {
+            type: 'waterfall',
+            data: {
+                labels: ['EBITDA', 'Δ Circolante', 'Cash Flow Op.', 'Investimenti', 'Free Cash Flow', 'Δ Debiti', 'Δ Liquidità'],
+                datasets: [{
+                    data: [842, 427, 424, -80, 344, -601, -257],
+                    backgroundColor: function(context) {
+                        const value = context.parsed.y;
+                        return value >= 0 ? chartColors.success : chartColors.danger;
+                    },
+                    borderColor: function(context) {
+                        const value = context.parsed.y;
+                        return value >= 0 ? chartColors.success : chartColors.danger;
+                    },
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '€K',
+                            font: {
+                                size: 11
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Plugin per Waterfall Chart
+        Chart.register({
+            id: 'waterfall',
+            beforeDatasetsDraw(chart) {
+                if (chart.config.type !== 'waterfall') return;
+                
+                const ctx = chart.ctx;
+                const dataset = chart.data.datasets[0];
+                const data = dataset.data;
+                
+                let cumulative = 0;
+                const cumulativeData = [];
+                
+                data.forEach((value, index) => {
+                    const start = cumulative;
+                    cumulative += value;
+                    cumulativeData.push({
+                        start: start,
+                        end: cumulative,
+                        value: value
+                    });
+                });
+                
+                // Override data for proper waterfall display
+                dataset.data = cumulativeData.map(item => [item.start, item.end]);
+                chart.config.type = 'bar';
+                chart.config.options.scales.y.stacked = false;
+                chart.config.options.indexAxis = undefined;
+                chart.config.options.parsing = {
+                    yAxisKey: '_custom'
+                };
+                
+                // Custom parsing
+                dataset.parsing = {
+                    yAxisKey: (ctx) => {
+                        const index = ctx.dataIndex;
+                        const item = cumulativeData[index];
+                        return {
+                            min: Math.min(item.start, item.end),
+                            max: Math.max(item.start, item.end)
+                        };
+                    }
+                };
+            }
+        });
+    </script>
