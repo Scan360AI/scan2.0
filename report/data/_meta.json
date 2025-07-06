@@ -16,7 +16,14 @@
   "sidebar_links": [
     { "group_title": "Menu Principale" },
     { "title": "Dashboard", "href": "dashboard.html", "icon": "fas fa-tachometer-alt fa-fw", "page_id": "dashboard" },
-    { "group_title": "Sezioni Report" },
-    { "title": "Sintesi e Profilo", "href": "parte1_sintesi.html", "icon": "fas fa-file-alt fa-fw", "page_id": "parte1_sintesi" }
+    { "group_title": "Analisi Dettagliata" },
+    { "title": "Sintesi e Profilo", "href": "parte1_sintesi.html", "icon": "fas fa-file-alt fa-fw", "page_id": "parte1_sintesi" },
+    { "title": "Analisi Economica", "href": "#", "icon": "fas fa-balance-scale fa-fw", "page_id": "parte2_economico" },
+    { "title": "Analisi Patrimoniale", "href": "#", "icon": "fas fa-landmark fa-fw", "page_id": "parte3_patrimoniale" },
+    { "title": "Bancabilità", "href": "#", "icon": "fas fa-university fa-fw", "page_id": "parte4_bancabilita" },
+    { "title": "Circolante e Flussi", "href": "#", "icon": "fas fa-sync-alt fa-fw", "page_id": "parte5_circolante_flussi" },
+    { "title": "Rischi e Azioni", "href": "#", "icon": "fas fa-exclamation-triangle fa-fw", "page_id": "parte6_rischi_raccomandazioni" },
+    { "group_title": "Approfondimenti" },
+    { "title": "Dettaglio IRP", "href": "#", "icon": "fas fa-shield-alt fa-fw", "page_id": "irp_dettaglio" }
   ]
 }
