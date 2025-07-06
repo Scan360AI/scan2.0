@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SCAN360</title>
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/print.css" rel="stylesheet" media="print">
+</head>
+<body data-page-id="dashboard"> <!-- Attributo per dire a JS in che pagina siamo -->
+
+    <!-- Sidebar (Contenitore) -->
+    <aside class="sidebar no-print" id="sidebar-container"></aside>
+
+    <!-- Contenuto Principale -->
+    <main class="main-content">
+        
+        <!-- Header Orizzontale (Contenitore) -->
+        <header class="dashboard-header no-print" id="header-container"></header>
+
+        <!-- Intestazione per la Stampa (Contenitore) -->
+        <div class="container d-none d-print-block mt-4 mb-4" id="print-header-container"></div>
+
+        <!-- Area Contenuto della Dashboard -->
+        <div class="dashboard-container">
+            
+            <!-- Indicatore di Caricamento -->
+            <div id="loading-indicator" class="text-center p-5">
+                <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+            </div>
+
+            <!-- Wrapper per il contenuto, inizialmente nascosto -->
+            <div id="dashboard-content-wrapper" style="display: none;">
+
+                <!-- Intestazione Pagina (Contenitore) -->
+                <div class="d-flex justify-content-between align-items-center mb-4" id="page-header-container"></div>
+
+                <!-- Sezione KPI (Contenitore) -->
+                <section id="kpi-section" class="report-section">
+                    <h4 class="section-title small"><i class="fas fa-key me-2"></i>PANORAMICA KPI</h4>
+                    <div class="row" id="kpi-cards-container">
+                        <!-- Le card KPI verranno inserite qui da JS -->
+                    </div>
+                </section>
+
+                <!-- Sezione Grafici (Contenitore) -->
+                <section id="charts-section" class="report-section">
+                    <h4 class="section-title small mt-4"><i class="fas fa-chart-pie me-2"></i>GRAFICI CHIAVE</h4>
+                    <div class="row" id="charts-container">
+                        <!-- Le card dei grafici verranno inserite qui da JS -->
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- Footer (Contenitore) -->
+        <footer class="footer no-print" id="footer-container"></footer>
+
+    </main>
+    
+    <!-- Script -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+    <!-- Bot AI -->
+    <script type="text/javascript" src="https://embed.chatnode.ai/c28f50ff-7c75-4eb1-b745-616825cafc56/popup.js" async></script>
+
+</body>
+</html>
