@@ -8,7 +8,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. CONFIGURAZIONE ---
-    const DATA_FILE_PATH = 'data/report_data.json';
+const DATA_FILE_PATH = '/report/data/report_data.json';
     const PAGE_ID = document.body.dataset.pageId;
 
     // --- 2. FUNZIONI DI UTILITY ---
