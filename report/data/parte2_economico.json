@@ -1,0 +1,40 @@
+{
+  "page_title": "Analisi Economica - SCAN360",
+  "header_title": "Report Dettagliato: Analisi Economica e Benchmark",
+  "section_2_1": {
+    "title": "<i class=\"fas fa-balance-scale me-2\"></i>SEZIONE 2.1: ANALISI ECONOMICA",
+    "card_ce_riclassificato": {
+      "title": "2.1.1 Conto Economico Riclassificato",
+      "intro_text": "Il conto economico riclassificato evidenzia la struttura dei costi e dei ricavi di RELIVE COMMUNICATION S.R.L. nel periodo 2022-2024, consentendo di valutare la redditività operativa e netta.",
+      "grafico_title": "Grafico 2.1: Andamento Ricavi ed EBITDA 2022-2024 (€000 e %)",
+      "tabella_ce_title": "Tabella 2.1: Conto Economico Riclassificato 2022-2024 (valori in €)",
+      "tabella_ce_html": "<div class=\"table-responsive\"><table class=\"table table-sm table-striped table-hover\"><thead class=\"table-light\"><tr><th>Voce</th><th class=\"text-end\">2022</th><th class=\"text-end\">% Ricavi</th><th class=\"text-end\">2023</th><th class=\"text-end\">% Ricavi</th><th class=\"text-end\">2024</th><th class=\"text-end\">% Ricavi</th><th class=\"text-end\">Var. % 23-24</th></tr></thead><tbody><tr><td>Ricavi</td><td class=\"text-end\">837.763</td><td class=\"text-end\">100,0%</td><td class=\"text-end\">1.014.130</td><td class=\"text-end\">100,0%</td><td class=\"text-end\">1.030.748</td><td class=\"text-end\">100,0%</td><td class=\"text-success\">+1,64%</td></tr><tr><td>Valore della Produzione</td><td class=\"text-end\">851.188</td><td class=\"text-end\">101,6%</td><td class=\"text-end\">1.007.883</td><td class=\"text-end\">99,4%</td><td class=\"text-end\">1.030.748</td><td class=\"text-end\">100,0%</td><td class=\"text-success\">+2,27%</td></tr><tr class=\"table-secondary\"><td>Margine di Contribuzione</td><td class=\"text-end\">258.841</td><td class=\"text-end\">30,9%</td><td class=\"text-end\">345.223</td><td class=\"text-end\">34,0%</td><td class=\"text-end\">396.343</td><td class=\"text-end\">38,5%</td><td class=\"text-success\">+14,81%</td></tr><tr class=\"table-success fw-bold\"><td>EBITDA</td><td class=\"text-end\">59.227</td><td class=\"text-end\">7,1%</td><td class=\"text-end\">104.917</td><td class=\"text-end\">10,3%</td><td class=\"text-end\">102.108</td><td class=\"text-end\">9,9%</td><td class=\"text-danger\">-2,68%</td></tr><tr><td>EBIT (Reddito Operativo)</td><td class=\"text-end\">52.451</td><td class=\"text-end\">6,3%</td><td class=\"text-end\">96.014</td><td class=\"text-end\">9,5%</td><td class=\"text-end\">94.378</td><td class=\"text-end\">9,2%</td><td class=\"text-danger\">-1,70%</td></tr><tr><td>Risultato Ante Imposte</td><td class=\"text-end\">35.500</td><td class=\"text-end\">4,2%</td><td class=\"text-end\">66.651</td><td class=\"text-end\">6,6%</td><td class=\"text-end\">96.025</td><td class=\"text-end\">9,3%</td><td class=\"text-success\">+44,07%</td></tr><tr class=\"table-success fw-bold\"><td>Utile/Perdita d'esercizio</td><td class=\"text-end\">18.359</td><td class=\"text-end\">2,2%</td><td class=\"text-end\">41.467</td><td class=\"text-end\">4,1%</td><td class=\"text-end\">95.783</td><td class=\"text-end\">9,3%</td><td class=\"text-success\">+131,00%</td></tr></tbody></table></div>",
+      "tabella_costi_title": "Analisi della composizione dei costi",
+      "tabella_costi_html": "<div class=\"table-responsive\"><table class=\"table table-sm table-striped table-hover\">...</table></div>",
+      "analisi_ce_title": "Analisi del Conto Economico (RELIVE COMMUNICATION S.R.L.):",
+      "analisi_ce_html": "<ol class=\"small\"><li><strong>Ricavi:</strong> Crescita moderata dell'1,64% nel 2024 rispetto al 2023, evidenziando una stabilizzazione dopo il significativo incremento dell'anno precedente.</li><li><strong>Margine di Contribuzione (38,5%):</strong> Significativo miglioramento (+14,81%), con progressiva crescita dal 30,9% del 2022, indicando un'ottima capacità di generare valore attraverso il core business.</li><li><strong>EBITDA (9,9%):</strong> Lieve flessione (-2,68%) rispetto al 2023, pur mantenendosi ampiamente positivo e significativamente superiore ai valori del 2022.</li><li><strong>Costi fissi:</strong> Incremento significativo (+22,44%), principalmente dovuto all'aumento del costo del personale (+22,27%), evidenziando un potenziale fattore di attenzione.</li><li><strong>Utile Netto (9,3%):</strong> Eccezionale incremento (+131,00%) rispetto all'anno precedente, fortemente influenzato dalla drastica riduzione delle imposte (-99,04%).</li></ol>"
+    },
+    "card_marginalita": {
+      "title": "2.1.2 Analisi della Marginalità",
+      "intro_text": "L'analisi della marginalità valuta la capacità di generare valore aggiunto.",
+      "grafico_title": "Grafico 2.2: Evoluzione delle Principali Marginalità (%)",
+      "tabella_title": "Tabella 2.2: Evoluzione Indici di Marginalità (RELIVE COMMUNICATION S.R.L.)",
+      "tabella_html": "<div class=\"table-responsive\"><table class=\"table table-sm table-striped table-hover\">...</table></div>",
+      "bep_title": "Break-Even e Leva Operativa (2024 - RELIVE COMMUNICATION S.R.L.)",
+      "bep_html": "<div class=\"alert-box alert-success small mt-2 p-2\"><ul class=\"list-unstyled mb-0\"><li><i class=\"fas fa-bullseye me-1\"></i> BEP: €785.304 | Margine Sicurezza: 23,8% (Buono)</li><li><i class=\"fas fa-calculator me-1\"></i> Moltiplicatore CF: 2,60</li><li><i class=\"fas fa-arrows-alt-v me-1\"></i> Variazione ricavi per EBIT=0: -23,8% | Variazione CF per EBIT=0: +32,08%</li></ul></div>"
+    },
+    "card_costi": {
+        "title": "2.1.3 Struttura e Dettaglio Principali Costi",
+        "intro_text": "Analisi delle principali voci di costo e loro incidenza.",
+        "tabella_costi_title": "Tabella 2.3: Struttura dei Costi 2022-2024 (RELIVE COMMUNICATION S.R.L.)",
+        "tabella_costi_html": "<div class=\"table-responsive\">...</div>",
+        "analisi_personale_title": "Analisi del Costo del Personale",
+        "tabella_personale_html": "<div class=\"table-responsive\">...</div>",
+        "approfondimento_html": "<h6 class=\"mt-4\">Approfondimento (RELIVE COMMUNICATION S.R.L.):</h6><ul class=\"small\">...</ul>"
+    }
+  },
+  "charts": {
+    "economicTrendChart": { "type": "bar", "data": { "labels": ["2022", "2023", "2024"], "datasets": [ { "label": "Ricavi (€000)", "data": [838, 1014, 1031], "borderColor": "rgb(25, 25, 112)", "backgroundColor": "rgba(25, 25, 112, 0.1)", "type": "line", "yAxisID": "y" }, { "label": "EBITDA (€000)", "data": [59, 105, 102], "borderColor": "rgb(77, 140, 87)", "backgroundColor": "rgba(77, 140, 87, 0.7)", "type": "bar", "yAxisID": "y" }, { "label": "EBITDA Margin (%)", "data": [7.1, 10.3, 9.9], "borderColor": "rgb(217, 140, 0)", "type": "line", "yAxisID": "y1", "fill": false } ] }, "options": { "scales": { "y": { "beginAtZero": true, "title": { "display": true, "text": "Valori in €000" } }, "y1": { "position": "right", "grid": { "drawOnChartArea": false }, "title": { "display": true, "text": "EBITDA Margin (%)" } } } } },
+    "marginalityChart": { "type": "line", "data": { "labels": ["2022", "2023", "2024"], "datasets": [ { "label": "Valore Aggiunto %", "data": [100.8, 98.6, 99.2], "borderColor": "rgba(25, 25, 112, 1)", "fill": false }, { "label": "Margine di Contribuzione %", "data": [30.9, 34.0, 38.5], "borderColor": "rgba(42, 58, 128, 1)", "fill": false }, { "label": "EBITDA %", "data": [7.1, 10.3, 9.9], "borderColor": "rgba(77, 140, 87, 1)", "fill": false }, { "label": "ROS (EBIT/Ricavi)", "data": [6.3, 9.5, 9.2], "borderColor": "rgba(217, 140, 0, 1)", "fill": false } ] }, "options": { "scales": { "y": { "title": { "display": true, "text": "Percentuale sui Ricavi (%)" } } } } }
+  }
+}
