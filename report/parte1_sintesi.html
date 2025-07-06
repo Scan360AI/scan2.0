@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sintesi e Profilo - SCAN360</title>
+    <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,144 +13,511 @@
 </head>
 <body data-page-id="parte1_sintesi">
 
+    <!-- Sidebar (Contenitore) -->
     <aside class="sidebar no-print" id="sidebar-container"></aside>
+
+    <!-- Contenuto Principale -->
     <main class="main-content">
+        
+        <!-- Header Orizzontale (Contenitore) -->
         <header class="dashboard-header no-print" id="header-container"></header>
+
+        <!-- Area Contenuto della Dashboard -->
         <div class="dashboard-container">
+            
             <div id="loading-indicator" class="text-center p-5">
                 <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                <p class="mt-3 text-secondary">Caricamento report...</p>
             </div>
-            <div id="page-content-wrapper" style="display: none;">
-                <!-- Contenitore per Sezione 1.1: SINTESI E IRP -->
-                <div id="irp-summary-section-container" class="report-section"></div>
-                <!-- Contenitore per Sezione KPI -->
-                <div id="kpi-section-container" class="report-section"></div>
-                <!-- Contenitore per Sezione AZIONI RACCOMANDATE -->
-                <div id="actions-section-container" class="report-section"></div>
+
+            <!-- Wrapper per il contenuto, inizialmente nascosto -->
+            <div id="parte1_sintesi-content-wrapper" style="display: none;">
+
+                <!-- SEZIONE 1.1: SINTESI DELL'ANALISI FINANZIARIA -->
+                <h2 class="section-title" id="summary"><i class="fas fa-file-invoice me-2"></i>1.1 SINTESI DELL'ANALISI FINANZIARIA</h2>
+
+                <!-- Sezione IRP Prominente -->
+                <section class="irp-visual-section report-section" id="irp-summary-section">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 text-center mb-4 mb-md-0">
+                            <h6 class="card-title-small mb-3"><i class="fas fa-shield-alt me-1"></i> Indice Rischio Ponderato</h6>
+                            <div class="irp-score-circle" id="irp-score-circle">
+                                <span class="irp-score-value" id="irp-score-value"></span>
+                                <span class="irp-score-max">/ 100</span>
+                            </div>
+                            <div class="irp-category-text mt-2" id="irp-category-text">
+                                <span id="irp-category-label"></span>
+                                <span class="status-badge" id="irp-category-badge"></span>
+                            </div>
+                            <a href="irp_dettaglio.html" class="btn btn-sm btn-outline-primary mt-3 btn-pill">Vedi Dettaglio IRP</a>
+                        </div>
+                        <div class="col-md-8">
+                            <h4 class="mb-3 fw-bold" style="color: var(--primary);">Valutazione Generale</h4>
+                            <p class="mb-3" id="irp-valutazione-generale"></p>
+                            <a href="#crisis-framework" class="btn btn-success btn-sm mb-3 btn-pill">
+                                <i class="fas fa-check-circle me-1"></i> Verifica Crisi d'Impresa (OK)
+                            </a>
+                            <div class="other-ratings border-top pt-3 mt-3">
+                                <h6 class="card-title-small mb-2">Altri Indicatori di Supporto:</h6>
+                                <ul class="list-unstyled mb-0 row gx-3 gy-2" id="altri-indicatori-list">
+                                    <!-- Gli indicatori verranno inseriti qui da JS -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- KPI Principali -->
+                <div class="card mb-4 report-section">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-key me-2"></i>Indicatori Chiave di Performance (KPI) - 31/12/2024</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row gy-4" id="kpi-cards-container">
+                            <!-- Le card KPI verranno inserite qui da JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grafici di Sintesi -->
+                <div class="card mb-4 report-section">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Grafici di Sintesi</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <h6 class="text-center small mb-3" id="mainMetricsChart-title"></h6>
+                                <div class="chart-container">
+                                    <canvas id="mainMetricsChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <h6 class="text-center small mb-3" id="currentAssetsLiabilitiesChart-title"></h6>
+                                <div class="chart-container">
+                                    <canvas id="currentAssetsLiabilitiesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEZIONE 1.2: PROFILO AZIENDALE -->
+                <h2 class="section-title" id="profile"><i class="fas fa-building me-2"></i>1.2 PROFILO AZIENDALE</h2>
+                <div class="card mb-4 report-section profile-section-restored">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h6><i class="fas fa-info-circle fa-fw me-2 text-primary"></i> Anagrafica e Settore</h6>
+                            <ul id="profilo-anagrafica-list">
+                                <!-- Gli elementi verranno inseriti qui da JS -->
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <h6><i class="fas fa-users-cog fa-fw me-2 text-primary"></i> Struttura e Personale</h6>
+                            <ul id="profilo-struttura-list">
+                                <!-- Gli elementi verranno inseriti qui da JS -->
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 mt-3">
+                            <h6><i class="fas fa-briefcase fa-fw me-2 text-primary"></i> Modello di Business e Posizionamento</h6>
+                            <p class="small" id="profilo-modello-business"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEZIONE SWOT -->
+                <h2 class="section-title mt-5" id="swot-summary"><i class="fas fa-sitemap me-2"></i>Analisi SWOT</h2>
+                <div class="row" id="swot-cards-container">
+                    <!-- Le card SWOT verranno inserite qui da JS -->
+                </div>
+
+                <!-- SEZIONE 1.3: CONFORMITÀ ALLA NORMATIVA SULLA CRISI D'IMPRESA -->
+                <h2 class="section-title mt-5" id="crisis-framework">
+                    <i class="fas fa-gavel me-2"></i>1.3 CONFORMITÀ ALLA NORMATIVA SULLA CRISI D'IMPRESA (CCII)
+                </h2>
+                <div class="card mb-4 report-section">
+                    <div class="card-header">
+                        <h5 class="mb-0">Verifica Indicatori e Framework Normativo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert-box d-flex align-items-center" id="crisi-alert-box">
+                            <span class="icon-circle bg-icon-success me-3"><i class="fas fa-check-circle"></i></span>
+                            <div>
+                                <h6 class="mb-1" id="crisi-title"></h6>
+                                <p class="small mb-0" id="crisi-description"></p>
+                            </div>
+                        </div>
+                        <h6 class="mt-4">Contesto Normativo Rilevante:</h6>
+                        <ul class="small" id="crisi-contesto-list">
+                            <!-- Gli elementi verranno inseriti qui da JS -->
+                        </ul>
+                        <p class="small text-muted mt-3" id="crisi-nota"></p>
+                    </div>
+                </div>
+
+                <!-- Azioni Raccomandate -->
+                <div class="card mb-4 report-section">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-tasks me-1"></i>Azioni Raccomandate Prioritarie (Sintesi)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover action-table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Area</th>
+                                        <th>Azione Prioritaria</th>
+                                        <th>Impatto Atteso</th>
+                                        <th>Priorità</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="azioni-prioritarie-tbody">
+                                    <!-- Le righe verranno inserite qui da JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="parte6_rischi_raccomandazioni.html#table_7_1_1" class="btn btn-sm btn-primary mt-2 btn-pill">
+                            <i class="fas fa-list-alt me-1"></i> Vedi Piano d'Azione Dettagliato
+                        </a>
+                    </div>
+                </div>
+
             </div>
+
         </div>
+
+        <!-- Footer (Contenitore) -->
         <footer class="footer no-print" id="footer-container"></footer>
+
     </main>
     
+    <!-- Librerie JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     
+    <!-- SCRIPT APPLICATIVO -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const PAGE_ID = document.body.dataset.pageId;
-        const META_DATA_PATH = 'data/_meta.json';
-        const PAGE_DATA_PATH = `data/${PAGE_ID}.json`;
+        document.addEventListener('DOMContentLoaded', () => {
 
-        const getValue = (obj, path, d = '') => path.split('.').reduce((a, p) => a && typeof a === 'object' ? a[p] : undefined, obj) || d;
-        const createElement = (tag, { k = [], a = {}, t = '', h = '' } = {}) => { const e = document.createElement(tag); if (k.length) e.classList.add(...k.filter(c => c)); Object.entries(a).forEach(([key, val]) => e.setAttribute(key, val)); if (t) e.textContent = t; if (h) e.innerHTML = h; return e; };
-        
-        const renderCommonComponents = (metaData) => {
-            const sidebarContainer = document.getElementById('sidebar-container');
-            if (sidebarContainer) { sidebarContainer.innerHTML = ''; const header = createElement('div', { k: ['sidebar-header'] }); header.append(createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] })); const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] }); getValue(metaData, 'sidebar_links', []).forEach(link => { if (link.group_title) { nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title })); } else { const navLink = createElement('a', { k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], a: { href: link.href }, h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` }); nav.appendChild(createElement('li', { k: ['nav-item'] })).appendChild(navLink); } }); const footer = createElement('div', { k: ['sidebar-footer'] }); footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` })); sidebarContainer.append(header, nav, footer); }
-            const headerContainer = document.getElementById('header-container');
-            if (headerContainer) { headerContainer.innerHTML = `<div class="header-title"><h5 class="mb-0">Report Dettagliato: Sintesi e Profilo Aziendale</h5><p class="mb-0 small text-muted">${getValue(metaData, 'company.name')} | ${getValue(metaData, 'report.date')}</p></div><div class="header-controls d-flex align-items-center"><span class="badge ${getValue(metaData, 'irp.style_class')} me-3">IRP: ${getValue(metaData, 'irp.score')}</span><button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()"><i class="fas fa-print"></i> Stampa</button><div class="dropdown"><button class="btn btn-sm btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">${getValue(metaData, 'user.name')}</button><ul class="dropdown-menu dropdown-menu-end"><li><button class="dropdown-item" type="button">Logout</button></li></ul></div></div>`; }
-            const footerContainer = document.getElementById('footer-container');
-            if (footerContainer) { footerContainer.innerHTML = `<div class="container-fluid px-4"><div class="row"><div class="col-md-6 text-center text-md-start mb-2 mb-md-0">SCAN360 © ${new Date().getFullYear()}</div><div class="col-md-6 text-center text-md-end">Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a><img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"></div></div></div>`; }
-        };
+            // --- CONFIGURAZIONE ---
+            const PAGE_ID = document.body.dataset.pageId;
+            const META_DATA_PATH = 'data/_meta.json';
+            const PAGE_DATA_PATH = `data/${PAGE_ID}.json`;
 
-        const renderSintesiPage = (pageData) => {
-            const wrapper = document.getElementById('page-content-wrapper');
-            if (!wrapper) return;
-            
-            // Render IRP Summary
-            const summaryContainer = document.getElementById('irp-summary-section-container');
-            if (summaryContainer) {
-                const summaryData = getValue(pageData, 'irp_summary_section', {});
-                const irp = getValue(summaryData, 'irp_card', {});
-                let ratingsHtml = '';
-                getValue(summaryData, 'other_ratings.items', []).forEach(r => { ratingsHtml += `<div class="col-6 mb-3"><div class="d-flex align-items-center"><span class="icon-circle ${r.bg_class}"><i class="${r.icon}"></i></span><div class="small ms-2"><strong>${r.label}</strong> ${r.value}<br><span class="status-badge ${r.badge_class}">${r.badge_text}</span></div></div></div>`; });
-                const btn = summaryData.status_button;
-                const title = createElement('h2', {k: ['section-title'], h: `<i class="${summaryData.icon} me-2"></i>${summaryData.title}`});
-                const card = createElement('div', {k: ['card']});
-                card.innerHTML = `<div class="card-body p-4 irp-visual-section">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 text-center mb-4 mb-lg-0">
-                            <h6 class="text-uppercase small text-secondary"><i class="fas fa-shield-alt text-secondary me-1"></i> ${irp.title}</h6>
-                            <div class="irp-score-circle ${irp.style_class_circle} my-3"><span class="irp-score-value">${irp.score}</span><span class="irp-score-max">${irp.score_max}</span></div>
-                            <div class="irp-category-text ${irp.style_class_text}">${irp.category_text} <span class="status-badge ${irp.style_class_badge}">${irp.category_letter}</span></div>
-                            <a href="${irp.detail_link_href}" class="btn btn-sm btn-outline-primary mt-3 btn-pill">${irp.detail_link_text}</a>
+            // --- FUNZIONI DI UTILITY ---
+            const getValue = (obj, path, d = '') => path.split('.').reduce((a, p) => a && typeof a === 'object' ? a[p] : undefined, obj) || d;
+            const createElement = (tag, { k = [], a = {}, t = '', h = '' } = {}) => {
+                const e = document.createElement(tag);
+                if (k.length) e.classList.add(...k.filter(c => c));
+                Object.entries(a).forEach(([key, val]) => e.setAttribute(key, val));
+                if (t) e.textContent = t;
+                if (h) e.innerHTML = h;
+                return e;
+            };
+
+            // --- FUNZIONE PER INIZIALIZZARE I GRAFICI ---
+            const initChart = (canvasId, chartConfig) => {
+                if (typeof Chart === 'undefined') { console.error("Chart.js non è caricato."); return; }
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) { console.warn(`Canvas con ID "${canvasId}" non trovato.`); return; }
+                const ctx = canvas.getContext('2d');
+                new Chart(ctx, chartConfig);
+            };
+
+            // --- FUNZIONI DI RENDERING ---
+            const renderCommonComponents = (metaData) => {
+                // Sidebar
+                const sidebarContainer = document.getElementById('sidebar-container');
+                if (sidebarContainer) {
+                    sidebarContainer.innerHTML = '';
+                    const header = createElement('div', { k: ['sidebar-header'] });
+                    header.append(
+                        createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), 
+                        createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] })
+                    );
+                    const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] });
+                    getValue(metaData, 'sidebar_links', []).forEach(link => {
+                        if (link.group_title) {
+                            nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title }));
+                        } else {
+                            const navItem = createElement('li', { k: ['nav-item'] });
+                            const navLink = createElement('a', { 
+                                k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], 
+                                a: { href: link.href }, 
+                                h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` 
+                            });
+                            navItem.appendChild(navLink);
+                            nav.appendChild(navItem);
+                        }
+                    });
+                    const footer = createElement('div', { k: ['sidebar-footer'] });
+                    footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` }));
+                    sidebarContainer.append(header, nav, footer);
+                }
+
+                // Header
+                const headerContainer = document.getElementById('header-container');
+                if(headerContainer){
+                    headerContainer.innerHTML = `
+                        <div class="header-title">
+                            <h5 class="mb-0">Report Dettagliato: ${getValue(metaData, 'page_title')}</h5>
+                            <p class="mb-0">${getValue(metaData, 'company.name')} | <span class="report-date">${getValue(metaData, 'report.date')}</span></p>
                         </div>
-                        <div class="col-lg-7">
-                            <h4 class="fw-bold mb-3" style="color: var(--primary);">${summaryData.general_evaluation.title}</h4>
-                            <p>${summaryData.general_evaluation.text_html}</p>
-                            <a href="${btn.href}" class="btn btn-sm ${btn.class} rounded-pill my-3"><i class="${btn.icon} me-2"></i>${btn.text}</a>
-                            <div class="border-top pt-3"><h6 class="text-uppercase small text-secondary">${summaryData.other_ratings.title}</h6><div class="row">${ratingsHtml}</div></div>
-                        </div>
-                    </div>
-                </div>`;
-                summaryContainer.append(title, card);
-            }
+                        <div class="header-controls d-flex align-items-center">
+                            <span class="badge ${getValue(metaData, 'irp.style_class')} me-3" id="irp-header-badge">
+                                IRP: ${getValue(metaData, 'irp.score')} (${getValue(metaData, 'irp.category_letter')})
+                            </span>
+                            <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()">
+                                <i class="fas fa-print"></i> Stampa
+                            </button>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle me-1"></i> ${getValue(metaData, 'company.name')}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton">
+                                    <li><button class="dropdown-item" type="button"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li>
+                                </ul>
+                            </div>
+                        </div>`;
+                }
 
-            // Render KPI Section
-            const kpiContainer = document.getElementById('kpi-section-container');
-            if (kpiContainer) {
-                const kpiData = getValue(pageData, 'kpi_section', {});
-                const card = createElement('div', {k: ['card', 'mb-4']});
-                card.innerHTML = `<div class="card-header"><h5 class="mb-0">${kpiData.title_html}</h5></div>`;
-                const cardBody = createElement('div', {k: ['card-body']});
-                const kpiRow = createElement('div', {k: ['row', 'gy-4']});
-                getValue(kpiData, 'kpi_cards', []).forEach(kpi => {
-                    const kpiCardHtml = `<div class="kpi-card-v4"><span class="icon-circle ${kpi.icon_bg}"><i class="${kpi.icon}"></i></span><div class="kpi-content"><div class="kpi-title">${kpi.title}</div><div class="kpi-value">${kpi.value}</div><div class="kpi-trend ${kpi.trend_class}">${kpi.trend_html}</div></div></div>`;
-                    kpiRow.appendChild(createElement('div', {k:['col-lg-3', 'col-md-6'], h: kpiCardHtml}));
-                });
-                cardBody.appendChild(kpiRow);
-                card.appendChild(cardBody);
-                kpiContainer.appendChild(card);
-            }
+                // Footer
+                const footerContainer = document.getElementById('footer-container');
+                if(footerContainer){
+                    footerContainer.innerHTML = `
+                        <div class="container-fluid px-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                                    SCAN360 © ${new Date().getFullYear()}
+                                </div>
+                                <div class="col-md-6 text-center text-md-end">
+                                    Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a>
+                                    <img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;">
+                                </div>
+                            </div>
+                        </div>`;
+                }
+            };
 
-            // Render Actions Section
-            const actionsContainer = document.getElementById('actions-section-container');
-            if (actionsContainer) {
-                const data = getValue(pageData, 'actions_section', {});
-                const card = createElement('div', {k: ['card', 'mb-4']});
-                card.innerHTML = `<div class="card-header"><h5 class="mb-0"><i class="${data.icon} me-2"></i>${data.title}</h5></div>`;
-                let tableHtml = `<div class="table-responsive"><table class="table table-hover action-table mb-0"><thead><tr><th>${data.headers.join('</th><th>')}</th></tr></thead><tbody>`;
-                getValue(data, 'rows', []).forEach(row => {
-                    tableHtml += `<tr><td><span class="icon-circle ${row.icon_bg}"><i class="${row.icon}"></i></span> ${row.area}</td><td>${row.action}</td><td>${row.impact}</td><td><span class="status-badge ${row.priority_class}">${row.priority_text}</span></td></tr>`;
-                });
-                tableHtml += `</tbody></table></div>`;
-                const cardBody = createElement('div', {k: ['card-body', 'p-0']}); // p-0 per far aderire la tabella
-                cardBody.innerHTML = tableHtml;
-                const cardFooter = createElement('div', {k: ['card-footer', 'text-center']});
-                cardFooter.innerHTML = `<a href="${data.link_to_full_plan.href}" class="btn btn-primary btn-pill"><i class="fas fa-list-alt me-2"></i>${data.link_to_full_plan.text}</a>`;
-                card.append(cardBody, cardFooter);
-                actionsContainer.appendChild(card);
-            }
-        };
-        
-        const main = async () => {
-            if (!PAGE_ID) return;
-            try {
-                const [metaResponse, pageResponse] = await Promise.all([fetch(META_DATA_PATH), fetch(PAGE_DATA_PATH)]);
-                if (!metaResponse.ok || !pageResponse.ok) throw new Error(`Errore caricamento file JSON`);
-                const metaData = await metaResponse.json();
-                const pageData = await pageResponse.json();
+            const renderParte1Page = (pageData, metaData) => {
+                // IRP Section
+                const irpData = pageData.irp;
+                const scoreCircle = document.getElementById('irp-score-circle');
+                const scoreValue = document.getElementById('irp-score-value');
+                const categoryText = document.getElementById('irp-category-text');
+                const categoryLabel = document.getElementById('irp-category-label');
+                const categoryBadge = document.getElementById('irp-category-badge');
+                const valutazioneGen = document.getElementById('irp-valutazione-generale');
+                const irpSection = document.getElementById('irp-summary-section');
+
+                if (scoreCircle) scoreCircle.classList.add(irpData.risk_level);
+                if (scoreValue) scoreValue.textContent = irpData.score_text;
+                if (categoryText) categoryText.classList.add(irpData.text_class);
+                if (categoryLabel) categoryLabel.textContent = `Rischio ${irpData.category} `;
+                if (categoryBadge) {
+                    categoryBadge.classList.add(irpData.status_class);
+                    categoryBadge.textContent = irpData.category_letter;
+                }
+                if (valutazioneGen) valutazioneGen.innerHTML = irpData.valutazione_generale;
+                if (irpSection) irpSection.classList.add(irpData.risk_level);
+
+                // Altri indicatori
+                const altriIndicatoriList = document.getElementById('altri-indicatori-list');
+                if (altriIndicatoriList) {
+                    pageData.altri_indicatori.forEach(ind => {
+                        const li = createElement('li', { k: ['col-sm-6', 'd-flex', 'align-items-center'] });
+                        const iconSpan = createElement('span', { k: ['icon-circle', 'icon-circle-sm', ind.icon_class, 'me-2'] });
+                        iconSpan.appendChild(createElement('i', { k: [ind.icon] }));
+                        
+                        let content = `<strong>${ind.label}</strong> ${ind.value}`;
+                        if (ind.badge_text) {
+                            content += ` <span class="${ind.badge_class} ms-1">${ind.badge_text}</span>`;
+                        }
+                        
+                        li.appendChild(iconSpan);
+                        const textSpan = createElement('span');
+                        textSpan.innerHTML = content;
+                        li.appendChild(textSpan);
+                        altriIndicatoriList.appendChild(li);
+                    });
+                }
+
+                // KPI Cards
+                const kpiContainer = document.getElementById('kpi-cards-container');
+                if (kpiContainer) {
+                    pageData.kpi_cards.forEach(kpi => {
+                        const col = createElement('div', { k: ['col-lg-3', 'col-md-6'] });
+                        const kpiCard = createElement('div', { k: ['kpi-card-v4'] });
+                        
+                        const iconCircle = createElement('span', { k: ['icon-circle', kpi.icon_class] });
+                        iconCircle.appendChild(createElement('i', { k: [kpi.icon] }));
+                        
+                        const kpiContent = createElement('div', { k: ['kpi-content'] });
+                        kpiContent.append(
+                            createElement('div', { k: ['kpi-title'], t: kpi.title }),
+                            createElement('div', { k: ['kpi-value'], t: kpi.value }),
+                            createElement('div', { 
+                                k: ['kpi-trend', kpi.trend_class], 
+                                h: `<i class="${kpi.trend_icon}"></i> ${kpi.trend_text}` 
+                            })
+                        );
+                        
+                        kpiCard.append(iconCircle, kpiContent);
+                        col.appendChild(kpiCard);
+                        kpiContainer.appendChild(col);
+                    });
+                }
+
+                // Charts titles
+                document.getElementById('mainMetricsChart-title').textContent = pageData.charts.mainMetrics.title;
+                document.getElementById('currentAssetsLiabilitiesChart-title').textContent = pageData.charts.currentAssetsLiabilities.title;
+
+                // Profilo Aziendale
+                const anagraficaList = document.getElementById('profilo-anagrafica-list');
+                if (anagraficaList) {
+                    pageData.profilo_aziendale.anagrafica.forEach(item => {
+                        const li = createElement('li');
+                        li.innerHTML = `<i class="${item.icon} fa-fw"></i><strong>${item.label}</strong> ${item.value}`;
+                        anagraficaList.appendChild(li);
+                    });
+                }
+
+                const strutturaList = document.getElementById('profilo-struttura-list');
+                if (strutturaList) {
+                    pageData.profilo_aziendale.struttura.forEach(item => {
+                        const li = createElement('li');
+                        li.innerHTML = `<i class="${item.icon} fa-fw"></i><strong>${item.label}</strong> ${item.value}`;
+                        strutturaList.appendChild(li);
+                    });
+                }
+
+                const modelloBusiness = document.getElementById('profilo-modello-business');
+                if (modelloBusiness) modelloBusiness.textContent = pageData.profilo_aziendale.modello_business;
+
+                // SWOT
+                const swotContainer = document.getElementById('swot-cards-container');
+                if (swotContainer) {
+                    const swotSections = [
+                        { key: 'forza', title: 'Forza', icon: 'fas fa-thumbs-up', class: 'strength' },
+                        { key: 'debolezza', title: 'Debolezza', icon: 'fas fa-thumbs-down', class: 'weakness' },
+                        { key: 'opportunita', title: 'Opportunità', icon: 'fas fa-lightbulb', class: 'opportunity' },
+                        { key: 'minacce', title: 'Minacce', icon: 'fas fa-exclamation-triangle', class: 'threat' }
+                    ];
+
+                    swotSections.forEach(section => {
+                        const col = createElement('div', { k: ['col-md-6', 'col-lg-3', 'mb-4'] });
+                        const card = createElement('div', { k: ['swot-card-restored', section.class, 'h-100'] });
+                        
+                        const header = createElement('div', { 
+                            k: ['card-header'], 
+                            h: `<i class="${section.icon}"></i> ${section.title}` 
+                        });
+                        
+                        const body = createElement('div', { k: ['card-body'] });
+                        const ul = createElement('ul');
+                        pageData.swot[section.key].forEach(item => {
+                            ul.appendChild(createElement('li', { t: item }));
+                        });
+                        body.appendChild(ul);
+                        
+                        card.append(header, body);
+                        col.appendChild(card);
+                        swotContainer.appendChild(col);
+                    });
+                }
+
+                // Crisi d'Impresa
+                const crisiAlert = document.getElementById('crisi-alert-box');
+                if (crisiAlert) crisiAlert.classList.add(`alert-${pageData.crisi_impresa.status}`);
                 
-                document.title = `${pageData.page_title} - ${getValue(metaData, 'company.name')}`;
-                document.getElementById('loading-indicator')?.remove();
+                const crisiTitle = document.getElementById('crisi-title');
+                if (crisiTitle) crisiTitle.innerHTML = pageData.crisi_impresa.title;
                 
-                renderCommonComponents(metaData);
-
-                if (PAGE_ID === 'parte1_sintesi') {
-                    renderSintesiPage(pageData);
+                const crisiDesc = document.getElementById('crisi-description');
+                if (crisiDesc) crisiDesc.textContent = pageData.crisi_impresa.description;
+                
+                const crisiContesto = document.getElementById('crisi-contesto-list');
+                if (crisiContesto) {
+                    pageData.crisi_impresa.contesto_normativo.forEach(item => {
+                        const li = createElement('li');
+                        li.innerHTML = item;
+                        crisiContesto.appendChild(li);
+                    });
                 }
                 
-                document.getElementById('page-content-wrapper').style.display = 'block';
+                const crisiNota = document.getElementById('crisi-nota');
+                if (crisiNota) crisiNota.textContent = pageData.crisi_impresa.nota;
 
-            } catch (error) {
-                console.error("ERRORE CRITICO:", error);
-                const container = document.querySelector('.dashboard-container');
-                if (container) container.innerHTML = `<div class="alert alert-danger p-4"><h4><i class="fas fa-exclamation-triangle me-2"></i>Errore</h4><p>Impossibile caricare o processare i dati.</p><pre class="small bg-light p-2 rounded">${error.message}</pre></div>`;
-            }
-        };
-        
-        main();
-    });
+                // Azioni Prioritarie
+                const azioniTbody = document.getElementById('azioni-prioritarie-tbody');
+                if (azioniTbody) {
+                    pageData.azioni_prioritarie.forEach(azione => {
+                        const tr = createElement('tr');
+                        
+                        const tdArea = createElement('td');
+                        const iconSpan = createElement('span', { k: ['icon-circle', 'icon-circle-sm', azione.icon_class] });
+                        iconSpan.appendChild(createElement('i', { k: [azione.icon] }));
+                        tdArea.append(iconSpan, ` ${azione.area}`);
+                        
+                        tr.append(
+                            tdArea,
+                            createElement('td', { t: azione.azione }),
+                            createElement('td', { t: azione.impatto }),
+                            createElement('td', { 
+                                h: `<span class="status-badge ${azione.priorita_class}">${azione.priorita}</span>` 
+                            })
+                        );
+                        
+                        azioniTbody.appendChild(tr);
+                    });
+                }
+            };
+
+            // --- FUNZIONE PRINCIPALE DI AVVIO ---
+            const main = async () => {
+                if (!PAGE_ID) {
+                    document.body.innerHTML = '<h1>Errore: ID pagina non definito nel tag <body> (data-page-id).</h1>';
+                    return;
+                }
+
+                try {
+                    const [metaResponse, pageResponse] = await Promise.all([
+                        fetch(META_DATA_PATH),
+                        fetch(PAGE_DATA_PATH)
+                    ]);
+                    if (!metaResponse.ok) throw new Error(`File meta non trovato: ${META_DATA_PATH}`);
+                    if (!pageResponse.ok) throw new Error(`File di pagina non trovato: ${PAGE_DATA_PATH}`);
+                    const metaData = await metaResponse.json();
+                    const pageData = await pageResponse.json();
+                    
+                    // Aggiorna page_title in metaData per questa pagina
+                    metaData.page_title = pageData.page_title;
+                    
+                    document.title = `${pageData.page_title} - ${getValue(metaData, 'company.name')} | SCAN360`;
+                    document.getElementById('loading-indicator')?.remove();
+                    
+                    renderCommonComponents(metaData);
+                    
+                    const wrapper = document.getElementById(`${PAGE_ID}-content-wrapper`);
+                    if(wrapper) wrapper.style.display = 'block';
+
+                    renderParte1Page(pageData, metaData);
+                    
+                    // Inizializza i grafici
+                    initChart('mainMetricsChart', pageData.charts.mainMetrics);
+                    initChart('currentAssetsLiabilitiesChart', pageData.charts.currentAssetsLiabilities);
+                    
+                } catch (error) {
+                    console.error("ERRORE CRITICO:", error);
+                    const container = document.querySelector('.dashboard-container') || document.body;
+                    container.innerHTML = `<div class="alert alert-danger p-4"><h4><i class="fas fa-exclamation-triangle me-2"></i>Errore nel Caricamento</h4><p>Non è stato possibile caricare i file di dati. Controlla la console per dettagli.</p><pre class="small bg-light p-2 rounded">${error.message}</pre></div>`;
+                    document.getElementById('loading-indicator')?.remove();
+                }
+            };
+            
+            main();
+        });
     </script>
+
 </body>
 </html>
