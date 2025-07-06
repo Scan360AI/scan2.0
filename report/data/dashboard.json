@@ -1,12 +1,80 @@
 {
   "page_title": "Dashboard Esecutiva",
   "kpi_cards": [
-    { "id": "irp", "title": "Indice Rischio (IRP)", "value": "78,50", "trend_class": "", "trend_icon": "", "trend_value": "<span class='status-badge bg-success'>Moderato-Basso</span>", "trend_period": "(Scala 0-100)", "description": "Solidità adeguata con alcuni punti di forza.", "icon_class": "fas fa-shield-alt", "border_class": "border-left-success", "link_href": "parte1_sintesi.html", "link_text": "Vedi Dettaglio", "link_class": "" },
-    { "id": "ricavi", "title": "Ricavi", "value": "€ 1,03 M", "trend_class": "trend-up", "trend_icon": "fas fa-arrow-up", "trend_value": "+1,64%", "trend_period": "vs 2023", "description": "Crescita limitata ma stabile.", "icon_class": "fas fa-chart-bar", "border_class": "border-left-info", "link_href": "#", "link_text": "", "link_class": "d-none" },
-    { "id": "ebitda_margin", "title": "EBITDA Margin", "value": "9,91%", "trend_class": "trend-down", "trend_icon": "fas fa-arrow-down", "trend_value": "-0,39 p.p.", "trend_period": "vs 2023", "description": "Marginalità ancora buona.", "icon_class": "fas fa-percent", "border_class": "border-left-success", "link_href": "#", "link_text": "", "link_class": "d-none" },
-    { "id": "pfn_ebitda", "title": "PFN / EBITDA", "value": "-0,56", "trend_class": "trend-up", "trend_icon": "fas fa-arrow-up", "trend_value": "Eccellente", "trend_period": "PFN Negativa", "description": "Surplus di cassa.", "icon_class": "fas fa-balance-scale", "border_class": "border-left-success", "link_href": "#", "link_text": "", "link_class": "d-none" },
-    { "id": "dso", "title": "Giorni Incasso Clienti", "value": "262 gg", "trend_class": "trend-down", "trend_icon": "fas fa-arrow-down", "trend_value": "+43 gg", "trend_period": "vs 2023", "description": "Criticità significativa.", "icon_class": "fas fa-file-invoice-dollar", "border_class": "border-left-danger", "link_href": "#", "link_text": "", "link_class": "d-none" },
-    { "id": "cash_flow", "title": "Cash Flow Operativo", "value": "€ 63,85 K", "trend_class": "trend-up", "trend_icon": "fas fa-arrow-up", "trend_value": "6,19%", "trend_period": "dei Ricavi", "description": "Buona generazione di cassa.", "icon_class": "fas fa-coins", "border_class": "border-left-success", "link_href": "#", "link_text": "", "link_class": "d-none" }
+    {
+      "title": "Indice Rischio (IRP)",
+      "value": "78,50",
+      "value_class": "",
+      "trend_html": "<span class='status-badge bg-success'>Moderato-Basso</span><span class='text-muted small ms-2'>(Scala 0-100)</span>",
+      "description": "Solidità adeguata con alcuni punti di forza.",
+      "icon_class": "fas fa-shield-alt",
+      "border_class": "border-left-success"
+    },
+    {
+      "title": "Ricavi",
+      "value": "€ 1,03 M",
+      "value_class": "",
+      "trend_html": "<span class='trend-up'><i class='fas fa-arrow-up trend-icon'></i> +1,64%</span> <span class='text-muted small'>vs 2023</span>",
+      "description": "Crescita limitata ma stabile.",
+      "icon_class": "fas fa-chart-bar",
+      "border_class": "border-left-info"
+    },
+    {
+      "title": "EBITDA Margin",
+      "value": "9,91%",
+      "value_class": "",
+      "trend_html": "<span class='trend-down'><i class='fas fa-arrow-down trend-icon'></i> -0,39 p.p.</span> <span class='text-muted small'>vs 2023</span>",
+      "description": "Marginalità ancora buona (benchmark 8-12%).",
+      "icon_class": "fas fa-percent",
+      "border_class": "border-left-success"
+    },
+    {
+      "title": "PFN / EBITDA",
+      "value": "-0,56",
+      "value_class": "",
+      "trend_html": "<span class='trend-up'><i class='fas fa-arrow-up trend-icon'></i> Eccellente</span> <span class='text-muted small'>PFN Negativa</span>",
+      "description": "Surplus di cassa (benchmark < 3x).",
+      "icon_class": "fas fa-balance-scale",
+      "border_class": "border-left-success"
+    },
+    {
+      "title": "Giorni Incasso Clienti",
+      "value": "262 gg",
+      "value_class": "",
+      "trend_html": "<span class='trend-down'><i class='fas fa-arrow-down trend-icon'></i> +43 gg</span> <span class='text-muted small'>vs 2023</span>",
+      "description": "Criticità significativa (benchmark 90-120gg).",
+      "icon_class": "fas fa-file-invoice-dollar",
+      "border_class": "border-left-danger"
+    },
+    {
+      "title": "Cash Flow Operativo",
+      "value": "€ 63,85 K",
+      "value_class": "",
+      "trend_html": "<span class='trend-up'><i class='fas fa-arrow-up trend-icon'></i> 6,19%</span> <span class='text-muted small'>dei Ricavi</span>",
+      "description": "Buona generazione di cassa (benchmark >5%).",
+      "icon_class": "fas fa-coins",
+      "border_class": "border-left-success"
+    },
+    {
+      "title": "Leanus Score / Categoria",
+      "value": "10,03",
+      "value_class": "",
+      "trend_html": "<span class='status-badge bg-success me-2'>Buono (2)</span><span class='status-badge bg-info'>Miglioramento</span>",
+      "description": "Profilo creditizio solido e affidabile.",
+      "icon_class": "fas fa-user-shield",
+      "border_class": "border-left-success"
+    },
+    {
+      "title": "Azione Prioritaria",
+      "value": "Gestione Crediti",
+      "value_class": "small-text",
+      "trend_html": "<span class='status-badge bg-warning'>Alta Priorità</span>",
+      "description": "Riduzione DSO da 262 a 180 giorni.",
+      "icon_class": "fas fa-tasks",
+      "border_class": "border-left-warning",
+      "link_href": "parte6_rischi-raccomandazioni.html",
+      "link_text": "Vedi Piano d'Azione"
+    }
   ],
   "charts": {
     "trendRicaviEbitda": { "title": "Trend Economico e Margine", "type": "bar", "data": { "labels": ["2022", "2023", "2024"], "datasets": [ { "label": "Ricavi (€)", "data": [837763, 1014130, 1030748], "borderColor": "rgb(25, 25, 112)", "backgroundColor": "rgba(25, 25, 112, 0.1)", "type": "line", "yAxisID": "y" }, { "label": "EBITDA (€)", "data": [59227, 104917, 102108], "borderColor": "rgb(77, 140, 87)", "backgroundColor": "rgba(77, 140, 87, 0.7)", "type": "bar", "yAxisID": "y" }, { "label": "EBITDA Margin (%)", "data": [7.1, 10.3, 9.9], "borderColor": "rgb(217, 140, 0)", "type": "line", "yAxisID": "y1", "fill": false } ] }, "options": { "scales": { "y": { "beginAtZero": true, "title": { "display": true, "text": "Valore (€)" } }, "y1": { "position": "right", "grid": { "drawOnChartArea": false }, "title": { "display": true, "text": "EBITDA Margin (%)" } } } } },
