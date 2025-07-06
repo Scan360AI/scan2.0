@@ -1,31 +1,306 @@
 {
-  "page_title": "Sintesi e Profilo Aziendale - RELIVE COMMUNICATION | SCAN V9",
-  "irp_summary_section": {
-    "title": "<i class=\"fas fa-file-invoice me-2\"></i>1.1 SINTESI DELL'ANALISI FINANZIARIA",
-    "content_html": "<section class=\"irp-visual-section risk-low report-section\" id=\"irp-summary-section\"><div class=\"row align-items-center\"><div class=\"col-md-4 text-center mb-4 mb-md-0\"><h6 class=\"card-title-small mb-3\"><i class=\"fas fa-shield-alt me-1\"></i> Indice Rischio Ponderato</h6><div class=\"irp-score-circle risk-low\"> <span class=\"irp-score-value\">78,50</span> <span class=\"irp-score-max\">/ 100</span> </div><div class=\"irp-category-text text-success mt-2\"> Rischio Moderato-Basso <span class=\"status-badge bg-success\">B</span> </div><a href=\"irp_dettaglio.html\" class=\"btn btn-sm btn-outline-primary mt-3 btn-pill\">Vedi Dettaglio IRP</a></div><div class=\"col-md-8\"><h4 class=\"mb-3 fw-bold\" style=\"color: var(--primary);\">Valutazione Generale</h4><p class=\"mb-3\">Profilo di rischio <strong>Moderato-Basso</strong>. L'azienda dimostra un'eccellente solidità patrimoniale, buona marginalità operativa e basso indebitamento finanziario, sebbene la gestione del capitale circolante rappresenti un'area di miglioramento con tempi di incasso dei crediti commerciali significativamente superiori alla media settoriale.</p><a href=\"#crisis-framework\" class=\"btn btn-success btn-sm mb-3 btn-pill\"> <i class=\"fas fa-check-circle me-1\"></i> Verifica Crisi d'Impresa (OK) </a><div class=\"other-ratings border-top pt-3 mt-3\"><h6 class=\"card-title-small mb-2\">Altri Indicatori di Supporto:</h6><ul class=\"list-unstyled mb-0 row gx-3 gy-2\"><li class=\"col-sm-6 d-flex align-items-center\"><span class=\"icon-circle icon-circle-sm bg-icon-success me-2\"><i class=\"fas fa-chart-bar\"></i></span><strong>Leanus Score:</strong> 10,03 <span class=\"badge bg-success ms-1\">Buono</span></li><li class=\"col-sm-6 d-flex align-items-center\"><span class=\"icon-circle icon-circle-sm bg-icon-success me-2\"><i class=\"fas fa-building\"></i></span><strong>Business Cat.:</strong> <span class=\"stable-badge ms-1\">STABILE</span></li><li class=\"col-sm-6 d-flex align-items-center\"><span class=\"icon-circle icon-circle-sm bg-icon-success me-2\"><i class=\"fas fa-university\"></i></span><strong>Rating MCC:</strong> Fascia 2 <span class=\"badge bg-success ms-1\">Buono</span></li><li class=\"col-sm-6 d-flex align-items-center\"><span class=\"icon-circle icon-circle-sm bg-icon-success me-2\"><i class=\"fas fa-calculator\"></i></span><strong>Z-Score:</strong> 9,48 <span class=\"badge bg-success ms-1\">Sicurezza</span></li></ul></div></div></div></section>"
+  "page_title": "Sintesi e Profilo Aziendale",
+  "irp": {
+    "score": 78.50,
+    "score_text": "78,50",
+    "category": "Moderato-Basso",
+    "category_letter": "B",
+    "risk_level": "risk-low",
+    "status_class": "bg-success",
+    "text_class": "text-success",
+    "valutazione_generale": "Profilo di rischio <strong>Moderato-Basso</strong>. L'azienda dimostra un'eccellente solidità patrimoniale, buona marginalità operativa e basso indebitamento finanziario, sebbene la gestione del capitale circolante rappresenti un'area di miglioramento con tempi di incasso dei crediti commerciali significativamente superiori alla media settoriale."
   },
-  "kpi_section": {
-    "title": "<i class=\"fas fa-key me-2\"></i>Indicatori Chiave di Performance (KPI) - 31/12/2024",
-    "content_html": "<div class=\"card-body\"><div class=\"row gy-4\"><div class=\"col-lg-3 col-md-6\"><div class=\"kpi-card-v4\"><span class=\"icon-circle bg-icon-success\"><i class=\"fas fa-euro-sign\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">Ricavi</div><div class=\"kpi-value\">€ 1,03 M</div><div class=\"kpi-trend trend-up\"><i class=\"fas fa-arrow-up\"></i> +1,64% YoY</div></div></div></div><div class=\"col-lg-3 col-md-6\"><div class=\"kpi-card-v4\"><span class=\"icon-circle bg-icon-warning\"><i class=\"fas fa-chart-line\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">EBITDA</div><div class=\"kpi-value\">€ 102.108</div><div class=\"kpi-trend trend-down\"><i class=\"fas fa-arrow-down\"></i> -2,68% YoY</div></div></div></div><div class=\"col-lg-3 col-md-6\"><div class=\"kpi-card-v4\"><span class=\"icon-circle bg-icon-success\"><i class=\"fas fa-percentage\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">EBITDA Margin</div><div class=\"kpi-value\">9,91%</div><div class=\"kpi-trend trend-down\"><i class=\"fas fa-arrow-down\"></i> -0,39 p.p. YoY</div></div></div></div><div class=\"col-lg-3 col-md-6\"><div class=\"kpi-card-v4\"><span class=\"icon-circle bg-icon-success\"><i class=\"fas fa-coins\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">Utile Netto</div><div class=\"kpi-value\">€ 95.783</div><div class=\"kpi-trend trend-up\"><i class=\"fas fa-arrow-up\"></i> +131,0% YoY</div></div></div></div><div class=\"col-lg-3 col-md-6\"><div class=\"kpi-card-v4\"><span class=\"icon-circle bg-icon-success\"><i class=\"fas fa-landmark\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">Patrimonio Netto</div><div class=\"kpi-value\">€ 234.134</div><div class=\"kpi-trend trend-up\"><i class=\"fas fa-arrow-up\"></i> +69,23% YoY</div></div></div></div><div class=\"col-lg-3 col-md-6\"><div class="kpi-card-v4\"><span class=\"icon-circle bg-icon-success\"><i class=\"fas fa-tint\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">Liquidità</div><div class=\"kpi-value\">€ 56.948</div><div class=\"kpi-trend trend-up\"><i class=\"fas fa-arrow-up\"></i> +40,71% YoY</div></div></div></div><div class=\"col-lg-3 col-md-6\"><div class="kpi-card-v4\"><span class=\"icon-circle bg-icon-success\"><i class=\"fas fa-balance-scale-right\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">PFN / EBITDA</div><div class=\"kpi-value\">N/A</div><div class=\"kpi-trend trend-up\"><i class=\"fas fa-arrow-up\"></i> PFN Negativa</div></div></div></div><div class=\"col-lg-3 col-md-6\"><div class="kpi-card-v4\"><span class=\"icon-circle bg-icon-success\"><i class=\"fas fa-money-bill-wave\"></i></span><div class=\"kpi-content\"><div class=\"kpi-title\">Leva Finanziaria (D/E)</div><div class=\"kpi-value\">0,00x</div><div class=\"kpi-trend trend-up\"><i class=\"fas fa-arrow-up\"></i> da 0,31x</div></div></div></div></div></div>"
+  "altri_indicatori": [
+    {
+      "icon": "fas fa-chart-bar",
+      "icon_class": "bg-icon-success",
+      "label": "Leanus Score:",
+      "value": "10,03",
+      "badge_text": "Buono",
+      "badge_class": "bg-success"
+    },
+    {
+      "icon": "fas fa-building", 
+      "icon_class": "bg-icon-success",
+      "label": "Business Cat.:",
+      "value": "",
+      "badge_text": "STABILE",
+      "badge_class": "stable-badge"
+    },
+    {
+      "icon": "fas fa-university",
+      "icon_class": "bg-icon-success", 
+      "label": "Rating MCC:",
+      "value": "Fascia 2",
+      "badge_text": "Buono",
+      "badge_class": "bg-success"
+    },
+    {
+      "icon": "fas fa-calculator",
+      "icon_class": "bg-icon-success",
+      "label": "Z-Score:",
+      "value": "9,48",
+      "badge_text": "Sicurezza",
+      "badge_class": "bg-success"
+    }
+  ],
+  "kpi_cards": [
+    {
+      "icon": "fas fa-euro-sign",
+      "icon_class": "bg-icon-success",
+      "title": "Ricavi",
+      "value": "€ 1,03 M",
+      "trend_icon": "fas fa-arrow-up",
+      "trend_class": "trend-up",
+      "trend_text": "+1,64% YoY"
+    },
+    {
+      "icon": "fas fa-chart-line",
+      "icon_class": "bg-icon-warning",
+      "title": "EBITDA",
+      "value": "€ 102.108",
+      "trend_icon": "fas fa-arrow-down",
+      "trend_class": "trend-down",
+      "trend_text": "-2,68% YoY"
+    },
+    {
+      "icon": "fas fa-percentage",
+      "icon_class": "bg-icon-success",
+      "title": "EBITDA Margin",
+      "value": "9,91%",
+      "trend_icon": "fas fa-arrow-down",
+      "trend_class": "trend-down",
+      "trend_text": "-0,39 p.p. YoY"
+    },
+    {
+      "icon": "fas fa-coins",
+      "icon_class": "bg-icon-success",
+      "title": "Utile Netto",
+      "value": "€ 95.783",
+      "trend_icon": "fas fa-arrow-up",
+      "trend_class": "trend-up",
+      "trend_text": "+131,0% YoY"
+    },
+    {
+      "icon": "fas fa-landmark",
+      "icon_class": "bg-icon-success",
+      "title": "Patrimonio Netto",
+      "value": "€ 234.134",
+      "trend_icon": "fas fa-arrow-up",
+      "trend_class": "trend-up",
+      "trend_text": "+69,23% YoY"
+    },
+    {
+      "icon": "fas fa-tint",
+      "icon_class": "bg-icon-success",
+      "title": "Liquidità",
+      "value": "€ 56.948",
+      "trend_icon": "fas fa-arrow-up",
+      "trend_class": "trend-up",
+      "trend_text": "+40,71% YoY"
+    },
+    {
+      "icon": "fas fa-balance-scale-right",
+      "icon_class": "bg-icon-success",
+      "title": "PFN / EBITDA",
+      "value": "N/A",
+      "trend_icon": "fas fa-arrow-up",
+      "trend_class": "trend-up",
+      "trend_text": "PFN Negativa"
+    },
+    {
+      "icon": "fas fa-money-bill-wave",
+      "icon_class": "bg-icon-success",
+      "title": "Leva Finanziaria (D/E)",
+      "value": "0,00x",
+      "trend_icon": "fas fa-arrow-up",
+      "trend_class": "trend-up",
+      "trend_text": "da 0,31x"
+    }
+  ],
+  "charts": {
+    "mainMetrics": {
+      "title": "Grafico 1.1: Trend Indicatori Principali (€000)",
+      "type": "bar",
+      "data": {
+        "labels": ["2022", "2023", "2024"],
+        "datasets": [
+          {
+            "label": "Ricavi",
+            "data": [838, 1014, 1031],
+            "backgroundColor": "rgba(25, 25, 112, 0.7)",
+            "borderColor": "rgb(25, 25, 112)",
+            "borderWidth": 1
+          },
+          {
+            "label": "EBITDA",
+            "data": [59, 105, 102],
+            "backgroundColor": "rgba(77, 140, 87, 0.7)",
+            "borderColor": "rgb(77, 140, 87)",
+            "borderWidth": 1
+          },
+          {
+            "label": "Patrimonio Netto",
+            "data": [97, 138, 234],
+            "backgroundColor": "rgba(255, 193, 7, 0.7)",
+            "borderColor": "rgb(255, 193, 7)",
+            "borderWidth": 1
+          }
+        ]
+      },
+      "options": {
+        "scales": {
+          "y": {
+            "beginAtZero": true,
+            "title": {
+              "display": true,
+              "text": "Valore (€000)"
+            }
+          }
+        }
+      }
+    },
+    "currentAssetsLiabilities": {
+      "title": "Grafico 1.2: Trend Attivo/Passivo Corrente (€)",
+      "type": "line",
+      "data": {
+        "labels": ["2022", "2023", "2024"],
+        "datasets": [
+          {
+            "label": "Attivo Corrente",
+            "data": [456522, 645299, 654596],
+            "borderColor": "rgb(76, 175, 80)",
+            "backgroundColor": "rgba(76, 175, 80, 0.1)",
+            "fill": true
+          },
+          {
+            "label": "Passivo Corrente",
+            "data": [380850, 549906, 446349],
+            "borderColor": "rgb(244, 67, 54)",
+            "backgroundColor": "rgba(244, 67, 54, 0.1)",
+            "fill": true
+          }
+        ]
+      },
+      "options": {
+        "scales": {
+          "y": {
+            "beginAtZero": true,
+            "title": {
+              "display": true,
+              "text": "Valore (€)"
+            }
+          }
+        }
+      }
+    }
   },
-  "charts_section": {
-    "title": "<i class=\"fas fa-chart-bar me-2\"></i>Grafici di Sintesi",
-    "content_html": "<div class=\"card-body\"><div class=\"row\"><div class=\"col-lg-6 mb-4\"><h6 class=\"text-center small mb-3\">Grafico 1.1: Trend Indicatori Principali (€000)</h6><div class=\"chart-container\"><canvas id=\"mainMetricsChart\"></canvas></div></div><div class=\"col-lg-6 mb-4\"><h6 class=\"text-center small mb-3\">Grafico 1.2: Trend Attivo/Passivo Corrente (€)</h6><div class=\"chart-container\"><canvas id=\"currentAssetsLiabilitiesChart\"></canvas></div></div></div></div>"
+  "profilo_aziendale": {
+    "anagrafica": [
+      { "icon": "fas fa-id-card", "label": "Rag. Sociale:", "value": "RELIVE COMMUNICATION S.R.L." },
+      { "icon": "fas fa-barcode", "label": "ATECO:", "value": "73.11 - Attività di agenzie pubblicitarie" },
+      { "icon": "fas fa-calendar-alt", "label": "Fondazione:", "value": "2018" },
+      { "icon": "fas fa-map-marker-alt", "label": "Sede:", "value": "Milano (MI), Lombardia" },
+      { "icon": "fas fa-industry", "label": "Settore:", "value": "Servizi pubblicitari e marketing" },
+      { "icon": "fas fa-expand-arrows-alt", "label": "Dimensione:", "value": "Micro Impresa" }
+    ],
+    "struttura": [
+      { "icon": "fas fa-users", "label": "Dipendenti:", "value": "6" },
+      { "icon": "fas fa-money-bill-wave", "label": "Costo Personale:", "value": "€242.750 (23,6% Ricavi)" },
+      { "icon": "fas fa-sitemap", "label": "Modello di business:", "value": "Service (orientato ai servizi)" },
+      { "icon": "fas fa-chart-pie", "label": "Capitale sociale:", "value": "€20.000 (8,54% del Patrimonio Netto)" },
+      { "icon": "fas fa-link", "label": "Composizione patrimoniale:", "value": "Capitale Sociale 8,54%, Riserve 50,55%, Utile 40,91%" }
+    ],
+    "modello_business": "RELIVE COMMUNICATION opera nel settore delle agenzie pubblicitarie, offrendo servizi di comunicazione, marketing e pubblicità a clienti business. L'azienda si caratterizza per un modello di business orientato ai servizi con alta intensità di capitale umano, con una struttura snella e flessibile tipica delle micro-imprese del settore. Il business è caratterizzato da elevati margini di contribuzione (38,5%) ma anche da un ciclo del circolante particolarmente esteso (119 giorni) con tempi di incasso dai clienti significativamente superiori agli standard di settore. L'azienda mostra un'eccellente redditività (ROI 53,26%, ROE 40,91%) e una struttura patrimoniale-finanziaria molto solida, con completa assenza di debiti finanziari."
   },
-  "profile_section": {
-    "title": "<i class=\"fas fa-building me-2\"></i>1.2 PROFILO AZIENDALE",
-    "content_html": "<div class=\"row\"><div class=\"col-lg-6\"><h6><i class=\"fas fa-info-circle fa-fw me-2 text-primary\"></i> Anagrafica e Settore</h6><ul><li><i class=\"fas fa-id-card fa-fw\"></i><strong>Rag. Sociale:</strong> RELIVE COMMUNICATION S.R.L.</li><li><i class=\"fas fa-barcode fa-fw\"></i><strong>ATECO:</strong> 73.11 - Attività di agenzie pubblicitarie</li><li><i class=\"fas fa-calendar-alt fa-fw\"></i><strong>Fondazione:</strong> 2018</li><li><i class=\"fas fa-map-marker-alt fa-fw\"></i><strong>Sede:</strong> Milano (MI), Lombardia</li><li><i class=\"fas fa-industry fa-fw\"></i><strong>Settore:</strong> Servizi pubblicitari e marketing</li><li><i class=\"fas fa-expand-arrows-alt fa-fw\"></i><strong>Dimensione:</strong> Micro Impresa</li></ul></div><div class=\"col-lg-6\"><h6><i class=\"fas fa-users-cog fa-fw me-2 text-primary\"></i> Struttura e Personale</h6><ul><li><i class=\"fas fa-users fa-fw\"></i><strong>Dipendenti:</strong> 6</li><li><i class=\"fas fa-money-bill-wave fa-fw\"></i><strong>Costo Personale:</strong> €242.750 (23,6% Ricavi)</li><li><i class=\"fas fa-sitemap fa-fw\"></i><strong>Modello di business:</strong> Service (orientato ai servizi)</li><li><i class=\"fas fa-chart-pie fa-fw\"></i><strong>Capitale sociale:</strong> €20.000 (8,54% del Patrimonio Netto)</li><li><i class=\"fas fa-link fa-fw\"></i><strong>Composizione patrimoniale:</strong> Capitale Sociale 8,54%, Riserve 50,55%, Utile 40,91%</li></ul></div><div class=\"col-lg-12 mt-3\"><h6><i class=\"fas fa-briefcase fa-fw me-2 text-primary\"></i> Modello di Business e Posizionamento</h6><p class=\"small\">RELIVE COMMUNICATION opera nel settore delle agenzie pubblicitarie, offrendo servizi di comunicazione, marketing e pubblicità a clienti business. L'azienda si caratterizza per un modello di business orientato ai servizi con alta intensità di capitale umano, con una struttura snella e flessibile tipica delle micro-imprese del settore. Il business è caratterizzato da elevati margini di contribuzione (38,5%) ma anche da un ciclo del circolante particolarmente esteso (119 giorni) con tempi di incasso dai clienti significativamente superiori agli standard di settore. L'azienda mostra un'eccellente redditività (ROI 53,26%, ROE 40,91%) e una struttura patrimoniale-finanziaria molto solida, con completa assenza di debiti finanziari.</p></div></div>"
+  "swot": {
+    "forza": [
+      "Eccellente redditività (ROE 40,91%, ROI 53,26%)",
+      "Buona marginalità operativa (EBITDA margin 9,91%)",
+      "Azzeramento completo dei debiti finanziari",
+      "Forte rafforzamento patrimoniale (+69,23%)",
+      "Eccellente produttività per dipendente (€171.791/dip)"
+    ],
+    "debolezza": [
+      "Tempi di incasso clienti molto elevati (DSO 262 giorni)",
+      "Ciclo del circolante inefficiente (119 giorni)",
+      "Incremento costi fissi superiore alla crescita ricavi (+22,4% vs +1,64%)",
+      "Limitata crescita dimensionale (+1,64% ricavi)",
+      "Forte dipendenza da pochi clienti strategici"
+    ],
+    "opportunita": [
+      "Potenziale espansione della base clienti",
+      "Sviluppo di servizi innovativi digitali",
+      "Ottimizzazione gestione crediti commerciali",
+      "Crescita dimensionale tramite acquisizioni",
+      "Sfruttamento contenuto leva finanziaria per accelerare crescita"
+    ],
+    "minacce": [
+      "Possibili tensioni finanziarie (DSO elevato)",
+      "Concorrenza da agenzie digitali internazionali",
+      "Potenziale deterioramento dei rapporti con fornitori (DPO elevato)",
+      "Rischio di instabilità economica settoriale",
+      "Contrazione della domanda in caso di rallentamento economia"
+    ]
   },
-  "swot_section": {
-    "title": "<i class=\"fas fa-sitemap me-2\"></i>Analisi SWOT",
-    "content_html": "<div class=\"row\"><div class=\"col-md-6 col-lg-3 mb-4\"><div class=\"swot-card-restored strength h-100\"><div class=\"card-header\"><i class=\"fas fa-thumbs-up\"></i> Forza</div><div class=\"card-body\"><ul><li>Eccellente redditività (ROE 40,91%, ROI 53,26%)</li><li>Buona marginalità operativa (EBITDA margin 9,91%)</li><li>Azzeramento completo dei debiti finanziari</li><li>Forte rafforzamento patrimoniale (+69,23%)</li><li>Eccellente produttività per dipendente (€171.791/dip)</li></ul></div></div></div><div class=\"col-md-6 col-lg-3 mb-4\"><div class=\"swot-card-restored weakness h-100\"><div class=\"card-header\"><i class=\"fas fa-thumbs-down\"></i> Debolezza</div><div class=\"card-body\"><ul><li>Tempi di incasso clienti molto elevati (DSO 262 giorni)</li><li>Ciclo del circolante inefficiente (119 giorni)</li><li>Incremento costi fissi superiore alla crescita ricavi (+22,4% vs +1,64%)</li><li>Limitata crescita dimensionale (+1,64% ricavi)</li><li>Forte dipendenza da pochi clienti strategici</li></ul></div></div></div><div class=\"col-md-6 col-lg-3 mb-4\"><div class=\"swot-card-restored opportunity h-100\"><div class=\"card-header\"><i class=\"fas fa-lightbulb\"></i> Opportunità</div><div class=\"card-body\"><ul><li>Potenziale espansione della base clienti</li><li>Sviluppo di servizi innovativi digitali</li><li>Ottimizzazione gestione crediti commerciali</li><li>Crescita dimensionale tramite acquisizioni</li><li>Sfruttamento contenuto leva finanziaria per accelerare crescita</li></ul></div></div></div><div class=\"col-md-6 col-lg-3 mb-4\"><div class=\"swot-card-restored threat h-100\"><div class=\"card-header\"><i class=\"fas fa-exclamation-triangle\"></i> Minacce</div><div class=\"card-body\"><ul><li>Possibili tensioni finanziarie (DSO elevato)</li><li>Concorrenza da agenzie digitali internazionali</li><li>Potenziale deterioramento dei rapporti con fornitori (DPO elevato)</li><li>Rischio di instabilità economica settoriale</li><li>Contrazione della domanda in caso di rallentamento economia</li></ul></div></div></div></div>"
+  "crisi_impresa": {
+    "status": "success",
+    "title": "Indicatori CCII: Tutti Rispettati",
+    "description": "L'analisi degli indicatori della crisi secondo il CCII evidenzia un profilo complessivamente positivo, con tutti gli indicatori in linea con le soglie di sicurezza, confermando l'assenza di \"fondati indizi\" dello stato di crisi ai sensi del CCII.",
+    "contesto_normativo": [
+      "<strong>Obbligo di Controllo o Revisione</strong> (Art. 2477 Comma 3)",
+      "<strong>Adeguati assetti aziendali</strong> secondo il D.Lgs. 14/2019 (Codice della Crisi d'Impresa e dell'Insolvenza - CCII)",
+      "<strong>D.Lgs. 139/2015</strong> (Principi contabili e aggiornamenti OIC)",
+      "<strong>GDPR</strong> (Regolamento UE 2016/679) per la protezione dei dati personali",
+      "<strong>Normative specifiche settore pubblicitario</strong> (Digital Services Act, IAB guidelines)"
+    ],
+    "nota": "La Probabilità di Default secondo il rating del Fondo di Garanzia MCC è pari a 1,02%, collocando l'azienda in FASCIA \"2\", una valutazione che conferma la solidità finanziaria. L'unico indicatore che non rispetta pienamente le soglie è l'indebitamento previdenziale e tributario sul totale attivo (2,86%), che comunque si mantiene sotto la soglia critica del 4,9%."
   },
-  "ccii_section": {
-    "title": "<i class=\"fas fa-gavel me-2\"></i>1.3 CONFORMITÀ ALLA NORMATIVA SULLA CRISI D'IMPRESA (CCII)",
-    "content_html": "<div class=\"card-body\"><div class=\"alert-box alert-success d-flex align-items-center\"><span class=\"icon-circle bg-icon-success me-3\"><i class=\"fas fa-check-circle\"></i></span><div><h6 class=\"mb-1\">Indicatori CCII: <strong>Tutti Rispettati</strong></h6><p class=\"small mb-0\">L'analisi degli indicatori della crisi secondo il CCII evidenzia un profilo complessivamente positivo, con tutti gli indicatori in linea con le soglie di sicurezza, confermando l'assenza di \"fondati indizi\" dello stato di crisi ai sensi del CCII.</p></div></div><h6 class=\"mt-4\">Contesto Normativo Rilevante:</h6><ul class=\"small\"><li><strong>Obbligo di Controllo o Revisione</strong> (Art. 2477 Comma 3)</li><li><strong>Adeguati assetti aziendali</strong> secondo il D.Lgs. 14/2019 (Codice della Crisi d'Impresa e dell'Insolvenza - CCII)</li><li><strong>D.Lgs. 139/2015</strong> (Principi contabili e aggiornamenti OIC)</li><li><strong>GDPR</strong> (Regolamento UE 2016/679) per la protezione dei dati personali</li><li><strong>Normative specifiche settore pubblicitario</strong> (Digital Services Act, IAB guidelines)</li></ul><p class=\"small text-muted mt-3\">La Probabilità di Default secondo il rating del Fondo di Garanzia MCC è pari a 1,02%, collocando l'azienda in FASCIA \"2\", una valutazione che conferma la solidità finanziaria. L'unico indicatore che non rispetta pienamente le soglie è l'indebitamento previdenziale e tributario sul totale attivo (2,86%), che comunque si mantiene sotto la soglia critica del 4,9%.</p></div>"
-  },
-  "actions_section": {
-    "title": "Azioni Raccomandate Prioritarie (Sintesi)",
-    "content_html": "<div class=\"card-body\"><div class=\"table-responsive\"><table class=\"table table-sm table-hover action-table\"><thead class=\"table-light\"><tr><th>Area</th><th>Azione Prioritaria</th><th>Impatto Atteso</th><th>Priorità</th></tr></thead><tbody><tr><td><span class=\"icon-circle icon-circle-sm bg-icon-danger\"><i class=\"fas fa-calendar-alt\"></i></span> Gestione crediti clienti</td><td>Implementazione politiche di credit management strutturate</td><td>Riduzione DSO a 180 giorni (-€177.500)</td><td><span class=\"status-badge bg-danger\">Alta</span></td></tr><tr><td><span class=\"icon-circle icon-circle-sm bg-icon-warning\"><i class=\"fas fa-dolly\"></i></span> Gestione debiti fornitori</td><td>Normalizzazione rapporti con fornitori strategici</td><td>Miglioramento relazioni commerciali e DPO < 180 giorni</td><td><span class=\"status-badge bg-warning text-dark\">Media</span></td></tr><tr><td><span class=\"icon-circle icon-circle-sm bg-icon-danger\"><i class=\"fas fa-chart-line\"></i></span> Crescita dimensionale</td><td>Sviluppo piano commerciale strutturato</td><td>Crescita ricavi +10% (+€103.000)</td><td><span class=\"status-badge bg-danger\">Alta</span></td></tr><tr><td><span class=\"icon-circle icon-circle-sm bg-icon-warning\"><i class=\"fas fa-search-dollar\"></i></span> Costi fissi</td><td>Implementazione sistema di budgeting e controllo</td><td>Ottimizzazione struttura costi (-€30.000)</td><td><span class=\"status-badge bg-warning text-dark\">Media</span></td></tr><tr><td><span class=\"icon-circle icon-circle-sm bg-icon-warning\"><i class=\"fas fa-money-bill-wave\"></i></span> Struttura finanziaria</td><td>Valutazione moderata leva finanziaria per investimenti</td><td>Incremento ROE di ulteriori 5 p.p.</td><td><span class=\"status-badge bg-warning text-dark\">Media</span></td></tr></tbody></table></div><a href=\"parte6_rischi-raccomandazioni.html#table_7_1_1\" class=\"btn btn-sm btn-primary mt-2 btn-pill\"><i class=\"fas fa-list-alt me-1\"></i> Vedi Piano d'Azione Dettagliato</a></div>"
-  }
+  "azioni_prioritarie": [
+    {
+      "icon": "fas fa-calendar-alt",
+      "icon_class": "bg-icon-danger",
+      "area": "Gestione crediti clienti",
+      "azione": "Implementazione politiche di credit management strutturate",
+      "impatto": "Riduzione DSO a 180 giorni (-€177.500)",
+      "priorita": "Alta",
+      "priorita_class": "bg-danger"
+    },
+    {
+      "icon": "fas fa-dolly",
+      "icon_class": "bg-icon-warning",
+      "area": "Gestione debiti fornitori",
+      "azione": "Normalizzazione rapporti con fornitori strategici",
+      "impatto": "Miglioramento relazioni commerciali e DPO < 180 giorni",
+      "priorita": "Media",
+      "priorita_class": "bg-warning text-dark"
+    },
+    {
+      "icon": "fas fa-chart-line",
+      "icon_class": "bg-icon-danger",
+      "area": "Crescita dimensionale",
+      "azione": "Sviluppo piano commerciale strutturato",
+      "impatto": "Crescita ricavi +10% (+€103.000)",
+      "priorita": "Alta",
+      "priorita_class": "bg-danger"
+    },
+    {
+      "icon": "fas fa-search-dollar",
+      "icon_class": "bg-icon-warning",
+      "area": "Costi fissi",
+      "azione": "Implementazione sistema di budgeting e controllo",
+      "impatto": "Ottimizzazione struttura costi (-€30.000)",
+      "priorita": "Media",
+      "priorita_class": "bg-warning text-dark"
+    },
+    {
+      "icon": "fas fa-money-bill-wave",
+      "icon_class": "bg-icon-warning",
+      "area": "Struttura finanziaria",
+      "azione": "Valutazione moderata leva finanziaria per investimenti",
+      "impatto": "Incremento ROE di ulteriori 5 p.p.",
+      "priorita": "Media",
+      "priorita_class": "bg-warning text-dark"
+    }
+  ]
 }
