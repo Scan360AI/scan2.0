@@ -226,3 +226,90 @@ body {
     .hero-content { max-width: 100%; }
     .company-info-line { flex-direction: column; gap: 10px; align-items: flex-start; }
 }
+/* ==========================================================
+ * AGGIUNTE DI PRECISIONE PER parte1_sintesi.html (v11.0)
+ * ========================================================== */
+
+/* Stile per la card IRP grande come da immagine */
+.irp-visual-section {
+    background: linear-gradient(135deg, var(--white) 0%, #f0f4f8 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--card-border);
+}
+
+.irp-score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    border: 6px solid rgba(255, 255, 255, 0.5);
+}
+.irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); }
+.irp-score-value { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); }
+.irp-score-max { font-size: 0.9rem; opacity: 0.8; display: block; line-height: 1; }
+.irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
+.irp-category-text .status-badge { font-size: 0.85rem; vertical-align: middle; margin-left: 8px; }
+
+/* Stile per gli altri indicatori con icona a cerchio */
+.other-ratings .icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    margin-right: 12px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* Stile per i KPI in riga sotto IRP */
+.kpi-card-v4 {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--card-border);
+    height: 100%;
+}
+.kpi-card-v4 .kpi-content { margin-left: 0; flex-grow: 1; }
+.kpi-card-v4 .kpi-header { display: flex; align-items: center; margin-bottom: 5px; }
+.kpi-card-v4 .kpi-title { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.2; }
+.kpi-card-v4 .kpi-value { font-size: 1.7rem; font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 3px; }
+.kpi-card-v4 .kpi-trend { font-size: 0.8rem; font-weight: 600; }
+.kpi-card-v4 .trend-up { color: var(--success); }
+.kpi-card-v4 .trend-down { color: var(--danger); }
+.icon-circle.bg-icon-success { background-color: var(--success); }
+.icon-circle.bg-icon-warning { background-color: var(--warning); }
+.icon-circle.bg-icon-danger { background-color: var(--danger); }
+.stable-badge { background-color: var(--warning); color: var(--dark); border-radius: 8px; padding: 3px 8px; font-weight: 600; font-size: 0.8rem; }
+
+/* Stili per la tabella Azioni */
+.action-table td:nth-child(1) { width: 30%; white-space: nowrap; }
+.action-table td:nth-child(2) { width: 40%; }
+.action-table td:nth-child(3) { width: 20%; }
+.action-table td:nth-child(4) { width: 10%; text-align: center; }
+
+/* Stili SWOT (che avevamo già ma li verifico) */
+.swot-card-restored { background-color: var(--white); border-radius: 8px; border: 1px solid var(--card-border); box-shadow: var(--shadow); height: 100%;}
+.swot-card-restored .card-header { display: flex; align-items: center; font-weight: 600; border-bottom: 1px solid var(--card-border); padding: 0.75rem 1rem;}
+.swot-card-restored .card-header i { margin-right: 8px; font-size: 1.1rem; }
+.swot-card-restored .card-body ul { font-size: 0.85rem; padding-left: 1.5rem; list-style: disc; margin-bottom: 0;}
+.swot-card-restored .card-body li { margin-bottom: 0.5rem;}
+.swot-card-restored.strength .card-header { background-color: #d1e7dd; color: #0a3622;}
+.swot-card-restored.weakness .card-header { background-color: #f8d7da; color: #58151c;}
+.swot-card-restored.opportunity .card-header { background-color: #cff4fc; color: #055160;}
+.swot-card-restored.threat .card-header { background-color: #fff3cd; color: #664d03;}
