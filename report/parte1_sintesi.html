@@ -19,9 +19,7 @@
             <div id="loading-indicator" class="text-center p-5">
                 <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
             </div>
-            
-            <!-- Wrapper principale per il contenuto, inizialmente nascosto -->
-            <div id="sintesi-content-wrapper" style="display: none;">
+            <div id="page-content-wrapper" style="display: none;">
                 <!-- Contenitore per Sezione 1.1: SINTESI E IRP -->
                 <div id="irp-summary-section-container" class="report-section"></div>
                 <!-- Contenitore per Sezione KPI -->
@@ -36,52 +34,122 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     
-    <!-- SCRIPT APPLICATIVO AUTO-CONTENUTO -->
     <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const PAGE_ID = document.body.dataset.pageId;
+        const META_DATA_PATH = 'data/_meta.json';
+        const PAGE_DATA_PATH = `data/${PAGE_ID}.json`;
 
-    const PAGE_ID = document.body.dataset.pageId;
-    const META_DATA_PATH = 'data/_meta.json';
-    const PAGE_DATA_PATH = `data/${PAGE_ID}.json`;
-
-    const getValue = (obj, path, d = '') => path.split('.').reduce((a, p) => a && typeof a === 'object' ? a[p] : undefined, obj) || d;
-    const createElement = (tag, { k = [], a = {}, t = '', h = '' } = {}) => { const e = document.createElement(tag); if (k.length) e.classList.add(...k.filter(c => c)); Object.entries(a).forEach(([key, val]) => e.setAttribute(key, val)); if (t) e.textContent = t; if (h) e.innerHTML = h; return e; };
-
-    const renderCommonComponents = (metaData) => {
-        const sidebarContainer = document.getElementById('sidebar-container');
-        if (sidebarContainer) { sidebarContainer.innerHTML = ''; const header = createElement('div', { k: ['sidebar-header'] }); header.append(createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] })); const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] }); getValue(metaData, 'sidebar_links', []).forEach(link => { if (link.group_title) { nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title })); } else { const navLink = createElement('a', { k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], a: { href: link.href }, h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` }); nav.appendChild(createElement('li', { k: ['nav-item'] })).appendChild(navLink); } }); const footer = createElement('div', { k: ['sidebar-footer'] }); footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` })); sidebarContainer.append(header, nav, footer); }
-        const headerContainer = document.getElementById('header-container');
-        if (headerContainer) { headerContainer.innerHTML = `<div class="header-title"><h5 class="mb-0">Report Dettagliato: Sintesi e Profilo Aziendale</h5><p class="mb-0 small text-muted">${getValue(metaData, 'company.name')} | ${getValue(metaData, 'report.date')}</p></div><div class="header-controls d-flex align-items-center"><span class="badge ${getValue(metaData, 'irp.style_class')} me-3">IRP: ${getValue(metaData, 'irp.score')}</span><button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()"><i class="fas fa-print"></i> Stampa</button><div class="dropdown"><button class="btn btn-sm btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">${getValue(metaData, 'user.name')}</button><ul class="dropdown-menu dropdown-menu-end"><li><button class="dropdown-item" type="button">Logout</button></li></ul></div></div>`; }
-        const footerContainer = document.getElementById('footer-container');
-        if (footerContainer) { footerContainer.innerHTML = `<div class="container-fluid px-4"><div class="row"><div class="col-md-6 text-center text-md-start mb-2 mb-md-0">SCAN360 © ${new Date().getFullYear()}</div><div class="col-md-6 text-center text-md-end">Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a><img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"></div></div></div>`; }
-    };
-
-    const renderSintesiPage = (pageData) => {
-        const wrapper = document.getElementById('sintesi-content-wrapper');
-        if (!wrapper) return;
+        const getValue = (obj, path, d = '') => path.split('.').reduce((a, p) => a && typeof a === 'object' ? a[p] : undefined, obj) || d;
+        const createElement = (tag, { k = [], a = {}, t = '', h = '' } = {}) => { const e = document.createElement(tag); if (k.length) e.classList.add(...k.filter(c => c)); Object.entries(a).forEach(([key, val]) => e.setAttribute(key, val)); if (t) e.textContent = t; if (h) e.innerHTML = h; return e; };
         
-        // Render IRP Summary
-        const summaryContainer = document.getElementById('irp-summary-section-container');
-        if (summaryContainer) {
-            const summaryData = getValue(pageData, 'irp_summary_section', {});
-            const irp = getValue(summaryData, 'irp_card', {});
-            let ratingsHtml = '';
-            getValue(summaryData, 'other_ratings.items', []).forEach(r => {
-                ratingsHtml += `<div class="col-6 mb-3"><div class="d-flex align-items-center"><span class="icon-circle ${r.bg_class}"><i class="${r.icon}"></i></span><div class="small ms-2"><strong>${r.label}</strong> ${r.value}<br><span class="status-badge ${r.badge_class}">${r.badge_text}</span></div></div></div>`;
-            });
-            const btn = summaryData.status_button;
-            summaryContainer.innerHTML = `<h2 class="section-title"><i class="${summaryData.icon} me-2"></i>${summaryData.title}</h2>
-                <div class="card"><div class="card-body p-4" style="background-color: #f8f9fa; border-radius: .5rem;">
-                <div class="row align-items-center">
-                    <div class="col-lg-5 text-center mb-4 mb-lg-0">
-                        <h6 class="text-uppercase small text-secondary"><i class="fas fa-shield-alt text-secondary me-1"></i> ${irp.title}</h6>
-                        <div class="irp-score-circle ${irp.style_class_circle} my-3"><span class="irp-score-value">${irp.score}</span><span class="irp-score-max">${irp.score_max}</span></div>
-                        <div class="irp-category-text ${irp.style_class_text}">${irp.category_text} <span class="status-badge ${irp.style_class_badge}">${irp.category_letter}</span></div>
-                        <a href="${irp.detail_link_href}" class="btn btn-sm btn-outline-primary mt-3 btn-pill">${irp.detail_link_text}</a>
+        const renderCommonComponents = (metaData) => {
+            const sidebarContainer = document.getElementById('sidebar-container');
+            if (sidebarContainer) { sidebarContainer.innerHTML = ''; const header = createElement('div', { k: ['sidebar-header'] }); header.append(createElement('img', { a: { src: 'assets/img/logo_scan.png', style: 'max-height: 40px;' } }), createElement('h5', { t: getValue(metaData, 'company.name'), k: ['mt-2'] })); const nav = createElement('ul', { k: ['sidebar-nav', 'flex-grow-1'] }); getValue(metaData, 'sidebar_links', []).forEach(link => { if (link.group_title) { nav.appendChild(createElement('li', { k: ['nav-title'], t: link.group_title })); } else { const navLink = createElement('a', { k: ['nav-link', PAGE_ID === link.page_id ? 'active' : ''], a: { href: link.href }, h: `<i class="fa-fw ${link.icon}"></i> ${link.title}` }); nav.appendChild(createElement('li', { k: ['nav-item'] })).appendChild(navLink); } }); const footer = createElement('div', { k: ['sidebar-footer'] }); footer.appendChild(createElement('small', { t: `SCAN360 © ${new Date().getFullYear()} Kitzanos` })); sidebarContainer.append(header, nav, footer); }
+            const headerContainer = document.getElementById('header-container');
+            if (headerContainer) { headerContainer.innerHTML = `<div class="header-title"><h5 class="mb-0">Report Dettagliato: Sintesi e Profilo Aziendale</h5><p class="mb-0 small text-muted">${getValue(metaData, 'company.name')} | ${getValue(metaData, 'report.date')}</p></div><div class="header-controls d-flex align-items-center"><span class="badge ${getValue(metaData, 'irp.style_class')} me-3">IRP: ${getValue(metaData, 'irp.score')}</span><button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="window.print()"><i class="fas fa-print"></i> Stampa</button><div class="dropdown"><button class="btn btn-sm btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">${getValue(metaData, 'user.name')}</button><ul class="dropdown-menu dropdown-menu-end"><li><button class="dropdown-item" type="button">Logout</button></li></ul></div></div>`; }
+            const footerContainer = document.getElementById('footer-container');
+            if (footerContainer) { footerContainer.innerHTML = `<div class="container-fluid px-4"><div class="row"><div class="col-md-6 text-center text-md-start mb-2 mb-md-0">SCAN360 © ${new Date().getFullYear()}</div><div class="col-md-6 text-center text-md-end">Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a><img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"></div></div></div>`; }
+        };
+
+        const renderSintesiPage = (pageData) => {
+            const wrapper = document.getElementById('page-content-wrapper');
+            if (!wrapper) return;
+            
+            // Render IRP Summary
+            const summaryContainer = document.getElementById('irp-summary-section-container');
+            if (summaryContainer) {
+                const summaryData = getValue(pageData, 'irp_summary_section', {});
+                const irp = getValue(summaryData, 'irp_card', {});
+                let ratingsHtml = '';
+                getValue(summaryData, 'other_ratings.items', []).forEach(r => { ratingsHtml += `<div class="col-6 mb-3"><div class="d-flex align-items-center"><span class="icon-circle ${r.bg_class}"><i class="${r.icon}"></i></span><div class="small ms-2"><strong>${r.label}</strong> ${r.value}<br><span class="status-badge ${r.badge_class}">${r.badge_text}</span></div></div></div>`; });
+                const btn = summaryData.status_button;
+                const title = createElement('h2', {k: ['section-title'], h: `<i class="${summaryData.icon} me-2"></i>${summaryData.title}`});
+                const card = createElement('div', {k: ['card']});
+                card.innerHTML = `<div class="card-body p-4 irp-visual-section">
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 text-center mb-4 mb-lg-0">
+                            <h6 class="text-uppercase small text-secondary"><i class="fas fa-shield-alt text-secondary me-1"></i> ${irp.title}</h6>
+                            <div class="irp-score-circle ${irp.style_class_circle} my-3"><span class="irp-score-value">${irp.score}</span><span class="irp-score-max">${irp.score_max}</span></div>
+                            <div class="irp-category-text ${irp.style_class_text}">${irp.category_text} <span class="status-badge ${irp.style_class_badge}">${irp.category_letter}</span></div>
+                            <a href="${irp.detail_link_href}" class="btn btn-sm btn-outline-primary mt-3 btn-pill">${irp.detail_link_text}</a>
+                        </div>
+                        <div class="col-lg-7">
+                            <h4 class="fw-bold mb-3" style="color: var(--primary);">${summaryData.general_evaluation.title}</h4>
+                            <p>${summaryData.general_evaluation.text_html}</p>
+                            <a href="${btn.href}" class="btn btn-sm ${btn.class} rounded-pill my-3"><i class="${btn.icon} me-2"></i>${btn.text}</a>
+                            <div class="border-top pt-3"><h6 class="text-uppercase small text-secondary">${summaryData.other_ratings.title}</h6><div class="row">${ratingsHtml}</div></div>
+                        </div>
                     </div>
-                    <div class="col-lg-7">
-                        <h4 class="fw-bold mb-3" style="color: var(--primary);">${summaryData.general_evaluation.title}</h4>
-                        <p>${summaryData.general_evaluation.text_html}</p>
-                        <a href="${btn.href}" class="btn    </script>
+                </div>`;
+                summaryContainer.append(title, card);
+            }
+
+            // Render KPI Section
+            const kpiContainer = document.getElementById('kpi-section-container');
+            if (kpiContainer) {
+                const kpiData = getValue(pageData, 'kpi_section', {});
+                const card = createElement('div', {k: ['card', 'mb-4']});
+                card.innerHTML = `<div class="card-header"><h5 class="mb-0">${kpiData.title_html}</h5></div>`;
+                const cardBody = createElement('div', {k: ['card-body']});
+                const kpiRow = createElement('div', {k: ['row', 'gy-4']});
+                getValue(kpiData, 'kpi_cards', []).forEach(kpi => {
+                    const kpiCardHtml = `<div class="kpi-card-v4"><span class="icon-circle ${kpi.icon_bg}"><i class="${kpi.icon}"></i></span><div class="kpi-content"><div class="kpi-title">${kpi.title}</div><div class="kpi-value">${kpi.value}</div><div class="kpi-trend ${kpi.trend_class}">${kpi.trend_html}</div></div></div>`;
+                    kpiRow.appendChild(createElement('div', {k:['col-lg-3', 'col-md-6'], h: kpiCardHtml}));
+                });
+                cardBody.appendChild(kpiRow);
+                card.appendChild(cardBody);
+                kpiContainer.appendChild(card);
+            }
+
+            // Render Actions Section
+            const actionsContainer = document.getElementById('actions-section-container');
+            if (actionsContainer) {
+                const data = getValue(pageData, 'actions_section', {});
+                const card = createElement('div', {k: ['card', 'mb-4']});
+                card.innerHTML = `<div class="card-header"><h5 class="mb-0"><i class="${data.icon} me-2"></i>${data.title}</h5></div>`;
+                let tableHtml = `<div class="table-responsive"><table class="table table-hover action-table mb-0"><thead><tr><th>${data.headers.join('</th><th>')}</th></tr></thead><tbody>`;
+                getValue(data, 'rows', []).forEach(row => {
+                    tableHtml += `<tr><td><span class="icon-circle ${row.icon_bg}"><i class="${row.icon}"></i></span> ${row.area}</td><td>${row.action}</td><td>${row.impact}</td><td><span class="status-badge ${row.priority_class}">${row.priority_text}</span></td></tr>`;
+                });
+                tableHtml += `</tbody></table></div>`;
+                const cardBody = createElement('div', {k: ['card-body', 'p-0']}); // p-0 per far aderire la tabella
+                cardBody.innerHTML = tableHtml;
+                const cardFooter = createElement('div', {k: ['card-footer', 'text-center']});
+                cardFooter.innerHTML = `<a href="${data.link_to_full_plan.href}" class="btn btn-primary btn-pill"><i class="fas fa-list-alt me-2"></i>${data.link_to_full_plan.text}</a>`;
+                card.append(cardBody, cardFooter);
+                actionsContainer.appendChild(card);
+            }
+        };
+        
+        const main = async () => {
+            if (!PAGE_ID) return;
+            try {
+                const [metaResponse, pageResponse] = await Promise.all([fetch(META_DATA_PATH), fetch(PAGE_DATA_PATH)]);
+                if (!metaResponse.ok || !pageResponse.ok) throw new Error(`Errore caricamento file JSON`);
+                const metaData = await metaResponse.json();
+                const pageData = await pageResponse.json();
+                
+                document.title = `${pageData.page_title} - ${getValue(metaData, 'company.name')}`;
+                document.getElementById('loading-indicator')?.remove();
+                
+                renderCommonComponents(metaData);
+
+                if (PAGE_ID === 'parte1_sintesi') {
+                    renderSintesiPage(pageData);
+                }
+                
+                document.getElementById('page-content-wrapper').style.display = 'block';
+
+            } catch (error) {
+                console.error("ERRORE CRITICO:", error);
+                const container = document.querySelector('.dashboard-container');
+                if (container) container.innerHTML = `<div class="alert alert-danger p-4"><h4><i class="fas fa-exclamation-triangle me-2"></i>Errore</h4><p>Impossibile caricare o processare i dati.</p><pre class="small bg-light p-2 rounded">${error.message}</pre></div>`;
+            }
+        };
+        
+        main();
+    });
+    </script>
 </body>
 </html>
